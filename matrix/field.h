@@ -8,21 +8,26 @@
 
 #include <set>
 #include <iostream>
-#include "matrix.h"
+
+class Matrix;
 
 class Field {
 private:
-    Matrix const &matrix;
+    Matrix *matrix = nullptr;
     std::set<unsigned short int> possibleValues;
 
 public:
-    Field(Matrix const &, unsigned short int);
+    Field(Matrix &, unsigned short int);
 
-    std::set<unsigned short int> &getPossibleValues();
+    explicit Field(unsigned short int);
+
+    std::set<unsigned short int> const &getPossibleValues();
 
     void fixValue(unsigned short int);
 
     void removeValue(unsigned short int);
+
+    bool isFixed();
 };
 
 
