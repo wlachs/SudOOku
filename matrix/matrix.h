@@ -6,23 +6,28 @@
 #define SUDOOKU_MATRIX_H
 
 #include <map>
+#include <vector>
 #include "field.h"
 
 class Matrix {
 private:
+    unsigned short int dimension;
+
     std::map<std::pair<unsigned short int, unsigned short int>, Field> fields;
+
+    void populateEmptyFields();
 public:
     Matrix(unsigned short int, std::map<std::pair<unsigned short int, unsigned short int>, Field> &);
 
-    Matrix clone();
+    Matrix clone() const;
 
-    std::vector<Field const &> getListOfNontrivialFields();
+    std::vector<Field> getListOfNontrivialFields() const;
 
-    unsigned short int getDimension();
+    unsigned short int getDimension() const;
 
-    void fixValue(Field const &, unsigned short int);
+    void fixValue(Field &, unsigned short int);
 
-    void removeValue(Field const &, unsigned short int);
+    void removeValue(Field &, unsigned short int);
 
     void validateMatrix();
 };

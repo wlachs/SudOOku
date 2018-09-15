@@ -32,6 +32,6 @@ void Field::removeValue(unsigned short int value) {
     matrix->validateMatrix();
 }
 
-bool Field::isFixed() {
+bool Field::isFixed() const {
     return possibleValues.size() == 1;
 }

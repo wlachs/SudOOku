@@ -13,7 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0888d83e-f818-4340-be40-64772f1a7c89" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matrix/field.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/matrix/field.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matrix/field.h" beforeDir="false" afterPath="$PROJECT_DIR$/matrix/field.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matrix/matrix.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/matrix/matrix.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matrix/matrix.h" beforeDir="false" afterPath="$PROJECT_DIR$/matrix/matrix.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -36,55 +38,56 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="cpp" value="15" />
+          <entry key="cpp" value="19" />
           <entry key="gitignore" value="1" />
-          <entry key="h" value="17" />
+          <entry key="h" value="24" />
+          <entry key="set" value="1" />
           <entry key="txt" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="9" />
-          <entry key="ObjectiveC" value="32" />
+          <entry key="ObjectiveC" value="44" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="90" />
+          <entry key="cpp" value="1514" />
           <entry key="gitignore" value="23" />
-          <entry key="h" value="771" />
-          <entry key="txt" value="182" />
+          <entry key="h" value="1070" />
+          <entry key="txt" value="282" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="55" />
-          <entry key="ObjectiveC" value="861" />
-          <entry key="PLAIN_TEXT" value="150" />
+          <entry key="ObjectiveC" value="2584" />
+          <entry key="PLAIN_TEXT" value="250" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/matrix/matrix.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="21" column="2" lean-forward="true" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
+            <state relative-caret-position="169">
+              <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+              <folding>
+                <element signature="e#105#119#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/matrix/field.h">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/matrix/matrix.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-              <folding>
-                <element signature="e#104#118#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="132">
+              <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -121,7 +124,9 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/matrix/field.h" />
+        <option value="$PROJECT_DIR$/matrix/field.cpp" />
         <option value="$PROJECT_DIR$/matrix/matrix.h" />
+        <option value="$PROJECT_DIR$/matrix/matrix.cpp" />
       </list>
     </option>
   </component>
@@ -149,6 +154,16 @@
               <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
               <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
               <item name="matrix" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
+              <item name="solvers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
+              <item name="strategies" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -252,7 +267,28 @@
       <option name="project" value="LOCAL" />
       <updated>1537040740103</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Field header parameter names">
+      <created>1537041972904</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1537041972904</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Matrix header basics">
+      <created>1537041987351</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1537041987351</updated>
+    </task>
+    <task id="LOCAL-00007" summary="matrix can't be a const ref">
+      <created>1537043807659</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1537043807659</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -262,7 +298,7 @@
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24606581" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.32962447" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5028612" side_tool="true" weight="0.3991655" />
       <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="3" />
@@ -289,7 +325,11 @@
     <MESSAGE value="empty classes" />
     <MESSAGE value="ignore build folder" />
     <MESSAGE value="Field header basics" />
-    <option name="LAST_COMMIT_MESSAGE" value="Field header basics" />
+    <MESSAGE value="Field header parameter names" />
+    <MESSAGE value="Matrix header basics" />
+    <MESSAGE value="Field implementation" />
+    <MESSAGE value="matrix can't be a const ref" />
+    <option name="LAST_COMMIT_MESSAGE" value="matrix can't be a const ref" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -307,16 +347,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/CMakeLists.txt" />
-    <entry file="file://$PROJECT_DIR$/matrix/matrix.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/field.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/strategies/solvingStrategy.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -392,10 +422,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/set">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="638" column="9" selection-start-line="638" selection-start-column="9" selection-end-line="638" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/field.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+          <folding>
+            <element signature="e#54#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/matrix/field.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+        <state relative-caret-position="435">
+          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
           <folding>
             <element signature="e#104#118#0" expanded="true" />
           </folding>
@@ -404,8 +451,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/matrix/matrix.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="21" column="2" lean-forward="true" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
+        <state relative-caret-position="169">
+          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+          <folding>
+            <element signature="e#105#119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/matrix.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
         </state>
       </provider>
     </entry>

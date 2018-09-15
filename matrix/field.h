@@ -27,7 +27,7 @@ public:
 
     void removeValue(unsigned short int);
 
-    bool isFixed();
+    bool isFixed() const;
 };
 
 
