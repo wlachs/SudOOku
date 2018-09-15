@@ -11,8 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0888d83e-f818-4340-be40-64772f1a7c89" name="Default Changelist" comment="empty classes">
+    <list default="true" id="0888d83e-f818-4340-be40-64772f1a7c89" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matrix/field.h" beforeDir="false" afterPath="$PROJECT_DIR$/matrix/field.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,57 +35,55 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="cpp" value="14" />
+          <entry key="cpp" value="15" />
           <entry key="gitignore" value="1" />
-          <entry key="h" value="13" />
+          <entry key="h" value="15" />
           <entry key="txt" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="9" />
-          <entry key="ObjectiveC" value="27" />
+          <entry key="ObjectiveC" value="30" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="62" />
+          <entry key="cpp" value="90" />
           <entry key="gitignore" value="23" />
-          <entry key="h" value="51" />
-          <entry key="txt" value="133" />
+          <entry key="h" value="302" />
+          <entry key="txt" value="159" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="55" />
-          <entry key="ObjectiveC" value="113" />
-          <entry key="PLAIN_TEXT" value="101" />
+          <entry key="ObjectiveC" value="392" />
+          <entry key="PLAIN_TEXT" value="127" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solvers/solver.h">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/matrix/field.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="255">
+              <caret line="18" column="63" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
+              <folding>
+                <element signature="e#104#118#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+        <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="251" selection-start-line="5" selection-start-column="251" selection-end-line="5" selection-end-column="251" />
+            <state relative-caret-position="60">
+              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -112,9 +111,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/cmake-build-debug/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/matrix/matrix.h" />
-        <option value="$PROJECT_DIR$/matrix/field.h" />
         <option value="$PROJECT_DIR$/strategies/solvingStrategy.h" />
         <option value="$PROJECT_DIR$/strategies/trivialStrategy.h" />
         <option value="$PROJECT_DIR$/solvers/solver.h" />
@@ -122,6 +119,8 @@
         <option value="$PROJECT_DIR$/solvers/basicSolver.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/matrix/field.h" />
       </list>
     </option>
   </component>
@@ -144,6 +143,11 @@
             <path>
               <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
               <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
+              <item name="matrix" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -233,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1537039087890</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ignore build folder">
+      <created>1537039315893</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1537039315893</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -241,7 +252,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24606581" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24606581" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5028612" side_tool="true" weight="0.3991655" />
@@ -250,7 +261,7 @@
       <window_info anchor="bottom" id="Find" order="4" weight="0.32962447" />
       <window_info anchor="bottom" id="Database Changes" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="6" />
-      <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49713877" weight="0.3991655" />
+      <window_info active="true" anchor="bottom" id="Debug" order="7" sideWeight="0.49713877" visible="true" weight="0.3991655" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" />
@@ -268,7 +279,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="empty classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="empty classes" />
+    <MESSAGE value="ignore build folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="ignore build folder" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -300,20 +312,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/field.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -364,6 +362,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/solvers/solver.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -378,8 +383,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/field.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="63" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
+          <folding>
+            <element signature="e#104#118#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
