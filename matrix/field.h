@@ -16,13 +16,13 @@ private:
     std::set<unsigned short int> possibleValues;
 
 public:
-    Field(Matrix const &matrix, unsigned short int dimension);
+    Field(Matrix const &, unsigned short int);
 
     std::set<unsigned short int> &getPossibleValues();
 
-    void fixValue(unsigned short int value);
+    void fixValue(unsigned short int);
 
-    void removeValue(unsigned short int value);
+    void removeValue(unsigned short int);
 };
 
 
