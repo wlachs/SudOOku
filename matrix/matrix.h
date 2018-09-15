@@ -10,16 +10,14 @@
 #include "field.h"
 
 class Matrix {
-private:
+public:
     unsigned short int dimension;
 
     std::map<std::pair<unsigned short int, unsigned short int>, Field> fields;
 
     void populateEmptyFields();
 public:
-    Matrix(unsigned short int, std::map<std::pair<unsigned short int, unsigned short int>, Field> &);
-
-    Matrix clone() const;
+    Matrix(unsigned short int, std::map<std::pair<unsigned short int, unsigned short int>, Field>);
 
     std::vector<Field> getListOfNontrivialFields() const;
 

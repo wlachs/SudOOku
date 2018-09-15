@@ -12,14 +12,20 @@
 class Matrix;
 
 class Field {
-private:
+public:
     Matrix *matrix = nullptr;
-    std::set<unsigned short int> possibleValues;
+    std::set<unsigned short int> possibleValues = {};
 
 public:
     Field(Matrix &, unsigned short int);
 
-    explicit Field(unsigned short int);
+    Field(unsigned short int);
+
+    Field() = default;
+
+    Field(Field const &);
+
+    Field &operator=(Field const &);
 
     std::set<unsigned short int> const &getPossibleValues();
 
@@ -28,6 +34,8 @@ public:
     void removeValue(unsigned short int);
 
     bool isFixed() const;
+
+    void setMatrix(Matrix &);
 };
 
 

@@ -17,6 +17,13 @@ Field::Field(unsigned short int value) {
     possibleValues.insert(value);
 }
 
+Field::Field(Field const &other) {
+    matrix = other.matrix;
+    possibleValues = other.possibleValues;
+}
+
+Field &Field::operator=(Field const &other) = default;
+
 std::set<unsigned short int> const &Field::getPossibleValues() {
     return possibleValues;
 }
@@ -34,4 +41,8 @@ void Field::removeValue(unsigned short int value) {
 
 bool Field::isFixed() const {
     return possibleValues.size() == 1;
+}
+
+void Field::setMatrix(Matrix &matrix) {
+    this->matrix = &matrix;
 }

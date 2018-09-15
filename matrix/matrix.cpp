@@ -1,3 +1,5 @@
+#include <utility>
+
 //
 // Created by Borbély László on 2018. 09. 15..
 //
@@ -8,25 +10,22 @@ void Matrix::populateEmptyFields() {
     for (unsigned short int row = 1; row <= dimension; ++row) {
         for (unsigned short int column = 1; column <= dimension; ++column) {
             if (fields.find(std::pair<unsigned short int, unsigned short int>(row, column)) == fields.end()) {
-                fields.at(std::pair<unsigned short int, unsigned short int>(row, column)) = Field(*this, dimension);
+                fields[{row, column}] = Field(*this, dimension);
+            } else {
+                fields[{row, column}].setMatrix(*this);
             }
         }
     }
 }
 
-Matrix::Matrix(unsigned short int dimension, std::map<std::pair<unsigned short int, unsigned short int>, Field> &init) {
+Matrix::Matrix(unsigned short int dimension, std::map<std::pair<unsigned short int, unsigned short int>, Field> init) {
     this->dimension = dimension;
-    fields = init;
+    fields = std::move(init);
     populateEmptyFields();
 }
 
-Matrix Matrix::clone() const {
-    // TODO implement matrix cloning
-    return *this;
-}
-
 std::vector<Field> Matrix::getListOfNontrivialFields() const {
-    std::vector<Field> returns;
+    std::vector<Field> returns = {};
 
     std::for_each(fields.begin(), fields.end(),
                   [&returns](std::pair<std::pair<unsigned short int, unsigned short int>, Field> field) {
