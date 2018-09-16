@@ -10,9 +10,10 @@ void Matrix::populateEmptyFields() {
     for (unsigned short int row = 1; row <= dimension; ++row) {
         for (unsigned short int column = 1; column <= dimension; ++column) {
             if (fields.find(std::pair<unsigned short int, unsigned short int>(row, column)) == fields.end()) {
-                fields[{row, column}] = Field(*this, dimension);
+                fields[{row, column}] = Field(*this, dimension, {row, column});
             } else {
                 fields[{row, column}].setMatrix(*this);
+                fields[{row, column}].setCoordinates({row, column});
             }
         }
     }
@@ -24,16 +25,14 @@ Matrix::Matrix(unsigned short int dimension, std::map<std::pair<unsigned short i
     populateEmptyFields();
 }
 
-std::vector<Field> Matrix::getListOfNontrivialFields() const {
-    std::vector<Field> returns = {};
+std::vector<Field *> Matrix::getListOfNontrivialFields() {
+    std::vector<Field *> returns = {};
 
-    std::for_each(fields.begin(), fields.end(),
-                  [&returns](std::pair<std::pair<unsigned short int, unsigned short int>, Field> field) {
-                      if (field.second.isFixed()) {
-                          returns.push_back(field.second);
-                      }
-                  }
-    );
+    for (auto it = std::begin(fields); it != std::end(fields); ++it) {
+        if (!it->second.isFixed()) {
+            returns.push_back(&it->second);
+        }
+    }
 
     return returns;
 }
@@ -42,14 +41,7 @@ unsigned short int Matrix::getDimension() const {
     return dimension;
 }
 
-void Matrix::fixValue(Field &field, unsigned short int value) {
-    field.fixValue(value);
-}
-
-void Matrix::removeValue(Field &field, unsigned short int value) {
-    field.removeValue(value);
-}
-
-void Matrix::validateMatrix() {
+void Matrix::validateMatrix(std::pair<unsigned short int, unsigned short int> const &) {
     // TODO implement matrix validation
+    std::cout << "validate";
 }

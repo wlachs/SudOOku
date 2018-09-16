@@ -6,7 +6,7 @@
 #define SUDOOKU_FIELD_H
 
 
-#include <set>
+#include <vector>
 #include <iostream>
 
 class Matrix;
@@ -14,10 +14,11 @@ class Matrix;
 class Field {
 public:
     Matrix *matrix = nullptr;
-    std::set<unsigned short int> possibleValues = {};
+    std::vector<unsigned short int> possibleValues = {};
+    std::pair<unsigned short int, unsigned short int> coordinates;
 
 public:
-    Field(Matrix &, unsigned short int);
+    Field(Matrix &, unsigned short int, std::pair<unsigned short int, unsigned short int>);
 
     Field(unsigned short int);
 
@@ -27,7 +28,7 @@ public:
 
     Field &operator=(Field const &);
 
-    std::set<unsigned short int> const &getPossibleValues();
+    std::vector<unsigned short int> &getPossibleValues();
 
     void fixValue(unsigned short int);
 
@@ -36,6 +37,8 @@ public:
     bool isFixed() const;
 
     void setMatrix(Matrix &);
+
+    void setCoordinates(std::pair<unsigned short int, unsigned short int>);
 };
 
 

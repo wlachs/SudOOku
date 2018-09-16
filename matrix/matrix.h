@@ -19,15 +19,11 @@ public:
 public:
     Matrix(unsigned short int, std::map<std::pair<unsigned short int, unsigned short int>, Field>);
 
-    std::vector<Field> getListOfNontrivialFields() const;
+    std::vector<Field *> getListOfNontrivialFields();
 
     unsigned short int getDimension() const;
 
-    void fixValue(Field &, unsigned short int);
-
-    void removeValue(Field &, unsigned short int);
-
-    void validateMatrix();
+    void validateMatrix(std::pair<unsigned short int, unsigned short int> const &);
 };
 
 

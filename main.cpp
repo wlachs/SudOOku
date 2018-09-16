@@ -3,7 +3,6 @@
 //
 
 #include <iostream>
-#include <map>
 #include "matrix/field.h"
 #include "matrix/matrix.h"
 
@@ -23,8 +22,8 @@ int main() {
     Matrix matrix1{4, input};
     Matrix matrix2{matrix1};
 
-    std::cout << &matrix1.fields[{1, 1}].possibleValues << std::endl << &matrix2.fields[{1, 1}].possibleValues;
-
+    auto fields = matrix1.getListOfNontrivialFields();
+    fields[0]->fixValue(1);
 
     return 0;
 }
