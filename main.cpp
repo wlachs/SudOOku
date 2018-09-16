@@ -22,8 +22,5 @@ int main() {
     Matrix matrix1{4, input};
     Matrix matrix2{matrix1};
 
-    auto fields = matrix1.getListOfNontrivialFields();
-    fields[0]->fixValue(1);
-
     return 0;
 }

@@ -25,23 +25,10 @@ Matrix::Matrix(unsigned short int dimension, std::map<std::pair<unsigned short i
     populateEmptyFields();
 }
 
-std::vector<Field *> Matrix::getListOfNontrivialFields() {
-    std::vector<Field *> returns = {};
-
-    for (auto it = std::begin(fields); it != std::end(fields); ++it) {
-        if (!it->second.isFixed()) {
-            returns.push_back(&it->second);
-        }
-    }
-
-    return returns;
-}
-
 unsigned short int Matrix::getDimension() const {
     return dimension;
 }
 
-void Matrix::validateMatrix(std::pair<unsigned short int, unsigned short int> const &) {
-    // TODO implement matrix validation
-    std::cout << "validate";
+Field &Matrix::operator[](std::pair<unsigned short int, unsigned short int> coordinates) {
+    return fields[coordinates];
 }

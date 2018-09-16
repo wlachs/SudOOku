@@ -10,7 +10,7 @@
 #include "field.h"
 
 class Matrix {
-public:
+private:
     unsigned short int dimension;
 
     std::map<std::pair<unsigned short int, unsigned short int>, Field> fields;
@@ -19,11 +19,9 @@ public:
 public:
     Matrix(unsigned short int, std::map<std::pair<unsigned short int, unsigned short int>, Field>);
 
-    std::vector<Field *> getListOfNontrivialFields();
-
     unsigned short int getDimension() const;
 
-    void validateMatrix(std::pair<unsigned short int, unsigned short int> const &);
+    Field &operator[](std::pair<unsigned short int, unsigned short int>);
 };
 
 

@@ -12,7 +12,7 @@
 class Matrix;
 
 class Field {
-public:
+private:
     Matrix *matrix = nullptr;
     std::vector<unsigned short int> possibleValues = {};
     std::pair<unsigned short int, unsigned short int> coordinates;

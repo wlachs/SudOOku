@@ -33,7 +33,6 @@ std::vector<unsigned short int> &Field::getPossibleValues() {
 void Field::fixValue(unsigned short int value) {
     possibleValues.clear();
     possibleValues.push_back(value);
-    matrix->validateMatrix(this->coordinates);
 }
 
 void Field::removeValue(unsigned short int value) {
@@ -41,7 +40,6 @@ void Field::removeValue(unsigned short int value) {
 
     if (it != std::end(possibleValues)) {
         possibleValues.erase(it);
-        matrix->validateMatrix(this->coordinates);
     }
 }
 
