@@ -9,7 +9,10 @@
 #include "solver.h"
 
 class BasicSolver : Solver {
+public:
+    BasicSolver(Matrix, SolvingStrategy *);
 
+    virtual std::vector<Matrix> solve();
 };
 
 

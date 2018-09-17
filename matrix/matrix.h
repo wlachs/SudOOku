@@ -17,6 +17,8 @@ private:
 
     void populateEmptyFields();
 public:
+    Matrix() = default;
+
     Matrix(unsigned short int, std::map<std::pair<unsigned short int, unsigned short int>, Field>);
 
     unsigned short int getDimension() const;

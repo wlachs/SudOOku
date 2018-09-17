@@ -9,7 +9,12 @@
 #include "solvingStrategy.h"
 
 class TrivialStrategy : public SolvingStrategy {
+public:
+    TrivialStrategy() = default;
 
+    virtual Field const &selectField(Matrix const &);
+
+    virtual unsigned short int selectValue(Field const &);
 };
 
 

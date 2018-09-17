@@ -6,8 +6,17 @@
 #define SUDOOKU_SOLVER_H
 
 
-class Solver {
+#include "../matrix/matrix.h"
+#include "../strategies/solvingStrategy.h"
 
+class Solver {
+protected:
+    Matrix matrix;
+    SolvingStrategy *solvingStrategy;
+public:
+    Solver(Matrix, SolvingStrategy *);
+
+    virtual std::vector<Matrix> solve() = 0;
 };
 
 
