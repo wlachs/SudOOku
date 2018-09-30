@@ -21,8 +21,8 @@ std::vector<Matrix> const &Solver::getSolutions() const {
 }
 
 bool Solver::isValid(Matrix const &matrix) const {
-    for (unsigned int i = 0; i < strategies.size(); ++i) {
-        if (!strategies[i]->validate(matrix)) {
+    for (auto strategy : strategies) {
+        if (!strategy->validate(matrix)) {
             return false;
         }
     }
@@ -40,9 +40,9 @@ std::pair<Matrix, Matrix> Solver::fork(Matrix const &) const {
 
 void Solver::solve(Matrix matrix) {
 //  1. Is the matrix valid? If not, stop.
-//    if (!isValid(matrix)) {
-//        return;
-//    }
+    if (!isValid(matrix)) {
+        return;
+    }
 
 //  2. Is the current matrix a valid solution? If yes, add to solutions list.
 //    if (isSolution(matrix)) {
