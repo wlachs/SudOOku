@@ -4,6 +4,6 @@
 
 #include "rowStrategy.h"
 
-bool RowStrategy::validate(Matrix const &matrix) {
+bool RowStrategy::validate(Matrix const &matrix) const {
     return true;
 }

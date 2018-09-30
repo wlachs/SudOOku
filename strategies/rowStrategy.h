@@ -12,7 +12,7 @@ class RowStrategy : public SolvingStrategy {
 public:
     RowStrategy() = default;
 
-    virtual bool validate(Matrix const &matrix);
+    virtual bool validate(Matrix const &matrix) const;
 };
 
 

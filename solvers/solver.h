@@ -16,6 +16,12 @@ protected:
     std::vector<Matrix> solutions;
 
     void solve(Matrix);
+
+    bool isValid(Matrix const &) const;
+
+    bool isSolution(Matrix const &) const;
+
+    std::pair<Matrix, Matrix> fork(Matrix const &) const;
 public:
     Solver() = default;
 

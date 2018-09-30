@@ -9,9 +9,9 @@
 
 class SolvingStrategy {
 public:
-    SolvingStrategy();
+    SolvingStrategy() = default;
 
-    virtual bool validate(Matrix const &matrix) = 0;
+    virtual bool validate(Matrix const &) const = 0;
 };
 
 
