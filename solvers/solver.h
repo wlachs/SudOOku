@@ -12,18 +12,20 @@
 class Solver {
 protected:
     Matrix initialMatrix;
-    std::vector<SolvingStrategy *> strategies;
+    std::vector<const SolvingStrategy *> strategies;
     std::vector<Matrix> solutions;
 
     void solve(Matrix);
 public:
-    Solver(Matrix &);
+    Solver() = default;
 
-    void addRule(SolvingStrategy *);
+    void setInitialMatrix(Matrix &);
+
+    void addRule(const SolvingStrategy *);
 
     void solve();
 
-    std::vector<Matrix> const &getSolutions();
+    std::vector<Matrix> const &getSolutions() const;
 };
 
 

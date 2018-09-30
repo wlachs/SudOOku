@@ -4,11 +4,11 @@
 
 #include "solver.h"
 
-Solver::Solver(Matrix &matrix) {
+void Solver::setInitialMatrix(Matrix &matrix) {
     initialMatrix = matrix;
 }
 
-void Solver::addRule(SolvingStrategy *solvingStrategy) {
+void Solver::addRule(const SolvingStrategy *solvingStrategy) {
     strategies.push_back(solvingStrategy);
 }
 
@@ -16,7 +16,7 @@ void Solver::solve() {
     solve(initialMatrix);
 }
 
-std::vector<Matrix> const &Solver::getSolutions() {
+std::vector<Matrix> const &Solver::getSolutions() const {
     return solutions;
 }
 

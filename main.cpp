@@ -6,6 +6,7 @@
 #include "matrix/field.h"
 #include "matrix/matrix.h"
 #include "solvers/solver.h"
+#include "strategies/rowStrategy.h"
 
 int main() {
     std::map<std::pair<unsigned short int, unsigned short int>, Field> input = {
@@ -19,7 +20,12 @@ int main() {
     };
 
     Matrix matrix1{4, input};
-    Solver solver{matrix1};
+    Solver solver{};
+    RowStrategy rowStrategy{};
+
+    solver.setInitialMatrix(matrix1);
+    solver.addRule(&rowStrategy);
+
     solver.solve();
 
     auto solutions = solver.getSolutions();
