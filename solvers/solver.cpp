@@ -4,7 +4,11 @@
 
 #include "solver.h"
 
-Solver::Solver(Matrix matrix, SolvingStrategy *solvingStrategy) {
-    this->matrix = matrix;
-    this->solvingStrategy = solvingStrategy;
+Solver::Solver(Matrix &matrix) {
+    this->initialMatrix = matrix;
+}
+
+std::vector<Matrix> Solver::solve(Matrix matrix) {
+
+    return {};
 }

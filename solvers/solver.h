@@ -11,12 +11,12 @@
 
 class Solver {
 protected:
-    Matrix matrix;
-    SolvingStrategy *solvingStrategy;
+    Matrix initialMatrix;
+    std::vector<SolvingStrategy *> strategies;
 public:
-    Solver(Matrix, SolvingStrategy *);
+    Solver(Matrix &);
 
-    virtual std::vector<Matrix> solve() = 0;
+    std::vector<Matrix> solve(Matrix);
 };
 
 

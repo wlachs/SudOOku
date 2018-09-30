@@ -11,18 +11,19 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0888d83e-f818-4340-be40-64772f1a7c89" name="Default Changelist" comment="">
+    <list default="true" id="0888d83e-f818-4340-be40-64772f1a7c89" name="Default Changelist" comment="solvers and strategies">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matrix/matrix.h" beforeDir="false" afterPath="$PROJECT_DIR$/matrix/matrix.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solvers/basicSolver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/basicSolver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solvers/basicSolver.h" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/basicSolver.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solvers/basicSolver.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solvers/basicSolver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solvers/recursiveSolver.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solvers/recursiveSolver.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/solvers/solver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/solver.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solvers/solver.h" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/solver.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/strategies/solvingStrategy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/strategies/solvingStrategy.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/strategies/solvingStrategy.h" beforeDir="false" afterPath="$PROJECT_DIR$/strategies/solvingStrategy.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/strategies/trivialStrategy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/strategies/trivialStrategy.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/strategies/trivialStrategy.h" beforeDir="false" afterPath="$PROJECT_DIR$/strategies/trivialStrategy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/strategies/trivialStrategy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/strategies/rowStrategy.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/strategies/trivialStrategy.h" beforeDir="false" afterPath="$PROJECT_DIR$/strategies/rowStrategy.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,18 +37,20 @@
     <session id="-267438703">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.13" value="1" />
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.13" value="3" />
+          <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="cpp" value="52" />
+          <entry key="cpp" value="58" />
           <entry key="gitignore" value="1" />
-          <entry key="h" value="53" />
+          <entry key="h" value="58" />
           <entry key="map" value="1" />
           <entry key="set" value="1" />
           <entry key="txt" value="9" />
@@ -57,23 +60,23 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="9" />
-          <entry key="ObjectiveC" value="108" />
+          <entry key="ObjectiveC" value="119" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="4168" />
+          <entry key="cpp" value="4241" />
           <entry key="gitignore" value="23" />
-          <entry key="h" value="2144" />
-          <entry key="txt" value="526" />
+          <entry key="h" value="2310" />
+          <entry key="txt" value="548" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="55" />
-          <entry key="ObjectiveC" value="6312" />
-          <entry key="PLAIN_TEXT" value="494" />
+          <entry key="ObjectiveC" value="6551" />
+          <entry key="PLAIN_TEXT" value="516" />
         </counts>
       </usages-collector>
     </session>
@@ -83,8 +86,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="38" lean-forward="true" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+            <state relative-caret-position="284">
+              <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
               <folding>
                 <element signature="e#54#73#0" expanded="true" />
               </folding>
@@ -93,22 +96,46 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/strategies/trivialStrategy.cpp">
+        <entry file="file://$PROJECT_DIR$/strategies/rowStrategy.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="210">
+              <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/strategies/rowStrategy.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/solvers/solver.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/solvers/basicSolver.cpp">
+        <entry file="file://$PROJECT_DIR$/solvers/solver.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-              <folding>
-                <element signature="e#54#83#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="330">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/matrix/matrix.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -143,15 +170,16 @@
         <option value="$PROJECT_DIR$/matrix/field.h" />
         <option value="$PROJECT_DIR$/matrix/matrix.cpp" />
         <option value="$PROJECT_DIR$/matrix/matrix.h" />
-        <option value="$PROJECT_DIR$/strategies/solvingStrategy.cpp" />
-        <option value="$PROJECT_DIR$/solvers/solver.cpp" />
         <option value="$PROJECT_DIR$/solvers/basicSolver.h" />
-        <option value="$PROJECT_DIR$/solvers/basicSolver.cpp" />
-        <option value="$PROJECT_DIR$/solvers/solver.h" />
-        <option value="$PROJECT_DIR$/strategies/solvingStrategy.h" />
-        <option value="$PROJECT_DIR$/strategies/trivialStrategy.h" />
         <option value="$PROJECT_DIR$/strategies/trivialStrategy.cpp" />
+        <option value="$PROJECT_DIR$/solvers/basicSolver.cpp" />
+        <option value="$PROJECT_DIR$/strategies/solvingStrategy.h" />
+        <option value="$PROJECT_DIR$/strategies/solvingStrategy.cpp" />
+        <option value="$PROJECT_DIR$/strategies/trivialStrategy.h" />
+        <option value="$PROJECT_DIR$/strategies/rowStrategy.cpp" />
         <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/solvers/solver.cpp" />
+        <option value="$PROJECT_DIR$/solvers/solver.h" />
       </list>
     </option>
   </component>
@@ -168,32 +196,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
-              <item name="matrix" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
-              <item name="solvers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
-              <item name="strategies" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Project Non-Source Files'; set:Project Non-Source Files; class com.jetbrains.cidr.lang.search.scopes.ProjectSourcesScopeProvider$NonSourceFilesScope">
           <expand>
@@ -218,6 +220,32 @@
             <path>
               <item name="SudOOku" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
+              <item name="matrix" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
+              <item name="solvers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SudOOku" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SudOOku" type="462c0819:PsiDirectoryNode" />
+              <item name="strategies" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -341,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1537089309701</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="solvers and strategies">
+      <created>1537162849327</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1537162849327</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -355,9 +390,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="811" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24964234" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.2639485" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32962447" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5035765" side_tool="true" weight="0.32962447" />
@@ -365,7 +401,7 @@
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.32962447" />
       <window_info anchor="bottom" id="Database Changes" order="5" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.32962447" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.32962447" />
       <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49713877" weight="0.2906815" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -394,7 +430,8 @@
     <MESSAGE value="remove cloning for now" />
     <MESSAGE value="remove fix and remove functions from matrix&#10;this functionality is now fulfilled entirely by the fields" />
     <MESSAGE value="remove solver functionality from matrix" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove solver functionality from matrix" />
+    <MESSAGE value="solvers and strategies" />
+    <option name="LAST_COMMIT_MESSAGE" value="solvers and strategies" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -412,16 +449,7 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/CMakeLists.txt" />
-    <entry file="file://$PROJECT_DIR$/solvers/recursiveSolver.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solvers/recursiveSolver.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/solvers/recursiveSolver.h" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -468,16 +496,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
-          <folding>
-            <element signature="e#54#72#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/matrix.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
@@ -491,13 +509,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solvers/basicSolver.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/solvers/basicSolver.h" />
+    <entry file="file://$PROJECT_DIR$/solvers/recursiveSolver.cpp" />
+    <entry file="file://$PROJECT_DIR$/solvers/basicSolver.cpp" />
     <entry file="file://$PROJECT_DIR$/strategies/solvingStrategy.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -505,38 +519,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solvers/solver.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/strategies/solvingStrategy.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="62" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solvers/solver.h">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-          <folding>
-            <element signature="e#106#135#0" expanded="true" />
-          </folding>
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/strategies/trivialStrategy.h">
+    <entry file="file://$PROJECT_DIR$/strategies/rowStrategy.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/strategies/trivialStrategy.cpp">
+    <entry file="file://$PROJECT_DIR$/matrix/matrix.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
@@ -545,21 +542,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="38" lean-forward="true" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+        <state relative-caret-position="284">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
           <folding>
             <element signature="e#54#73#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solvers/basicSolver.cpp">
+    <entry file="file://$PROJECT_DIR$/solvers/solver.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding>
-            <element signature="e#54#83#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="195">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategies/rowStrategy.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solvers/solver.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>

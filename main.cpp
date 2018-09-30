@@ -5,7 +5,7 @@
 #include <iostream>
 #include "matrix/field.h"
 #include "matrix/matrix.h"
-#include "solvers/basicSolver.h"
+#include "solvers/solver.h"
 
 int main() {
     std::map<std::pair<unsigned short int, unsigned short int>, Field> input = {
@@ -19,8 +19,8 @@ int main() {
     };
 
     Matrix matrix1{4, input};
-    BasicSolver basicSolver{matrix1, nullptr};
-    auto result = basicSolver.solve();
+    Solver solver{matrix1};
+    auto result = solver.solve();
 
     return 0;
 }
