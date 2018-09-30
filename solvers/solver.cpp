@@ -5,10 +5,16 @@
 #include "solver.h"
 
 Solver::Solver(Matrix &matrix) {
-    this->initialMatrix = matrix;
+    initialMatrix = matrix;
 }
 
-std::vector<Matrix> Solver::solve(Matrix matrix) {
+void Solver::addRule(SolvingStrategy *solvingStrategy) {
+    strategies.push_back(solvingStrategy);
+}
 
-    return {};
+void Solver::solve(Matrix matrix) {
+    // 1. Is the matrix valid? If not, stop.
+    // 2. Is the current matrix a valid solution? If yes, add to solutions list.
+    // 3. Fork the matrix somehow
+    // 4. Repeat
 }

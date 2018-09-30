@@ -13,10 +13,13 @@ class Solver {
 protected:
     Matrix initialMatrix;
     std::vector<SolvingStrategy *> strategies;
+    std::vector<Matrix> solutions;
 public:
     Solver(Matrix &);
 
-    std::vector<Matrix> solve(Matrix);
+    void addRule(SolvingStrategy *);
+
+    void solve(Matrix);
 };
 
 
