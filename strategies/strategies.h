@@ -10,8 +10,11 @@
 
 class RowStrategy : public SolvingStrategy {
 public:
-    RowStrategy() = default;
+    virtual bool validate(Matrix const &matrix) const;
+};
 
+class ColumnStrategy : public SolvingStrategy {
+public:
     virtual bool validate(Matrix const &matrix) const;
 };
 

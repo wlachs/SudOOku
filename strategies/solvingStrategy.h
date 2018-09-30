@@ -6,6 +6,7 @@
 #define SUDOOKU_SOLVINGSTRATEGY_H
 
 #include "../matrix/field.h"
+#include "../matrix/matrix.h"
 
 class SolvingStrategy {
 public:
