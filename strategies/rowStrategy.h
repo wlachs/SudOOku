@@ -8,9 +8,9 @@
 
 #include "solvingStrategy.h"
 
-class TrivialStrategy : public SolvingStrategy {
+class RowStrategy : public SolvingStrategy {
 public:
-    TrivialStrategy() = default;
+    RowStrategy() = default;
 
     virtual bool validate(Matrix const &matrix);
 };

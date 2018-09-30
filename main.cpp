@@ -20,7 +20,9 @@ int main() {
 
     Matrix matrix1{4, input};
     Solver solver{matrix1};
-    auto result = solver.solve();
+    solver.solve();
+
+    auto solutions = solver.getSolutions();
 
     return 0;
 }

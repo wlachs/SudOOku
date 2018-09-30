@@ -12,6 +12,14 @@ void Solver::addRule(SolvingStrategy *solvingStrategy) {
     strategies.push_back(solvingStrategy);
 }
 
+void Solver::solve() {
+    solve(initialMatrix);
+}
+
+std::vector<Matrix> const &Solver::getSolutions() {
+    return solutions;
+}
+
 void Solver::solve(Matrix matrix) {
     // 1. Is the matrix valid? If not, stop.
     // 2. Is the current matrix a valid solution? If yes, add to solutions list.

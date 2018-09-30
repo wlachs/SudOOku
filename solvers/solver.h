@@ -14,12 +14,16 @@ protected:
     Matrix initialMatrix;
     std::vector<SolvingStrategy *> strategies;
     std::vector<Matrix> solutions;
+
+    void solve(Matrix);
 public:
     Solver(Matrix &);
 
     void addRule(SolvingStrategy *);
 
-    void solve(Matrix);
+    void solve();
+
+    std::vector<Matrix> const &getSolutions();
 };
 
 
