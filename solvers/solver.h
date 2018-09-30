@@ -15,7 +15,7 @@ protected:
     std::vector<const SolvingStrategy *> strategies;
     std::vector<Matrix> solutions;
 
-    void solve(Matrix);
+    void solve(Matrix const &);
 
     bool isValid(Matrix const &) const;
 

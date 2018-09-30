@@ -71,7 +71,7 @@ std::pair<Matrix, Matrix> Solver::fork(Matrix const &matrix_) const {
     return {matrix_first, matrix_second};
 }
 
-void Solver::solve(Matrix matrix) {
+void Solver::solve(Matrix const &matrix) {
 //  1. Is the matrix valid? If not, stop.
     if (!isValid(matrix)) {
         return;
@@ -87,6 +87,6 @@ void Solver::solve(Matrix matrix) {
     auto forked = fork(matrix);
 
 //  4. Repeat
-//    solve(forked.first);
-//    solve(forked.second);
+    solve(forked.first);
+    solve(forked.second);
 }
