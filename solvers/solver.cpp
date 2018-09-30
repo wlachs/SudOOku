@@ -30,8 +30,19 @@ bool Solver::isValid(Matrix const &matrix) const {
     return true;
 }
 
-bool Solver::isSolution(Matrix const &) const {
-    return false;
+bool Solver::isSolution(Matrix &matrix) const {
+//  Solution if valid and in every cell there's only one number
+    auto dimension = matrix.getDimension();
+
+    for (unsigned short int x = 1; x <= dimension; ++x) {
+        for (unsigned short int y = 1; y <= dimension; ++y) {
+            if (matrix[{x, y}].getPossibleValues().size() != 1) {
+                return false;
+            }
+        }
+    }
+
+    return true;
 }
 
 std::pair<Matrix, Matrix> Solver::fork(Matrix const &) const {
@@ -45,10 +56,10 @@ void Solver::solve(Matrix matrix) {
     }
 
 //  2. Is the current matrix a valid solution? If yes, add to solutions list.
-//    if (isSolution(matrix)) {
-//        solutions.push_back(matrix);
-//        return;
-//    }
+    if (isSolution(matrix)) {
+        solutions.push_back(matrix);
+        return;
+    }
 
 //  3. Fork the matrix somehow
 //    auto forked = fork(matrix);
