@@ -19,14 +19,53 @@ int main() {
             {{4, 4}, 3}
     };
 
+//    std::map<std::pair<unsigned short int, unsigned short int>, Field> input = {
+//            {{1, 1}, 7},
+//            {{1, 5}, 5},
+//            {{1, 8}, 9},
+//
+//            {{2, 3}, 5},
+//            {{2, 6}, 7},
+//            {{2, 9}, 2},
+//
+//            {{3, 3}, 9},
+//            {{3, 6}, 3},
+//            {{3, 9}, 6},
+//
+//            {{4, 3}, 4},
+//            {{4, 6}, 6},
+//
+//            {{5, 2}, 8},
+//            {{5, 5}, 7},
+//            {{5, 8}, 4},
+//
+//            {{6, 4}, 9},
+//            {{6, 7}, 1},
+//
+//            {{7, 2}, 6},
+//            {{7, 4}, 1},
+//            {{7, 7}, 9},
+//
+//            {{8, 1}, 2},
+//            {{8, 4}, 7},
+//            {{8, 7}, 3},
+//
+//            {{9, 2}, 3},
+//            {{9, 5}, 8},
+//            {{9, 9}, 1},
+//    };
+
     Matrix matrix1{4, input};
     Solver solver{};
+    solver.setInitialMatrix(matrix1);
+
     RowStrategy rowStrategy{};
     ColumnStrategy columnStrategy{};
+    GroupStrategy groupStrategy{};
 
-    solver.setInitialMatrix(matrix1);
     solver.addRule(&rowStrategy);
     solver.addRule(&columnStrategy);
+    solver.addRule(&groupStrategy);
 
     solver.solve();
 

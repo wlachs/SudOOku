@@ -72,6 +72,21 @@ std::pair<Matrix, Matrix> Solver::fork(Matrix const &matrix_) const {
 }
 
 void Solver::solve(Matrix const &matrix) {
+    auto matrix_ = matrix.clone();
+    auto dimension = matrix.getDimension();
+    for (unsigned short int x = 1; x <= dimension; ++x) {
+        for (unsigned short int y = 1; y <= dimension; ++y) {
+            auto values = matrix_[{x, y}].getPossibleValues();
+            if (values.size() == 1) {
+                std::cout << values[0] << " ";
+            } else {
+                std::cout << "  ";
+            }
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+
 //  1. Is the matrix valid? If not, stop.
     if (!isValid(matrix)) {
         return;
@@ -83,10 +98,13 @@ void Solver::solve(Matrix const &matrix) {
         return;
     }
 
-//  3. Fork the matrix somehow
+//  3. Simplify the matrix according to the known strategies
+
+
+//  4. Fork the matrix somehow
     auto forked = fork(matrix);
 
-//  4. Repeat
+//  5. Repeat
     solve(forked.first);
     solve(forked.second);
 }

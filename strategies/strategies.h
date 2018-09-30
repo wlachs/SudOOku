@@ -18,5 +18,15 @@ public:
     virtual bool validate(Matrix const &matrix) const;
 };
 
+class GroupStrategy : public SolvingStrategy {
+private:
+    std::vector<Matrix> separateToGroups(Matrix) const;
+
+    bool singular(Matrix &) const;
+
+public:
+    virtual bool validate(Matrix const &matrix) const;
+};
+
 
 #endif //SUDOOKU_STRATEGIES_H
