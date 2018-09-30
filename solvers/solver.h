@@ -19,7 +19,7 @@ protected:
 
     bool isValid(Matrix const &) const;
 
-    bool isSolution(Matrix &) const;
+    bool isSolution(Matrix const &) const;
 
     std::pair<Matrix, Matrix> fork(Matrix const &) const;
 public:

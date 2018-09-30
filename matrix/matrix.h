@@ -24,6 +24,8 @@ public:
     unsigned short int getDimension() const;
 
     Field &operator[](std::pair<unsigned short int, unsigned short int>);
+
+    Matrix clone() const;
 };
 
 

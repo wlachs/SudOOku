@@ -21,7 +21,7 @@ void Matrix::populateEmptyFields() {
 
 Matrix::Matrix(unsigned short int dimension, std::map<std::pair<unsigned short int, unsigned short int>, Field> init) {
     this->dimension = dimension;
-    fields = std::move(init);
+    fields = init;
     populateEmptyFields();
 }
 
@@ -31,4 +31,8 @@ unsigned short int Matrix::getDimension() const {
 
 Field &Matrix::operator[](std::pair<unsigned short int, unsigned short int> coordinates) {
     return fields[coordinates];
+}
+
+Matrix Matrix::clone() const {
+    return Matrix(dimension, fields);
 }

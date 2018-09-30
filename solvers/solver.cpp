@@ -30,8 +30,9 @@ bool Solver::isValid(Matrix const &matrix) const {
     return true;
 }
 
-bool Solver::isSolution(Matrix &matrix) const {
+bool Solver::isSolution(Matrix const &matrix_) const {
 //  Solution if valid and in every cell there's only one number
+    auto matrix = matrix_.clone();
     auto dimension = matrix.getDimension();
 
     for (unsigned short int x = 1; x <= dimension; ++x) {
@@ -46,6 +47,9 @@ bool Solver::isSolution(Matrix &matrix) const {
 }
 
 std::pair<Matrix, Matrix> Solver::fork(Matrix const &) const {
+//  Where to fork?
+//  At the field where the number of possible values is the lowest but not less than 2
+
     return {};
 }
 
@@ -62,7 +66,7 @@ void Solver::solve(Matrix matrix) {
     }
 
 //  3. Fork the matrix somehow
-//    auto forked = fork(matrix);
+    auto forked = fork(matrix);
 
 //  4. Repeat
 //    solve(forked.first);
