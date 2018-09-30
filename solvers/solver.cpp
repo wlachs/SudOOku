@@ -30,9 +30,47 @@ bool Solver::isValid(Matrix const &matrix) const {
     return true;
 }
 
-bool Solver::isSolution(Matrix const &matrix_) const {
+void Solver::optimize(Matrix &matrix) const {
+    bool shouldReRun = false;
+
+    auto dimension = matrix.getDimension();
+    for (unsigned short int x = 1; x <= dimension; ++x) {
+        for (unsigned short int y = 1; y <= dimension; ++y) {
+            if (optimizeField(matrix, {x, y})) {
+                shouldReRun = true;
+            }
+        }
+    }
+
+    if (shouldReRun) {
+        optimize(matrix);
+    }
+}
+
+bool Solver::optimizeField(Matrix &matrix, std::pair<unsigned short int, unsigned short int> const &coords) const {
+    std::vector<unsigned short int> possibleValues = matrix[coords].getPossibleValues();
+    bool result = false;
+
+    if (possibleValues.size() <= 1) {
+        return result;
+    }
+
+    for (auto value : matrix[coords].getPossibleValues()) {
+        matrix[coords].fixValue(value);
+        if (!isValid(matrix)) {
+            auto it = std::find(std::begin(possibleValues), std::end(possibleValues), value);
+            possibleValues.erase(it);
+            result = true;
+        }
+    }
+
+    matrix[coords].getPossibleValues() = possibleValues;
+
+    return result;
+}
+
+bool Solver::isSolution(Matrix &matrix) const {
 //  Solution if valid and in every cell there's only one number
-    auto matrix = matrix_.clone();
     auto dimension = matrix.getDimension();
 
     for (unsigned short int x = 1; x <= dimension; ++x) {
@@ -71,12 +109,11 @@ std::pair<Matrix, Matrix> Solver::fork(Matrix const &matrix_) const {
     return {matrix_first, matrix_second};
 }
 
-void Solver::solve(Matrix const &matrix) {
-    auto matrix_ = matrix.clone();
+void Solver::solve(Matrix matrix) {
     auto dimension = matrix.getDimension();
     for (unsigned short int x = 1; x <= dimension; ++x) {
         for (unsigned short int y = 1; y <= dimension; ++y) {
-            auto values = matrix_[{x, y}].getPossibleValues();
+            auto values = matrix[{x, y}].getPossibleValues();
             if (values.size() == 1) {
                 std::cout << values[0] << " ";
             } else {
@@ -85,21 +122,22 @@ void Solver::solve(Matrix const &matrix) {
         }
         std::cout << std::endl;
     }
-    std::cout << std::endl;
+    std::cout << solutions.size() << std::endl;
 
-//  1. Is the matrix valid? If not, stop.
+
+//  1. Simplify the matrix according to the known strategies
+    optimize(matrix);
+
+//  2. Is it still valid?
     if (!isValid(matrix)) {
         return;
     }
 
-//  2. Is the current matrix a valid solution? If yes, add to solutions list.
+//  3. Is the current matrix a valid solution? If yes, add to solutions list.
     if (isSolution(matrix)) {
         solutions.push_back(matrix);
         return;
     }
-
-//  3. Simplify the matrix according to the known strategies
-
 
 //  4. Fork the matrix somehow
     auto forked = fork(matrix);

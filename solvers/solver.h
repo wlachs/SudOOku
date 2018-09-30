@@ -15,11 +15,15 @@ protected:
     std::vector<const SolvingStrategy *> strategies;
     std::vector<Matrix> solutions;
 
-    void solve(Matrix const &);
+    void solve(Matrix);
 
     bool isValid(Matrix const &) const;
 
-    bool isSolution(Matrix const &) const;
+    void optimize(Matrix &) const;
+
+    bool optimizeField(Matrix &, std::pair<unsigned short int, unsigned short int> const &) const;
+
+    bool isSolution(Matrix &) const;
 
     std::pair<Matrix, Matrix> fork(Matrix const &) const;
 public:

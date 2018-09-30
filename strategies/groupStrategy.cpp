@@ -17,13 +17,15 @@ std::vector<Matrix> GroupStrategy::separateToGroups(Matrix matrix) const {
                 for (unsigned short int y = 1; y <= groupDimension; ++y) {
                     std::pair<unsigned short int, unsigned short int> coords =
                             {horizontalGroups * groupDimension + x, verticalGroups * groupDimension + y};
-                    if (matrix[coords].getPossibleValues().size() == 1) {
-                        group.insert({coords, matrix[coords].getPossibleValues()[0]});
+                    auto possibleValues = matrix[coords].getPossibleValues();
+                    if (possibleValues.size() == 1) {
+                        group.insert({{x, y}, possibleValues[0]});
                     }
                 }
             }
 
-            result.emplace_back((unsigned short int) groupDimension, group);
+            Matrix temp{(unsigned short int) groupDimension, group};
+            result.push_back(temp);
         }
     }
 
