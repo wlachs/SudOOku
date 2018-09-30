@@ -2,8 +2,8 @@
 // Created by Borbély László on 2018. 09. 15..
 //
 
-#ifndef SUDOOKU_TRIVIALSTRATEGY_H
-#define SUDOOKU_TRIVIALSTRATEGY_H
+#ifndef SUDOOKU_STRATEGIES_H
+#define SUDOOKU_STRATEGIES_H
 
 
 #include "solvingStrategy.h"
@@ -19,4 +19,4 @@ public:
 };
 
 
-#endif //SUDOOKU_TRIVIALSTRATEGY_H
+#endif //SUDOOKU_STRATEGIES_H
