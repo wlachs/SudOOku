@@ -30,5 +30,16 @@ int main() {
 
     auto solutions = solver.getSolutions();
 
+    for (auto solution : solutions) {
+        auto dimension = solution.getDimension();
+        for (unsigned short int x = 1; x <= dimension; ++x) {
+            for (unsigned short int y = 1; y <= dimension; ++y) {
+                std::cout << solution[{x, y}].getPossibleValues()[0] << " ";
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+    }
+
     return 0;
 }
