@@ -46,11 +46,29 @@ bool Solver::isSolution(Matrix const &matrix_) const {
     return true;
 }
 
-std::pair<Matrix, Matrix> Solver::fork(Matrix const &) const {
+std::pair<Matrix, Matrix> Solver::fork(Matrix const &matrix_) const {
 //  Where to fork?
 //  At the field where the number of possible values is the lowest but not less than 2
+    auto matrix_first = matrix_.clone();
+    auto matrix_second = matrix_.clone();
 
-    return {};
+    std::pair<unsigned short int, unsigned short int> minCoordinates = {1, 1};
+    unsigned long minSize = matrix_.getDimension() + 1;
+
+    for (unsigned short int x = 1; x <= matrix_.getDimension(); ++x) {
+        for (unsigned short int y = 1; y <= matrix_.getDimension(); ++y) {
+            auto currentSize = matrix_first[{x, y}].getPossibleValues().size();
+            if (currentSize < minSize && currentSize > 1) {
+                minSize = currentSize;
+                minCoordinates = {x, y};
+            }
+        }
+    }
+
+    matrix_first[minCoordinates].fixValue();
+    matrix_second[minCoordinates].removeValue();
+
+    return {matrix_first, matrix_second};
 }
 
 void Solver::solve(Matrix matrix) {

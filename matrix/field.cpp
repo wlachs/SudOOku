@@ -30,9 +30,19 @@ std::vector<unsigned short int> &Field::getPossibleValues() {
     return possibleValues;
 }
 
+void Field::fixValue() {
+    auto value = possibleValues[0];
+    possibleValues.clear();
+    possibleValues.push_back(value);
+}
+
 void Field::fixValue(unsigned short int value) {
     possibleValues.clear();
     possibleValues.push_back(value);
+}
+
+void Field::removeValue() {
+    possibleValues.erase(std::begin(possibleValues));
 }
 
 void Field::removeValue(unsigned short int value) {

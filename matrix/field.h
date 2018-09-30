@@ -30,7 +30,11 @@ public:
 
     std::vector<unsigned short int> &getPossibleValues();
 
+    void fixValue();
+
     void fixValue(unsigned short int);
+
+    void removeValue();
 
     void removeValue(unsigned short int);
 
