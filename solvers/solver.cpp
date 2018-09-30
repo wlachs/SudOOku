@@ -20,7 +20,25 @@ std::vector<Matrix> const &Solver::getSolutions() const {
     return solutions;
 }
 
-bool Solver::isValid(Matrix const &matrix) const {
+bool Solver::hasNoPotentialValues(Matrix &matrix) const {
+    auto dimension = matrix.getDimension();
+
+    for (unsigned short int x = 1; x <= dimension; ++x) {
+        for (unsigned short int y = 1; y <= dimension; ++y) {
+            if (matrix[{x, y}].getPossibleValues().size() == 0) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool Solver::isValid(Matrix &matrix) const {
+    if (hasNoPotentialValues(matrix)) {
+        return false;
+    }
+
     for (auto strategy : strategies) {
         if (!strategy->validate(matrix)) {
             return false;
@@ -110,21 +128,6 @@ std::pair<Matrix, Matrix> Solver::fork(Matrix const &matrix_) const {
 }
 
 void Solver::solve(Matrix matrix) {
-    auto dimension = matrix.getDimension();
-    for (unsigned short int x = 1; x <= dimension; ++x) {
-        for (unsigned short int y = 1; y <= dimension; ++y) {
-            auto values = matrix[{x, y}].getPossibleValues();
-            if (values.size() == 1) {
-                std::cout << values[0] << " ";
-            } else {
-                std::cout << "  ";
-            }
-        }
-        std::cout << std::endl;
-    }
-    std::cout << solutions.size() << std::endl;
-
-
 //  1. Simplify the matrix according to the known strategies
     optimize(matrix);
 

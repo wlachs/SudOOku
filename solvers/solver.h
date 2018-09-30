@@ -17,7 +17,9 @@ protected:
 
     void solve(Matrix);
 
-    bool isValid(Matrix const &) const;
+    bool isValid(Matrix &) const;
+
+    bool hasNoPotentialValues(Matrix &) const;
 
     void optimize(Matrix &) const;
 
