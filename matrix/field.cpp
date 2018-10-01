@@ -30,6 +30,10 @@ std::vector<unsigned short int> &Field::getPossibleValues() {
     return possibleValues;
 }
 
+std::vector<unsigned short int> const &Field::getPossibleValues() const {
+    return possibleValues;
+}
+
 void Field::fixValue() {
     auto value = possibleValues[0];
     possibleValues.clear();

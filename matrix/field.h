@@ -30,6 +30,8 @@ public:
 
     std::vector<unsigned short int> &getPossibleValues();
 
+    std::vector<unsigned short int> const &getPossibleValues() const;
+
     void fixValue();
 
     void fixValue(unsigned short int);
