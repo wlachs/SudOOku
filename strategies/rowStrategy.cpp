@@ -6,13 +6,12 @@
 
 bool RowStrategy::validate(Matrix const &matrix) const {
     auto dimension = matrix.getDimension();
-    auto cloned = matrix.clone();
 
     for (unsigned short int row = 1; row <= dimension; ++row) {
         std::vector<unsigned short int> fixValues = {};
         for (unsigned short int column = 1; column <= dimension; ++column) {
-            if (cloned[{row, column}].getPossibleValues().size() == 1) {
-                auto fixValue = cloned[{row, column}].getPossibleValues()[0];
+            if (matrix[{row, column}].getPossibleValues().size() == 1) {
+                auto fixValue = matrix[{row, column}].getPossibleValues()[0];
                 auto result = std::find(std::begin(fixValues), std::end(fixValues), fixValue);
 
                 if (result != std::end(fixValues)) {

@@ -20,9 +20,9 @@ public:
 
 class GroupStrategy : public SolvingStrategy {
 private:
-    std::vector<Matrix> separateToGroups(Matrix) const;
+    std::vector<Matrix> separateToGroups(Matrix const &) const;
 
-    bool singular(Matrix &) const;
+    bool singular(Matrix const &) const;
 
 public:
     virtual bool validate(Matrix const &matrix) const;

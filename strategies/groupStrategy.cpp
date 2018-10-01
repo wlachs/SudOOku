@@ -5,9 +5,9 @@
 #include "strategies.h"
 #include <cmath>
 
-std::vector<Matrix> GroupStrategy::separateToGroups(Matrix matrix) const {
+std::vector<Matrix> GroupStrategy::separateToGroups(Matrix const &matrix) const {
     auto dimension = matrix.getDimension();
-    auto groupDimension = lround(sqrt(dimension));
+    auto groupDimension = sqrt(dimension);
     std::vector<Matrix> result = {};
 
     for (unsigned short int horizontalGroups = 0; horizontalGroups < groupDimension; ++horizontalGroups) {
@@ -33,7 +33,7 @@ std::vector<Matrix> GroupStrategy::separateToGroups(Matrix matrix) const {
     return result;
 }
 
-bool GroupStrategy::singular(Matrix &matrix) const {
+bool GroupStrategy::singular(Matrix const &matrix) const {
     std::vector<unsigned short int> elements = {};
     auto dimension = matrix.getDimension();
 
@@ -59,7 +59,7 @@ bool GroupStrategy::singular(Matrix &matrix) const {
 bool GroupStrategy::validate(Matrix const &matrix) const {
     auto groups = separateToGroups(matrix);
 
-    for (Matrix &group : groups) {
+    for (Matrix const &group : groups) {
         if (!singular(group)) {
             return false;
         }
