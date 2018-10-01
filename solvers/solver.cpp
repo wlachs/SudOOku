@@ -99,7 +99,7 @@ bool Solver::isSolution(Matrix const &matrix) const {
 }
 
 std::pair<Matrix, Matrix> Solver::fork(Matrix &matrix_first) const {
-    auto matrix_second = matrix_first.clone();
+    auto matrix_second = Matrix{matrix_first};
 
 //  Where to fork?
 //  At the field where the number of possible values is the lowest but not less than 2

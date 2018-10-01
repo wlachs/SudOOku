@@ -19,15 +19,15 @@ private:
 public:
     Matrix() = default;
 
-    Matrix(unsigned short int, std::map<std::pair<unsigned short int, unsigned short int>, Field>);
+    Matrix(Matrix const &);
+
+    Matrix(unsigned short int, std::map<std::pair<unsigned short int, unsigned short int>, Field> const &);
 
     unsigned short int getDimension() const;
 
     Field &operator[](std::pair<unsigned short int, unsigned short int>);
 
     Field const &operator[](std::pair<unsigned short int, unsigned short int>) const;
-
-    Matrix clone() const;
 };
 
 std::ostream &operator<<(std::ostream &os, Matrix const &);

@@ -13,16 +13,14 @@ class Matrix;
 
 class Field {
 private:
-    Matrix *matrix = nullptr;
     std::vector<unsigned short int> possibleValues = {};
-    std::pair<unsigned short int, unsigned short int> coordinates;
 
 public:
-    Field(Matrix &, unsigned short int, std::pair<unsigned short int, unsigned short int>);
+    Field() = default;
+
+    Field(std::vector<unsigned short int> const &);
 
     Field(unsigned short int);
-
-    Field() = default;
 
     Field(Field const &);
 
@@ -39,12 +37,6 @@ public:
     void removeValue();
 
     void removeValue(unsigned short int);
-
-    bool isFixed() const;
-
-    void setMatrix(Matrix &);
-
-    void setCoordinates(std::pair<unsigned short int, unsigned short int>);
 };
 
 

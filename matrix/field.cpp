@@ -5,14 +5,8 @@
 #include "field.h"
 #include "matrix.h"
 
-Field::Field(Matrix &matrix, unsigned short int dimension,
-             std::pair<unsigned short int, unsigned short int> coordinates) {
-    this->matrix = &matrix;
-    this->coordinates = coordinates;
-
-    for (unsigned short int i = 1; i <= dimension; ++i) {
-        possibleValues.push_back(i);
-    }
+Field::Field(std::vector<unsigned short int> const &possibleValues) {
+    this->possibleValues = possibleValues;
 }
 
 Field::Field(unsigned short int value) {
@@ -20,7 +14,6 @@ Field::Field(unsigned short int value) {
 }
 
 Field::Field(Field const &other) {
-    matrix = other.matrix;
     possibleValues = other.possibleValues;
 }
 
@@ -55,16 +48,4 @@ void Field::removeValue(unsigned short int value) {
     if (it != std::end(possibleValues)) {
         possibleValues.erase(it);
     }
-}
-
-bool Field::isFixed() const {
-    return possibleValues.size() == 1;
-}
-
-void Field::setMatrix(Matrix &matrix) {
-    this->matrix = &matrix;
-}
-
-void Field::setCoordinates(std::pair<unsigned short int, unsigned short int> coordinates) {
-    this->coordinates = coordinates;
 }

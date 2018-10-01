@@ -6,20 +6,29 @@
 
 #include "matrix.h"
 
+Matrix::Matrix(Matrix const &matrix) {
+    fields = matrix.fields;
+    dimension = matrix.dimension;
+}
+
 void Matrix::populateEmptyFields() {
+    std::vector<unsigned short int> allValues = {};
+
+    for (unsigned short int i = 1; i <= dimension; ++i) {
+        allValues.push_back(i);
+    }
+
     for (unsigned short int row = 1; row <= dimension; ++row) {
         for (unsigned short int column = 1; column <= dimension; ++column) {
             if (fields.find(std::pair<unsigned short int, unsigned short int>(row, column)) == fields.end()) {
-                fields[{row, column}] = Field(*this, dimension, {row, column});
-            } else {
-                fields[{row, column}].setMatrix(*this);
-                fields[{row, column}].setCoordinates({row, column});
+                fields[{row, column}] = Field(allValues);
             }
         }
     }
 }
 
-Matrix::Matrix(unsigned short int dimension, std::map<std::pair<unsigned short int, unsigned short int>, Field> init) {
+Matrix::Matrix(unsigned short int dimension,
+               std::map<std::pair<unsigned short int, unsigned short int>, Field> const &init) {
     this->dimension = dimension;
     fields = init;
     populateEmptyFields();
@@ -35,10 +44,6 @@ Field &Matrix::operator[](std::pair<unsigned short int, unsigned short int> coor
 
 Field const &Matrix::operator[](std::pair<unsigned short int, unsigned short int> coordinates) const {
     return fields.at(coordinates);
-}
-
-Matrix Matrix::clone() const {
-    return Matrix(dimension, fields);
 }
 
 std::ostream &operator<<(std::ostream &os, Matrix const &matrix) {
