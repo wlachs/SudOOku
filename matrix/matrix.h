@@ -30,5 +30,7 @@ public:
     Matrix clone() const;
 };
 
+std::ostream &operator<<(std::ostream &os, Matrix const &);
+
 
 #endif //SUDOOKU_MATRIX_H
