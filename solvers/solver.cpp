@@ -21,11 +21,10 @@ std::vector<Matrix> const &Solver::getSolutions() const {
     return solutions;
 }
 
-// TODO: make it constref
-bool Solver::hasNoPotentialValues(Matrix &matrix) const {
+bool Solver::hasNoPotentialValues(Matrix const &matrix) const {
     for (unsigned short int x = 1; x <= dimension; ++x) {
         for (unsigned short int y = 1; y <= dimension; ++y) {
-            if (matrix[{x, y}].getPossibleValues().size() == 0) {
+            if (matrix[{x, y}].getPossibleValues().empty()) {
                 return true;
             }
         }
@@ -34,8 +33,7 @@ bool Solver::hasNoPotentialValues(Matrix &matrix) const {
     return false;
 }
 
-// TODO: make it constref
-bool Solver::isValid(Matrix &matrix) const {
+bool Solver::isValid(Matrix const &matrix) const {
     if (hasNoPotentialValues(matrix)) {
         return false;
     }
@@ -65,30 +63,29 @@ void Solver::optimize(Matrix &matrix) const {
     }
 }
 
-bool Solver::optimizeField(Matrix &matrix, std::pair<unsigned short int, unsigned short int> const &coords) const {
-    std::vector<unsigned short int> possibleValues = matrix[coords].getPossibleValues();
-    bool result = false;
+bool Solver::optimizeField(Matrix &matrix, std::pair<unsigned short int, unsigned short int> const &coordinates) const {
+    auto possibleValues = matrix[coordinates].getPossibleValues();
+    bool optimized = false;
 
     if (possibleValues.size() <= 1) {
-        return result;
+        return optimized;
     }
 
-    for (auto value : matrix[coords].getPossibleValues()) {
-        matrix[coords].fixValue(value);
+    for (auto value : matrix[coordinates].getPossibleValues()) {
+        matrix[coordinates].fixValue(value);
         if (!isValid(matrix)) {
             auto it = std::find(std::begin(possibleValues), std::end(possibleValues), value);
             possibleValues.erase(it);
-            result = true;
+            optimized = true;
         }
     }
 
-    matrix[coords].getPossibleValues() = possibleValues;
+    matrix[coordinates].getPossibleValues() = possibleValues;
 
-    return result;
+    return optimized;
 }
 
-// TODO: make it constref
-bool Solver::isSolution(Matrix &matrix) const {
+bool Solver::isSolution(Matrix const &matrix) const {
 //  Solution if valid and in every cell there's only one number
     for (unsigned short int x = 1; x <= dimension; ++x) {
         for (unsigned short int y = 1; y <= dimension; ++y) {
@@ -101,7 +98,6 @@ bool Solver::isSolution(Matrix &matrix) const {
     return true;
 }
 
-// TODO: doesn't have to be constref, can be used as first or second
 std::pair<Matrix, Matrix> Solver::fork(Matrix &matrix_first) const {
     auto matrix_second = matrix_first.clone();
 
