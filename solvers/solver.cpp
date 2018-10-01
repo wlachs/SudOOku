@@ -20,6 +20,7 @@ std::vector<Matrix> const &Solver::getSolutions() const {
     return solutions;
 }
 
+// TODO: make it constref
 bool Solver::hasNoPotentialValues(Matrix &matrix) const {
     auto dimension = matrix.getDimension();
 
@@ -34,6 +35,7 @@ bool Solver::hasNoPotentialValues(Matrix &matrix) const {
     return false;
 }
 
+// TODO: make it constref
 bool Solver::isValid(Matrix &matrix) const {
     if (hasNoPotentialValues(matrix)) {
         return false;
@@ -87,6 +89,7 @@ bool Solver::optimizeField(Matrix &matrix, std::pair<unsigned short int, unsigne
     return result;
 }
 
+// TODO: make it constref
 bool Solver::isSolution(Matrix &matrix) const {
 //  Solution if valid and in every cell there's only one number
     auto dimension = matrix.getDimension();
@@ -102,17 +105,17 @@ bool Solver::isSolution(Matrix &matrix) const {
     return true;
 }
 
-std::pair<Matrix, Matrix> Solver::fork(Matrix const &matrix_) const {
+// TODO: doesn't have to be constref, can be used as first or second
+std::pair<Matrix, Matrix> Solver::fork(Matrix &matrix_first) const {
+    auto matrix_second = matrix_first.clone();
+
 //  Where to fork?
 //  At the field where the number of possible values is the lowest but not less than 2
-    auto matrix_first = matrix_.clone();
-    auto matrix_second = matrix_.clone();
-
     std::pair<unsigned short int, unsigned short int> minCoordinates = {1, 1};
-    unsigned long minSize = matrix_.getDimension() + 1;
+    unsigned long minSize = matrix_first.getDimension() + 1;
 
-    for (unsigned short int x = 1; x <= matrix_.getDimension(); ++x) {
-        for (unsigned short int y = 1; y <= matrix_.getDimension(); ++y) {
+    for (unsigned short int x = 1; x <= matrix_first.getDimension(); ++x) {
+        for (unsigned short int y = 1; y <= matrix_first.getDimension(); ++y) {
             auto currentSize = matrix_first[{x, y}].getPossibleValues().size();
             if (currentSize < minSize && currentSize > 1) {
                 minSize = currentSize;
@@ -127,7 +130,7 @@ std::pair<Matrix, Matrix> Solver::fork(Matrix const &matrix_) const {
     return {matrix_first, matrix_second};
 }
 
-void Solver::solve(Matrix matrix) {
+void Solver::solve(Matrix &matrix) {
 //  1. Simplify the matrix according to the known strategies
     optimize(matrix);
 

@@ -15,7 +15,7 @@ protected:
     std::vector<const SolvingStrategy *> strategies;
     std::vector<Matrix> solutions;
 
-    void solve(Matrix);
+    void solve(Matrix &);
 
     bool isValid(Matrix &) const;
 
@@ -27,7 +27,7 @@ protected:
 
     bool isSolution(Matrix &) const;
 
-    std::pair<Matrix, Matrix> fork(Matrix const &) const;
+    std::pair<Matrix, Matrix> fork(Matrix &) const;
 public:
     Solver() = default;
 
