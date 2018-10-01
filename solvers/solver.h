@@ -12,6 +12,7 @@
 class Solver {
 protected:
     Matrix initialMatrix;
+    unsigned short int dimension;
     std::vector<const SolvingStrategy *> strategies;
     std::vector<Matrix> solutions;
 

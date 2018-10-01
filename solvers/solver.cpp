@@ -6,6 +6,7 @@
 
 void Solver::setInitialMatrix(Matrix &matrix) {
     initialMatrix = matrix;
+    dimension = matrix.getDimension();
 }
 
 void Solver::addRule(const SolvingStrategy *solvingStrategy) {
@@ -22,8 +23,6 @@ std::vector<Matrix> const &Solver::getSolutions() const {
 
 // TODO: make it constref
 bool Solver::hasNoPotentialValues(Matrix &matrix) const {
-    auto dimension = matrix.getDimension();
-
     for (unsigned short int x = 1; x <= dimension; ++x) {
         for (unsigned short int y = 1; y <= dimension; ++y) {
             if (matrix[{x, y}].getPossibleValues().size() == 0) {
@@ -53,7 +52,6 @@ bool Solver::isValid(Matrix &matrix) const {
 void Solver::optimize(Matrix &matrix) const {
     bool shouldReRun = false;
 
-    auto dimension = matrix.getDimension();
     for (unsigned short int x = 1; x <= dimension; ++x) {
         for (unsigned short int y = 1; y <= dimension; ++y) {
             if (optimizeField(matrix, {x, y})) {
@@ -92,8 +90,6 @@ bool Solver::optimizeField(Matrix &matrix, std::pair<unsigned short int, unsigne
 // TODO: make it constref
 bool Solver::isSolution(Matrix &matrix) const {
 //  Solution if valid and in every cell there's only one number
-    auto dimension = matrix.getDimension();
-
     for (unsigned short int x = 1; x <= dimension; ++x) {
         for (unsigned short int y = 1; y <= dimension; ++y) {
             if (matrix[{x, y}].getPossibleValues().size() != 1) {
@@ -112,10 +108,10 @@ std::pair<Matrix, Matrix> Solver::fork(Matrix &matrix_first) const {
 //  Where to fork?
 //  At the field where the number of possible values is the lowest but not less than 2
     std::pair<unsigned short int, unsigned short int> minCoordinates = {1, 1};
-    unsigned long minSize = matrix_first.getDimension() + 1;
+    unsigned long minSize = dimension + 1;
 
-    for (unsigned short int x = 1; x <= matrix_first.getDimension(); ++x) {
-        for (unsigned short int y = 1; y <= matrix_first.getDimension(); ++y) {
+    for (unsigned short int x = 1; x <= dimension; ++x) {
+        for (unsigned short int y = 1; y <= dimension; ++y) {
             auto currentSize = matrix_first[{x, y}].getPossibleValues().size();
             if (currentSize < minSize && currentSize > 1) {
                 minSize = currentSize;
