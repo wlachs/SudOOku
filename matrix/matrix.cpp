@@ -30,7 +30,11 @@ unsigned short int Matrix::getDimension() const {
 }
 
 Field &Matrix::operator[](std::pair<unsigned short int, unsigned short int> coordinates) {
-    return fields[coordinates];
+    return fields.at(coordinates);
+}
+
+Field const &Matrix::operator[](std::pair<unsigned short int, unsigned short int> coordinates) const {
+    return fields.at(coordinates);
 }
 
 Matrix Matrix::clone() const {

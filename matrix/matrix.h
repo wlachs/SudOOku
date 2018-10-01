@@ -25,6 +25,8 @@ public:
 
     Field &operator[](std::pair<unsigned short int, unsigned short int>);
 
+    Field const &operator[](std::pair<unsigned short int, unsigned short int>) const;
+
     Matrix clone() const;
 };
 
