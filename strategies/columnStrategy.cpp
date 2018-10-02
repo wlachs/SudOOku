@@ -26,6 +26,97 @@ bool ColumnStrategy::validate(Matrix const &matrix) const {
     return true;
 }
 
-bool ColumnStrategy::simplify(Matrix &) const {
+bool ColumnStrategy::simplify(Matrix &matrix) const {
+    auto dimension = matrix.getDimension();
+    bool simplified = false;
+
+    for (unsigned short int column = 1; column <= dimension; ++column) {
+        if (simplifyColumn(matrix, column, dimension)) {
+            simplified = true;
+        }
+    }
+
+    return simplified;
+}
+
+bool ColumnStrategy::simplifyColumn(Matrix &matrix, unsigned short const int column,
+                                    unsigned short const int dimension) const {
+    bool singularResult = optimizeSingular(matrix, column, dimension);
+    bool uniqueResult = optimizeUnique(matrix, column, dimension);
+
+    return singularResult || uniqueResult;
+}
+
+bool ColumnStrategy::optimizeSingular(Matrix &matrix, unsigned short const int column,
+                                      unsigned short const int dimension) const {
+    bool simplified = false;
+
+    for (unsigned short int row = 1; row <= dimension; ++row) {
+        auto possibleValues = matrix[{row, column}].getPossibleValues();
+        if (possibleValues.size() == 1) {
+            bool topResult =
+                    recursiveRemove(matrix, (unsigned short int) (row - 1), column, dimension, -1, possibleValues[0]);
+            bool bottomResult =
+                    recursiveRemove(matrix, (unsigned short int) (row + 1), column, dimension, 1, possibleValues[0]);
+            simplified = topResult || bottomResult;
+        }
+    }
+
+    return simplified;
+}
+
+bool ColumnStrategy::recursiveRemove(Matrix &matrix,
+                                     unsigned short const int row,
+                                     unsigned short const int column,
+                                     unsigned short const int dimension,
+                                     short const int direction,
+                                     unsigned short const int value) const {
+    if (row < 1 || row > dimension) {
+        return false;
+    }
+
+    auto possibleValues = matrix[{row, column}].getPossibleValues();
+    auto it = std::find(std::begin(possibleValues), std::end(possibleValues), value);
+    bool simplified = false;
+
+    if (it != std::end(possibleValues)) {
+        possibleValues.erase(it);
+        matrix[{row, column}].setPossibleValues(possibleValues);
+        simplified = true;
+    }
+
+    return recursiveRemove(matrix, row + direction, column, dimension, direction, value) || simplified;
+}
+
+bool
+ColumnStrategy::optimizeUnique(Matrix &matrix, unsigned short const int column,
+                               unsigned short const int dimension) const {
+    for (unsigned short int row = 1; row <= dimension; ++row) {
+        auto possibleValues = matrix[{row, column}].getPossibleValues();
+        if (possibleValues.size() > 1) {
+            for (auto value : matrix[{row, column}].getPossibleValues()) {
+                if (isUniqueInColumn(matrix, column, dimension, value)) {
+                    std::vector<unsigned short int> newPossibleValue = {value};
+                    matrix[{row, column}].setPossibleValues(newPossibleValue);
+                    return true;
+                }
+            }
+        }
+    }
+
     return false;
+}
+
+bool ColumnStrategy::isUniqueInColumn(Matrix const &matrix, unsigned short const int column,
+                                      unsigned short const int dimension,
+                                      unsigned short const int value) const {
+    unsigned short int count = 0;
+
+    for (unsigned short int row = 1; row <= dimension; ++row) {
+        if (matrix[{row, column}].contains(value)) {
+            ++count;
+        }
+    }
+
+    return count == 1;
 }
