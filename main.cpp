@@ -2,7 +2,6 @@
 // Created by Borbély László on 2018. 09. 15..
 //
 
-#include <iostream>
 #include "matrix/field.h"
 #include "matrix/matrix.h"
 #include "solvers/solver.h"
