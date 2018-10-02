@@ -37,6 +37,8 @@ public:
     void removeValue();
 
     void removeValue(unsigned short int);
+
+    bool contains(unsigned short int) const;
 };
 
 

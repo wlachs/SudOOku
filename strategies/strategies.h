@@ -9,13 +9,28 @@
 #include "solvingStrategy.h"
 
 class RowStrategy : public SolvingStrategy {
+private:
+    bool simplifyRow(Matrix &, unsigned short int, unsigned short int) const;
+
+    bool optimizeSingular(Matrix &, unsigned short int, unsigned short int) const;
+
+    bool optimizeUnique(Matrix &, unsigned short int, unsigned short int) const;
+
+    bool recursiveRemove(Matrix &, unsigned short int, unsigned short int,
+                         unsigned short int, short int, unsigned short int) const;
+
+    bool isUniqueInRow(Matrix const &, unsigned short int, unsigned short int, unsigned short int) const;
 public:
-    bool validate(Matrix const &matrix) const override;
+    bool validate(Matrix const &) const override;
+
+    bool simplify(Matrix &) const override;
 };
 
 class ColumnStrategy : public SolvingStrategy {
 public:
     bool validate(Matrix const &matrix) const override;
+
+    bool simplify(Matrix &) const override;
 };
 
 class GroupStrategy : public SolvingStrategy {
@@ -26,6 +41,8 @@ private:
 
 public:
     bool validate(Matrix const &matrix) const override;
+
+    bool simplify(Matrix &) const override;
 };
 
 

@@ -67,3 +67,7 @@ bool GroupStrategy::validate(Matrix const &matrix) const {
 
     return true;
 }
+
+bool GroupStrategy::simplify(Matrix &) const {
+    return false;
+}

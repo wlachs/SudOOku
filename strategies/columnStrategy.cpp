@@ -25,3 +25,7 @@ bool ColumnStrategy::validate(Matrix const &matrix) const {
 
     return true;
 }
+
+bool ColumnStrategy::simplify(Matrix &) const {
+    return false;
+}

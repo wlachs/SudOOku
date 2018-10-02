@@ -13,6 +13,8 @@ public:
     SolvingStrategy() = default;
 
     virtual bool validate(Matrix const &) const = 0;
+
+    virtual bool simplify(Matrix &) const = 0;
 };
 
 
