@@ -51,43 +51,15 @@ bool Solver::isValid(Matrix const &matrix) const {
 void Solver::optimize(Matrix &matrix) const {
     bool shouldReRun = false;
 
-    for (unsigned short int x = 1; x <= dimension; ++x) {
-        for (unsigned short int y = 1; y <= dimension; ++y) {
-            if (optimizeField(matrix, {x, y})) {
-                shouldReRun = true;
-            }
+    for (auto strategy : strategies) {
+        if (strategy->simplify(matrix)) {
+            shouldReRun = true;
         }
     }
 
     if (shouldReRun) {
         optimize(matrix);
     }
-}
-
-bool Solver::optimizeField(Matrix &matrix, std::pair<unsigned short int, unsigned short int> const &coordinates) const {
-    auto possibleValues = matrix[coordinates].getPossibleValues();
-    bool optimized = false;
-
-    if (possibleValues.size() <= 1) {
-        return optimized;
-    }
-
-    for (auto value : matrix[coordinates].getPossibleValues()) {
-        matrix[coordinates].fixValue(value);
-        if (!isValid(matrix)) {
-            auto it = std::find(std::begin(possibleValues), std::end(possibleValues), value);
-            possibleValues.erase(it);
-            optimized = true;
-        }
-    }
-
-    matrix[coordinates].setPossibleValues(possibleValues);
-
-    if (optimized) {
-        matrix.notifyChangeAt(coordinates);
-    }
-
-    return optimized;
 }
 
 bool Solver::isSolution(Matrix const &matrix) const {
