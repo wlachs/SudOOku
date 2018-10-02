@@ -27,12 +27,10 @@ protected:
     bool optimizeField(Matrix &, std::pair<unsigned short int, unsigned short int> const &) const;
 
     bool isSolution(Matrix const &) const;
-
-    std::pair<Matrix, Matrix> fork(Matrix &) const;
 public:
     Solver() = default;
 
-    void setInitialMatrix(Matrix &);
+    void setInitialMatrix(Matrix const &);
 
     void addRule(const SolvingStrategy *);
 

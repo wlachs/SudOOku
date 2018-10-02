@@ -4,9 +4,10 @@
 
 #include "solver.h"
 
-void Solver::setInitialMatrix(Matrix &matrix) {
+void Solver::setInitialMatrix(Matrix const &matrix) {
     initialMatrix = matrix;
     dimension = matrix.getDimension();
+    solutions.clear();
 }
 
 void Solver::addRule(const SolvingStrategy *solvingStrategy) {
