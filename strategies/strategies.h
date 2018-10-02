@@ -10,12 +10,12 @@
 
 class RowStrategy : public SolvingStrategy {
 public:
-    virtual bool validate(Matrix const &matrix) const;
+    bool validate(Matrix const &matrix) const override;
 };
 
 class ColumnStrategy : public SolvingStrategy {
 public:
-    virtual bool validate(Matrix const &matrix) const;
+    bool validate(Matrix const &matrix) const override;
 };
 
 class GroupStrategy : public SolvingStrategy {
@@ -25,7 +25,7 @@ private:
     bool singular(Matrix const &) const;
 
 public:
-    virtual bool validate(Matrix const &matrix) const;
+    bool validate(Matrix const &matrix) const override;
 };
 
 
