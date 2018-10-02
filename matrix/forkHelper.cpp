@@ -42,7 +42,7 @@ Matrix ForkHelper::fork() {
     (*this->matrix)[forkCoordinates].fixValue();
     matrix_second[forkCoordinates].removeValue();
 
-    notify(forkCoordinates);
+    this->matrix->notifyChangeAt(forkCoordinates);
     matrix_second.notifyChangeAt(forkCoordinates);
 
     return matrix_second;
