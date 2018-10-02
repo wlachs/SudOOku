@@ -8,10 +8,15 @@
 #include <map>
 #include <vector>
 #include "field.h"
+#include "forkHelper.h"
+
+class ForkHelper;
 
 class Matrix {
 private:
     unsigned short int dimension;
+
+    ForkHelper *forkHelper = nullptr;
 
     std::map<std::pair<unsigned short int, unsigned short int>, Field> fields;
 
@@ -23,11 +28,19 @@ public:
 
     Matrix(unsigned short int, std::map<std::pair<unsigned short int, unsigned short int>, Field> const &);
 
+    Matrix &operator=(Matrix const &);
+
+    ~Matrix();
+
     unsigned short int getDimension() const;
 
     Field &operator[](std::pair<unsigned short int, unsigned short int>);
 
     Field const &operator[](std::pair<unsigned short int, unsigned short int>) const;
+
+    Matrix forkFirstReturnSecond();
+
+    void notifyChangeAt(std::pair<unsigned short int, unsigned short int> const &);
 };
 
 std::ostream &operator<<(std::ostream &os, Matrix const &);

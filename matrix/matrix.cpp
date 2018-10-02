@@ -7,8 +7,9 @@
 #include "matrix.h"
 
 Matrix::Matrix(Matrix const &matrix) {
-    fields = matrix.fields;
     dimension = matrix.dimension;
+    fields = matrix.fields;
+    forkHelper = new ForkHelper{this};
 }
 
 void Matrix::populateEmptyFields() {
@@ -28,10 +29,24 @@ void Matrix::populateEmptyFields() {
 }
 
 Matrix::Matrix(unsigned short int dimension,
-               std::map<std::pair<unsigned short int, unsigned short int>, Field> const &init) {
+               std::map<std::pair<unsigned short int, unsigned short int>, Field> const &fields) {
     this->dimension = dimension;
-    fields = init;
+    this->fields = fields;
     populateEmptyFields();
+    this->forkHelper = new ForkHelper{this};
+}
+
+Matrix &Matrix::operator=(Matrix const &matrix) {
+    delete forkHelper;
+    dimension = matrix.dimension;
+    fields = matrix.fields;
+    forkHelper = new ForkHelper{this};
+
+    return *this;
+}
+
+Matrix::~Matrix() {
+    delete forkHelper;
 }
 
 unsigned short int Matrix::getDimension() const {
@@ -64,4 +79,12 @@ std::ostream &operator<<(std::ostream &os, Matrix const &matrix) {
     }
 
     return os;
+}
+
+Matrix Matrix::forkFirstReturnSecond() {
+    return forkHelper->fork();
+}
+
+void Matrix::notifyChangeAt(std::pair<unsigned short int, unsigned short int> const &coordinates) {
+    forkHelper->notify(coordinates);
 }
