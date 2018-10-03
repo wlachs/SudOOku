@@ -16,9 +16,9 @@ std::vector<Matrix> GroupStrategy::separateToGroups(Matrix const &matrix) const 
 
             for (unsigned short int x = 1; x <= groupDimension; ++x) {
                 for (unsigned short int y = 1; y <= groupDimension; ++y) {
-                    std::pair<unsigned short int, unsigned short int> coords =
+                    std::pair<unsigned short int, unsigned short int> coordinates =
                             {horizontalGroups * groupDimension + x, verticalGroups * groupDimension + y};
-                    auto possibleValues = matrix[coords].getPossibleValues();
+                    auto possibleValues = matrix[coordinates].getPossibleValues();
                     if (possibleValues.size() == 1) {
                         group.insert({{x, y}, possibleValues[0]});
                     }
@@ -68,6 +68,73 @@ bool GroupStrategy::validate(Matrix const &matrix) const {
     return true;
 }
 
-bool GroupStrategy::simplify(Matrix &) const {
-    return false;
+bool GroupStrategy::simplify(Matrix &matrix) const {
+    bool simplified = false;
+    std::vector<std::vector<std::pair<unsigned short int, unsigned short int>>> groupCoordinates = getGroupCoordinates(
+            matrix);
+
+    for (auto const &group : groupCoordinates) {
+        if (simplifyGroup(matrix, group)) {
+            simplified = true;
+        }
+    }
+
+    return simplified;
+}
+
+bool GroupStrategy::simplifyGroup(Matrix &matrix,
+                                  std::vector<std::pair<unsigned short int, unsigned short int>> const &group) const {
+    bool simplified = false;
+
+    for (auto const &coordinate : group) {
+        auto values = matrix[coordinate].getPossibleValues();
+
+        if (values.size() == 1) {
+            if (removeFromGroup(matrix, group, coordinate, values[0])) {
+                simplified = true;
+            }
+        }
+    }
+
+    return simplified;
+}
+
+bool GroupStrategy::removeFromGroup(Matrix &matrix,
+                                    std::vector<std::pair<unsigned short int, unsigned short int>> const &group,
+                                    std::pair<unsigned short int, unsigned short int> const &ignore,
+                                    unsigned short const int value) const {
+    bool simplified = false;
+
+    for (auto const &coordinate : group) {
+        if (coordinate != ignore) {
+            if (matrix[coordinate].removeValue(value)) {
+                simplified = true;
+            }
+        }
+    }
+
+    return simplified;
+}
+
+std::vector<std::vector<std::pair<unsigned short int, unsigned short int>>> GroupStrategy::getGroupCoordinates(
+        Matrix const &matrix) const {
+    auto dimension = matrix.getDimension();
+    auto groupDimension = sqrt(dimension);
+    std::vector<std::vector<std::pair<unsigned short int, unsigned short int>>> result = {};
+
+    for (unsigned short int horizontalGroups = 0; horizontalGroups < groupDimension; ++horizontalGroups) {
+        for (unsigned short int verticalGroups = 0; verticalGroups < groupDimension; ++verticalGroups) {
+            std::vector<std::pair<unsigned short int, unsigned short int>> group = {};
+
+            for (unsigned short int x = 1; x <= groupDimension; ++x) {
+                for (unsigned short int y = 1; y <= groupDimension; ++y) {
+                    group.emplace_back(horizontalGroups * groupDimension + x, verticalGroups * groupDimension + y);
+                }
+            }
+
+            result.push_back(group);
+        }
+    }
+
+    return result;
 }

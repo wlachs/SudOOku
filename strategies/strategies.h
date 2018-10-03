@@ -50,6 +50,14 @@ private:
 
     bool singular(Matrix const &) const;
 
+    std::vector<std::vector<std::pair<unsigned short int, unsigned short int>>>
+    getGroupCoordinates(Matrix const &) const;
+
+    bool simplifyGroup(Matrix &, std::vector<std::pair<unsigned short int, unsigned short int>> const &) const;
+
+    bool removeFromGroup(Matrix &, std::vector<std::pair<unsigned short int, unsigned short int>> const &,
+                         std::pair<unsigned short int, unsigned short int> const &, unsigned short int) const;
+
 public:
     bool validate(Matrix const &matrix) const override;
 
