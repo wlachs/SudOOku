@@ -42,12 +42,15 @@ void Field::removeValue() {
     possibleValues.erase(std::begin(possibleValues));
 }
 
-void Field::removeValue(unsigned short int value) {
+bool Field::removeValue(unsigned short int value) {
     auto it = std::find(std::begin(possibleValues), std::end(possibleValues), value);
 
     if (it != std::end(possibleValues)) {
         possibleValues.erase(it);
+        return true;
     }
+
+    return false;
 }
 
 bool Field::contains(unsigned short const int value) const {
