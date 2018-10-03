@@ -5,9 +5,7 @@ Object-oriented Sudoku solver ~~& generator~~
 - implemented
 - *verification rules* defined in the strategies
 - slow, if only the *verification rules* are defined
-- faster, if *optimization strategies* a~re also provided
+- faster, if *optimization strategies* are also provided
 
 ## Generator
 - not implemented yet
-
-~
