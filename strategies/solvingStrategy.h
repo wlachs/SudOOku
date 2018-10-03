@@ -14,7 +14,7 @@ public:
 
     virtual bool validate(Matrix const &) const = 0;
 
-    virtual bool simplify(Matrix &) const = 0;
+    virtual bool simplify(Matrix &) const { return false; };
 };
 
 
