@@ -84,6 +84,14 @@ bool GroupStrategy::simplify(Matrix &matrix) const {
 
 bool GroupStrategy::simplifyGroup(Matrix &matrix,
                                   std::vector<std::pair<unsigned short int, unsigned short int>> const &group) const {
+    bool singularResult = optimizeSingular(matrix, group);
+    bool uniqueResult = optimizeUnique(matrix, group);
+
+    return singularResult || uniqueResult;
+}
+
+bool GroupStrategy::optimizeSingular(Matrix &matrix,
+                                     std::vector<std::pair<unsigned short int, unsigned short int>> const &group) const {
     bool simplified = false;
 
     for (auto const &coordinate : group) {
@@ -97,6 +105,37 @@ bool GroupStrategy::simplifyGroup(Matrix &matrix,
     }
 
     return simplified;
+}
+
+bool GroupStrategy::optimizeUnique(Matrix &matrix,
+                                   std::vector<std::pair<unsigned short int, unsigned short int>> const &group) const {
+    for (auto const &coordinate : group) {
+        auto possibleValues = matrix[coordinate].getPossibleValues();
+        if (possibleValues.size() > 1) {
+            for (auto value : matrix[coordinate].getPossibleValues()) {
+                if (isUniqueInGroup(matrix, group, value)) {
+                    matrix[coordinate].fixValue(value);
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
+bool GroupStrategy::isUniqueInGroup(Matrix const &matrix,
+                                    std::vector<std::pair<unsigned short int, unsigned short int>> const &group,
+                                    unsigned short const int value) const {
+    unsigned short int count = 0;
+
+    for (auto const &coordinate : group) {
+        if (matrix[coordinate].contains(value)) {
+            ++count;
+        }
+    }
+
+    return count == 1;
 }
 
 bool GroupStrategy::removeFromGroup(Matrix &matrix,
