@@ -75,15 +75,7 @@ bool ColumnStrategy::recursiveRemove(Matrix &matrix,
         return false;
     }
 
-    auto possibleValues = matrix[{row, column}].getPossibleValues();
-    auto it = std::find(std::begin(possibleValues), std::end(possibleValues), value);
-    bool simplified = false;
-
-    if (it != std::end(possibleValues)) {
-        possibleValues.erase(it);
-        matrix[{row, column}].setPossibleValues(possibleValues);
-        simplified = true;
-    }
+    bool simplified = matrix[{row, column}].removeValue(value);
 
     return recursiveRemove(matrix, row + direction, column, dimension, direction, value) || simplified;
 }
@@ -96,8 +88,7 @@ ColumnStrategy::optimizeUnique(Matrix &matrix, unsigned short const int column,
         if (possibleValues.size() > 1) {
             for (auto value : matrix[{row, column}].getPossibleValues()) {
                 if (isUniqueInColumn(matrix, column, dimension, value)) {
-                    std::vector<unsigned short int> newPossibleValue = {value};
-                    matrix[{row, column}].setPossibleValues(newPossibleValue);
+                    matrix[{row, column}].fixValue(value);
                     return true;
                 }
             }
