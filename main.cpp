@@ -10,10 +10,10 @@
 
 std::vector<Matrix> getTests() {
     return {
-            (Matrix) MatrixReader{"../sudooku_tests/testInputs/test1.mat"},
-            (Matrix) MatrixReader{"../sudooku_tests/testInputs/test2.mat"},
-            (Matrix) MatrixReader{"../sudooku_tests/testInputs/test3.mat"},
-            (Matrix) MatrixReader{"../sudooku_tests/testInputs/test4.mat"},
+            (Matrix) MatrixReader{"../../sudooku_tests/testInputs/test1.mat"},
+            (Matrix) MatrixReader{"../../sudooku_tests/testInputs/test2.mat"},
+            (Matrix) MatrixReader{"../../sudooku_tests/testInputs/test3.mat"},
+            (Matrix) MatrixReader{"../../sudooku_tests/testInputs/test4.mat"},
     };
 }
 
