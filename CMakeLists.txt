@@ -3,4 +3,10 @@ project(SudOOku)
 
 set(CMAKE_CXX_STANDARD 14)  # enable C++14 standard
 
-add_executable(sudooku main.cpp matrix/matrix.cpp matrix/matrix.h matrix/field.cpp matrix/field.h strategies/solvingStrategy.h strategies/rowStrategy.cpp strategies/strategies.h solvers/solver.cpp solvers/solver.h strategies/columnStrategy.cpp strategies/groupStrategy.cpp matrix/forkHelper.cpp matrix/forkHelper.h matrix/matrixReader.cpp matrix/matrixReader.h)
+add_executable(SudOOku main.cpp)
+
+include_directories(sudooku_core)
+add_subdirectory(sudooku_core)
+add_subdirectory(sudooku_tests)
+
+target_link_libraries(SudOOku sudooku_core)

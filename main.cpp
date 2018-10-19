@@ -2,18 +2,18 @@
 // Created by Borbély László on 2018. 09. 15..
 //
 
-#include "matrix/field.h"
-#include "matrix/matrix.h"
-#include "solvers/solver.h"
-#include "strategies/strategies.h"
-#include "matrix/matrixReader.h"
+#include "sudooku_core/matrix/field.h"
+#include "sudooku_core/matrix/matrix.h"
+#include "sudooku_core/solvers/solver.h"
+#include "sudooku_core/strategies/strategies.h"
+#include "sudooku_core/matrix/matrixReader.h"
 
 std::vector<Matrix> getTests() {
     return {
-            (Matrix) MatrixReader{"../tests/test1.txt"},
-            (Matrix) MatrixReader{"../tests/test2.txt"},
-            (Matrix) MatrixReader{"../tests/test3.txt"},
-            (Matrix) MatrixReader{"../tests/test4.txt"},
+            (Matrix) MatrixReader{"../sudooku_tests/testInputs/test1.mat"},
+            (Matrix) MatrixReader{"../sudooku_tests/testInputs/test2.mat"},
+            (Matrix) MatrixReader{"../sudooku_tests/testInputs/test3.mat"},
+            (Matrix) MatrixReader{"../sudooku_tests/testInputs/test4.mat"},
     };
 }
 
