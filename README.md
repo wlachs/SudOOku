@@ -9,10 +9,3 @@ Object-oriented Sudoku solver ~~& generator~~
 
 ## Generator
 - not implemented yet
-
-## Dev comments
-Instructions for developers
-### Testing
-To run GoogleTest, you must copy the googletest directory from
-```https://github.com/google/googletest``` 
-into the ```sudooku_tests/lib``` folder.
