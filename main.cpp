@@ -17,6 +17,10 @@ std::vector<Matrix> getTests() {
     };
 }
 
+Matrix getFromFile(char *location) {
+    return (Matrix) MatrixReader{location};
+}
+
 void runTest(Solver &solver, Matrix const &matrix) {
     solver.setInitialMatrix(matrix);
     solver.solve();
@@ -28,7 +32,7 @@ void runTest(Solver &solver, Matrix const &matrix) {
     }
 }
 
-void test() {
+void run(std::vector<Matrix> &tests) {
     Solver solver{};
 
     RowStrategy rowStrategy{};
@@ -39,14 +43,19 @@ void test() {
     solver.addRule(&columnStrategy);
     solver.addRule(&groupStrategy);
 
-    auto tests = getTests();
-
     for (Matrix const &test : tests) {
         runTest(solver, test);
     }
 }
 
-int main() {
-    test();
+int main(int argc, char *argv[]) {
+    if (argc > 1) {
+        std::vector<Matrix> matrix = {getFromFile(argv[1])};
+        run({matrix});
+    } else {
+        auto examples = getTests();
+        run(examples);
+    }
+
     return 0;
 }
