@@ -2,7 +2,7 @@ add_executable(
         strategy_tests
         ../main.cpp
         columnStrategyTest.cpp
-)
+        rowStrategyTest.cpp)
 
 target_link_libraries(strategy_tests
         sudooku_core
