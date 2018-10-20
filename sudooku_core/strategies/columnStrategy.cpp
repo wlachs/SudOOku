@@ -3,6 +3,7 @@
 //
 
 #include "strategies.h"
+#include <algorithm>
 
 bool ColumnStrategy::validate(Matrix const &matrix) const {
     auto dimension = matrix.getDimension();

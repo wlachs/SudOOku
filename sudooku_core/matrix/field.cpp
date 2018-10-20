@@ -4,6 +4,7 @@
 
 #include "field.h"
 #include "matrix.h"
+#include <algorithm>
 
 Field::Field(std::vector<unsigned short int> const &possibleValues) {
     this->possibleValues = possibleValues;

@@ -1,7 +1,16 @@
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+add_executable(
+        strategy_tests
+        ../main.cpp
+        columnStrategyTest.cpp
+)
 
-add_executable(runStrategyTests
-        columnStrategyTest.cpp)
+target_link_libraries(strategy_tests
+        sudooku_core
+        gtest_main)
 
-target_link_libraries(runStrategyTests gtest gtest_main)
-target_link_libraries(runStrategyTests sudooku_core)
+add_test(
+        NAME
+        strategy_tests
+        COMMAND
+        ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/strategy_tests
+)

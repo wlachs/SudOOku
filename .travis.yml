@@ -1,0 +1,30 @@
+sudo: false
+
+language: cpp
+
+compiler: gcc
+
+dist: trusty
+
+before_install:
+# C++17
+- sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+- sudo apt-get update -qq
+- pip install --user cpp-coveralls
+
+install:
+# C++17
+- sudo apt-get install -qq g++-6
+- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+
+script:
+- cmake -H. -Bbuild
+- cd build
+- cmake --build .
+- ctest
+
+after_success:
+- coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" --exclude build/googletest --exclude sudooku_tests
+
+notifications:
+  email: false
