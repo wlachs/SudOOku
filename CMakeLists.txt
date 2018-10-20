@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12.2)
+cmake_minimum_required(VERSION 3.5)
 project(SudOOku)
 
 # place binaries and libraries according to GNU standards
