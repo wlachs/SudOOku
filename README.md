@@ -1,6 +1,6 @@
 # SudOOku
 [![Build Status](https://travis-ci.org/wlchs/SudOOku.svg?branch=master)](https://travis-ci.org/wlchs/SudOOku)
-[![Coverage Status](https://coveralls.io/repos/github/wlchs/SudOOku/badge.svg?branch=travis)](https://coveralls.io/github/wlchs/SudOOku?branch=travis)
+[![Coverage Status](https://coveralls.io/repos/github/wlchs/SudOOku/badge.svg?branch=master)](https://coveralls.io/github/wlchs/SudOOku?branch=master)
 
 Object-oriented Sudoku solver ~~& generator~~
 
