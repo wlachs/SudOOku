@@ -24,7 +24,7 @@ script:
 - ctest
 
 after_success:
-- coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E sudooku_tests -E build
+- coveralls -E ".*external.*" -E ".*CMakeFiles.*" --exclude build --exclude sudooku_tests
 
 notifications:
   email: false
