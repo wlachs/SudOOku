@@ -4,6 +4,7 @@
 
 #include "strategies.h"
 #include <cmath>
+#include <algorithm>
 
 std::vector<Matrix> GroupStrategy::separateToGroups(Matrix const &matrix) const {
     auto dimension = matrix.getDimension();
