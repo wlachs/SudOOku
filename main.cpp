@@ -23,7 +23,7 @@ void runTest(Solver &solver, Matrix const &matrix) {
     }
 }
 
-void run(std::vector<Matrix> &tests) {
+void run(std::vector<Matrix> const &tests) {
     Solver solver{};
 
     RowStrategy rowStrategy{};
