@@ -8,15 +8,6 @@
 #include "sudooku_core/strategies/strategies.h"
 #include "sudooku_core/matrix/matrixReader.h"
 
-std::vector<Matrix> getTests() {
-    return {
-            (Matrix) MatrixReader{"../../sudooku_tests/testInputs/test1.mat"},
-            (Matrix) MatrixReader{"../../sudooku_tests/testInputs/test2.mat"},
-            (Matrix) MatrixReader{"../../sudooku_tests/testInputs/test3.mat"},
-            (Matrix) MatrixReader{"../../sudooku_tests/testInputs/test4.mat"},
-    };
-}
-
 Matrix getFromFile(char *location) {
     return (Matrix) MatrixReader{location};
 }
@@ -52,9 +43,6 @@ int main(int argc, char *argv[]) {
     if (argc > 1) {
         std::vector<Matrix> matrix = {getFromFile(argv[1])};
         run({matrix});
-    } else {
-        auto examples = getTests();
-        run(examples);
     }
 
     return 0;
