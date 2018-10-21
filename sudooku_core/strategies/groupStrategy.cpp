@@ -2,7 +2,7 @@
 // Created by Borbély László on 2018. 09. 30..
 //
 
-#include "strategies.h"
+#include "groupStrategy.h"
 #include <cmath>
 #include <algorithm>
 

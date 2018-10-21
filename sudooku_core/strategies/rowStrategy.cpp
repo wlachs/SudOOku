@@ -2,7 +2,7 @@
 // Created by Borbély László on 2018. 09. 15..
 //
 
-#include "strategies.h"
+#include "rowStrategy.h"
 #include <algorithm>
 
 bool RowStrategy::validate(Matrix const &matrix) const {

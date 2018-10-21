@@ -2,11 +2,11 @@
 // Created by Borbély László on 2018. 09. 15..
 //
 
-#include "sudooku_core/matrix/field.h"
-#include "sudooku_core/matrix/matrix.h"
-#include "sudooku_core/solvers/solver.h"
-#include "sudooku_core/strategies/strategies.h"
-#include "sudooku_core/matrix/matrixReader.h"
+#include <matrix/matrixReader.h>
+#include <solvers/solver.h>
+#include <strategies/rowStrategy.h>
+#include <strategies/groupStrategy.h>
+#include <strategies/columnStrategy.h>
 
 Matrix getFromFile(char *location) {
     return (Matrix) MatrixReader{location};

@@ -2,8 +2,7 @@
 // Created by Borbély László on 2018. 10. 16..
 //
 
-#include <matrix/matrix.h>
-#include <strategies/strategies.h>
+#include <strategies/columnStrategy.h>
 #include "gtest/gtest.h"
 
 class ColumnStrategyTests : public ::testing::Test {

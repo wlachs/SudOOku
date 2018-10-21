@@ -15,4 +15,4 @@ add_library(
         matrix/forkHelper.h
         matrix/matrixReader.cpp
         matrix/matrixReader.h
-)
+        strategies/columnStrategy.h strategies/groupStrategy.h strategies/rowStrategy.h)
