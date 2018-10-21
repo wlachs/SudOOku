@@ -3,6 +3,7 @@
 //
 
 #include <strategies/groupStrategy.h>
+#include <matrix/matrixReader.h>
 #include "gtest/gtest.h"
 
 class GroupStrategyTests : public ::testing::Test {
@@ -11,14 +12,9 @@ protected:
     Matrix m1;
 
     void SetUp() override {
-        std::map<std::pair<unsigned short int, unsigned short int>, Field> inputMap = {
-                {{1, 1}, 1},
-                {{1, 2}, 2},
-                {{2, 1}, 3},
-        };
+        m1 = (Matrix) MatrixReader{"small3.mat"};
         std::vector<unsigned short int> p1 = {1, 2, 3};
 
-        m1 = Matrix{4, inputMap};
         m1[{1, 3}].setPossibleValues(p1);
         m1[{1, 4}].setPossibleValues(p1);
         m1[{2, 3}].setPossibleValues(p1);
@@ -26,13 +22,9 @@ protected:
 };
 
 TEST_F(GroupStrategyTests, validation_check_false) {
-    std::map<std::pair<unsigned short int, unsigned short int>, Field> inputMap = {
-            {{1, 1}, 9},
-            {{2, 2}, 9}
-    };
-    Matrix matrix = Matrix{9, inputMap};
+    Matrix invalid = (Matrix) MatrixReader{"invalid3.mat"};
 
-    ASSERT_FALSE(groupStrategy.validate(matrix));
+    ASSERT_FALSE(groupStrategy.validate(invalid));
 }
 
 TEST_F(GroupStrategyTests, validation_check_true) {
