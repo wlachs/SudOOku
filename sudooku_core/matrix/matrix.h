@@ -30,17 +30,17 @@ public:
 
     Matrix &operator=(Matrix const &);
 
-    ~Matrix();
+    virtual ~Matrix();
 
-    unsigned short int getDimension() const;
+    virtual Field &operator[](std::pair<unsigned short int, unsigned short int> const &);
 
-    Field &operator[](std::pair<unsigned short int, unsigned short int>);
+    virtual Field const &operator[](std::pair<unsigned short int, unsigned short int> const &) const;
 
-    Field const &operator[](std::pair<unsigned short int, unsigned short int>) const;
+    virtual unsigned short int getDimension() const;
 
-    Matrix forkFirstReturnSecond();
+    virtual Matrix forkFirstReturnSecond();
 
-    void notifyChangeAt(std::pair<unsigned short int, unsigned short int> const &);
+    virtual void notifyChangeAt(std::pair<unsigned short int, unsigned short int> const &);
 };
 
 std::ostream &operator<<(std::ostream &os, Matrix const &);

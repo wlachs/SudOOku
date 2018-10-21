@@ -53,11 +53,11 @@ unsigned short int Matrix::getDimension() const {
     return dimension;
 }
 
-Field &Matrix::operator[](std::pair<unsigned short int, unsigned short int> coordinates) {
+Field &Matrix::operator[](std::pair<unsigned short int, unsigned short int> const &coordinates) {
     return fields.at(coordinates);
 }
 
-Field const &Matrix::operator[](std::pair<unsigned short int, unsigned short int> coordinates) const {
+Field const &Matrix::operator[](std::pair<unsigned short int, unsigned short int> const &coordinates) const {
     return fields.at(coordinates);
 }
 

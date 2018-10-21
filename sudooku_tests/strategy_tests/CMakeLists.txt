@@ -10,7 +10,7 @@ add_executable(
 target_link_libraries(
         strategy_tests
         sudooku_core
-        gtest_main
+        gmock_main
 )
 
 add_test(
