@@ -9,29 +9,17 @@ bool RowStrategy::validate(Matrix const &matrix) const {
     auto dimension = matrix.getDimension();
 
     for (unsigned short int row = 1; row <= dimension; ++row) {
-        if (!isRowValid(matrix, row, dimension)) {
-            return false;
-        }
-    }
+        std::vector<unsigned short int> fixValues = {};
+        for (unsigned short int column = 1; column <= dimension; ++column) {
+            if (matrix[{row, column}].getPossibleValues().size() == 1) {
+                auto fixValue = matrix[{row, column}].getPossibleValues()[0];
+                auto result = std::find(std::begin(fixValues), std::end(fixValues), fixValue);
 
-    return true;
-}
+                if (result != std::end(fixValues)) {
+                    return false;
+                }
 
-bool RowStrategy::isRowValid(Matrix const &matrix,
-                             unsigned short const int row,
-                             unsigned short const int dimension) const {
-    std::vector<unsigned short int> fixValues = {};
-
-    for (unsigned int column = 1; column <= dimension; ++column) {
-        auto possibleValues = matrix[{row, column}].getPossibleValues();
-
-        if (possibleValues.size() == 1) {
-            auto result = std::find(std::begin(fixValues), std::end(fixValues), possibleValues[0]);
-
-            if (result != std::end(fixValues)) {
-                return false;
-            } else {
-                fixValues.push_back(possibleValues[0]);
+                fixValues.push_back(fixValue);
             }
         }
     }
@@ -54,19 +42,19 @@ bool RowStrategy::simplify(Matrix &matrix) const {
 
 bool RowStrategy::simplifyRow(Matrix &matrix, unsigned short const int row,
                               unsigned short const int dimension) const {
-    bool simplified = false;
+    bool result = false;
 
     for (unsigned short int column = 1; column <= dimension; ++column) {
         auto possibleValues = matrix[{row, column}].getPossibleValues();
 
         if (possibleValues.size() == 1) {
-            simplified = optimizeSingular(matrix, row, column, dimension, possibleValues) || simplified;
+            result = optimizeSingular(matrix, row, column, dimension, possibleValues) || result;
         } else if (possibleValues.size() > 1) {
-            simplified = optimizeUnique(matrix, row, column, dimension, possibleValues) || simplified;
+            result = optimizeUnique(matrix, row, column, dimension, possibleValues) || result;
         }
     }
 
-    return simplified;
+    return result;
 }
 
 bool RowStrategy::optimizeSingular(Matrix &matrix,
@@ -74,10 +62,12 @@ bool RowStrategy::optimizeSingular(Matrix &matrix,
                                    unsigned short const int column,
                                    unsigned short const int dimension,
                                    std::vector<unsigned short int> const &value) const {
-    bool simplified = recursiveRemove(matrix, row, 1, dimension, 1, value[0]);
-    matrix[{row, column}].setPossibleValues(value);
+    bool topResult =
+            recursiveRemove(matrix, row, column - 1, dimension, -1, value[0]);
+    bool bottomResult =
+            recursiveRemove(matrix, row, column + 1, dimension, 1, value[0]);
 
-    return simplified;
+    return topResult || bottomResult;
 }
 
 bool RowStrategy::recursiveRemove(Matrix &matrix,
