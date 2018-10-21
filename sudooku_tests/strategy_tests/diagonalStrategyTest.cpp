@@ -20,8 +20,13 @@ protected:
     }
 };
 
-TEST_F(DiagonalStrategyTests, validation_check_false) {
+TEST_F(DiagonalStrategyTests, validation_check_false_1) {
     Matrix invalid = (Matrix) MatrixReader{"invalid4.mat"};
+    ASSERT_FALSE(diagonalStrategy.validate(invalid));
+}
+
+TEST_F(DiagonalStrategyTests, validation_check_false_2) {
+    Matrix invalid = (Matrix) MatrixReader{"invalid5.mat"};
     ASSERT_FALSE(diagonalStrategy.validate(invalid));
 }
 
