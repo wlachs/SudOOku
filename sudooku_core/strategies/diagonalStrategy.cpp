@@ -3,7 +3,7 @@
 //
 
 #include "diagonalStrategy.h"
-#include <vector>
+#include <algorithm>
 
 bool DiagonalStrategy::validate(Matrix const &matrix) const {
     auto dimension = matrix.getDimension();
