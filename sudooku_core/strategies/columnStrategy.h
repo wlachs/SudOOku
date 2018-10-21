@@ -13,9 +13,17 @@ private:
 
     bool simplifyColumn(Matrix &, unsigned short int, unsigned short int) const;
 
-    bool optimizeSingular(Matrix &, unsigned short int, unsigned short int) const;
+    bool optimizeSingular(Matrix &,
+                          unsigned short int,
+                          unsigned short int,
+                          unsigned short int,
+                          std::vector<unsigned short int> const &) const;
 
-    bool optimizeUnique(Matrix &, unsigned short int, unsigned short int) const;
+    bool optimizeUnique(Matrix &,
+                        unsigned short int,
+                        unsigned short int,
+                        unsigned short int,
+                        std::vector<unsigned short int> const &) const;
 
     bool recursiveRemove(Matrix &, unsigned short int, unsigned short int,
                          unsigned short int, short int, unsigned short int) const;

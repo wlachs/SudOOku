@@ -20,7 +20,7 @@ Field::Field(Field const &other) {
 
 Field &Field::operator=(Field const &other) = default;
 
-void Field::setPossibleValues(std::vector<unsigned short int> &possibleValues) {
+void Field::setPossibleValues(std::vector<unsigned short int> const &possibleValues) {
     this->possibleValues = possibleValues;
 }
 

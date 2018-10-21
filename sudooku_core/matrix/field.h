@@ -26,7 +26,7 @@ public:
 
     Field &operator=(Field const &);
 
-    void setPossibleValues(std::vector<unsigned short int> &);
+    void setPossibleValues(std::vector<unsigned short int> const &);
 
     std::vector<unsigned short int> const &getPossibleValues() const;
 

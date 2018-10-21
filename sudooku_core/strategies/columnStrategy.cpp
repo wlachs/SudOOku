@@ -54,26 +54,28 @@ bool ColumnStrategy::simplify(Matrix &matrix) const {
 
 bool ColumnStrategy::simplifyColumn(Matrix &matrix, unsigned short const int column,
                                     unsigned short const int dimension) const {
-    bool singularResult = optimizeSingular(matrix, column, dimension);
-    bool uniqueResult = optimizeUnique(matrix, column, dimension);
-
-    return singularResult || uniqueResult;
-}
-
-bool ColumnStrategy::optimizeSingular(Matrix &matrix, unsigned short const int column,
-                                      unsigned short const int dimension) const {
     bool simplified = false;
 
     for (unsigned short int row = 1; row <= dimension; ++row) {
         auto possibleValues = matrix[{row, column}].getPossibleValues();
+
         if (possibleValues.size() == 1) {
-            bool topResult =
-                    recursiveRemove(matrix, (unsigned short int) (row - 1), column, dimension, -1, possibleValues[0]);
-            bool bottomResult =
-                    recursiveRemove(matrix, (unsigned short int) (row + 1), column, dimension, 1, possibleValues[0]);
-            simplified = topResult || bottomResult;
+            simplified = optimizeSingular(matrix, row, column, dimension, possibleValues) || simplified;
+        } else if (possibleValues.size() > 1) {
+            simplified = optimizeUnique(matrix, row, column, dimension, possibleValues) || simplified;
         }
     }
+
+    return simplified;
+}
+
+bool ColumnStrategy::optimizeSingular(Matrix &matrix,
+                                      unsigned short const int row,
+                                      unsigned short const int column,
+                                      unsigned short const int dimension,
+                                      std::vector<unsigned short int> const &value) const {
+    bool simplified = recursiveRemove(matrix, 1, column, dimension, 1, value[0]);
+    matrix[{row, column}].setPossibleValues(value);
 
     return simplified;
 }
@@ -94,17 +96,15 @@ bool ColumnStrategy::recursiveRemove(Matrix &matrix,
 }
 
 bool
-ColumnStrategy::optimizeUnique(Matrix &matrix, unsigned short const int column,
-                               unsigned short const int dimension) const {
-    for (unsigned short int row = 1; row <= dimension; ++row) {
-        auto possibleValues = matrix[{row, column}].getPossibleValues();
-        if (possibleValues.size() > 1) {
-            for (auto value : matrix[{row, column}].getPossibleValues()) {
-                if (isUniqueInColumn(matrix, column, dimension, value)) {
-                    matrix[{row, column}].fixValue(value);
-                    return true;
-                }
-            }
+ColumnStrategy::optimizeUnique(Matrix &matrix,
+                               unsigned short const int row,
+                               unsigned short const int column,
+                               unsigned short const int dimension,
+                               std::vector<unsigned short int> const &values) const {
+    for (auto value : values) {
+        if (isUniqueInColumn(matrix, column, dimension, value)) {
+            matrix[{row, column}].fixValue(value);
+            return true;
         }
     }
 
