@@ -63,6 +63,18 @@ TEST_F(FieldTests, removevalue_witharg_test) {
     }
 }
 
+TEST_F(FieldTests, removevalue_witharg_false_test) {
+    ASSERT_FALSE(f1.removeValue(5));
+
+    auto values = f1.getPossibleValues();
+
+    ASSERT_EQ(4, values.size());
+
+    for (unsigned short int i = 0; i < 4; ++i) {
+        EXPECT_EQ(i + 1, values[i]);
+    }
+}
+
 TEST_F(FieldTests, contains_test) {
     ASSERT_EQ(4, f1.getPossibleValues().size());
 
