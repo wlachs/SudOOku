@@ -3,10 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include <gmock/gmock.h>
 #include <matrix/matrixReader.h>
-#include "helper_classes/mockMatrix.h"
-#include "helper_classes/mockField.h"
 
 class ForkHelperTests : public ::testing::Test {
 protected:
