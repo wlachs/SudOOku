@@ -14,5 +14,5 @@ add_test(
         NAME
         matrix_tests
         COMMAND
-        ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/strategy_tests
+        ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/matrix_tests
 )
