@@ -14,7 +14,9 @@ Field::Field(unsigned short int value) {
     possibleValues.push_back(value);
 }
 
-Field &Field::operator=(Field const &other) = default;
+void Field::setPossibleValues(std::vector<unsigned short int> const &possibleValues) {
+    this->possibleValues = possibleValues;
+}
 
 std::vector<unsigned short int> const &Field::getPossibleValues() const {
     return possibleValues;

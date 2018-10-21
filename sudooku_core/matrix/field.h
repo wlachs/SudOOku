@@ -22,19 +22,23 @@ public:
 
     Field(unsigned short int);
 
-    Field &operator=(Field const &);
+    Field &operator=(Field const &) = default;
 
-    std::vector<unsigned short int> const &getPossibleValues() const;
+    virtual ~Field() = default;
 
-    void fixValue();
+    virtual void setPossibleValues(std::vector<unsigned short int> const &);
 
-    void fixValue(unsigned short int);
+    virtual std::vector<unsigned short int> const &getPossibleValues() const;
 
-    void removeValue();
+    virtual void fixValue();
 
-    bool removeValue(unsigned short int);
+    virtual void fixValue(unsigned short int);
 
-    bool contains(unsigned short int) const;
+    virtual void removeValue();
+
+    virtual bool removeValue(unsigned short int);
+
+    virtual bool contains(unsigned short int) const;
 };
 
 
