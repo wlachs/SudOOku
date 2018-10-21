@@ -95,12 +95,11 @@ bool ColumnStrategy::recursiveRemove(Matrix &matrix,
     return recursiveRemove(matrix, row + direction, column, dimension, direction, value) || simplified;
 }
 
-bool
-ColumnStrategy::optimizeUnique(Matrix &matrix,
-                               unsigned short const int row,
-                               unsigned short const int column,
-                               unsigned short const int dimension,
-                               std::vector<unsigned short int> const &values) const {
+bool ColumnStrategy::optimizeUnique(Matrix &matrix,
+                                    unsigned short const int row,
+                                    unsigned short const int column,
+                                    unsigned short const int dimension,
+                                    std::vector<unsigned short int> const &values) const {
     for (auto value : values) {
         if (isUniqueInColumn(matrix, column, dimension, value)) {
             matrix[{row, column}].fixValue(value);
