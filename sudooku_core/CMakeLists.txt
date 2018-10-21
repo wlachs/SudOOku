@@ -9,6 +9,8 @@ add_library(
         strategies/columnStrategy.h
         strategies/groupStrategy.h
         strategies/rowStrategy.h
+        strategies/diagonalStrategy.h
+        strategies/diagonalStrategy.cpp
         matrix/matrix.cpp
         matrix/matrix.h
         matrix/field.cpp

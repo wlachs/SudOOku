@@ -4,6 +4,7 @@ add_executable(
         columnStrategyTest.cpp
         rowStrategyTest.cpp
         groupStrategyTest.cpp
+        diagonalStrategyTest.cpp
 )
 
 target_link_libraries(
