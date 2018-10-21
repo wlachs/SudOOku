@@ -7,10 +7,8 @@
 #include <strategies/rowStrategy.h>
 #include <strategies/groupStrategy.h>
 #include <strategies/columnStrategy.h>
-
-Matrix getFromFile(char *location) {
-    return (Matrix) MatrixReader{location};
-}
+#include <unistd.h>
+#include <strategies/diagonalStrategy.h>
 
 void runTest(Solver &solver, Matrix const &matrix) {
     solver.setInitialMatrix(matrix);
@@ -23,7 +21,7 @@ void runTest(Solver &solver, Matrix const &matrix) {
     }
 }
 
-void run(std::vector<Matrix> const &tests) {
+void run(Matrix const &initialMatrix, std::vector<int> const &params) {
     Solver solver{};
 
     RowStrategy rowStrategy{};
@@ -34,16 +32,39 @@ void run(std::vector<Matrix> const &tests) {
     solver.addRule(&columnStrategy);
     solver.addRule(&groupStrategy);
 
-    for (Matrix const &test : tests) {
-        runTest(solver, test);
+    if (params[0] == 1) {
+        DiagonalStrategy diagonalStrategy{};
+        solver.addRule(&diagonalStrategy);
     }
+
+    runTest(solver, initialMatrix);
 }
 
 int main(int argc, char *argv[]) {
-    if (argc > 1) {
-        std::vector<Matrix> matrix = {getFromFile(argv[1])};
-        run({matrix});
-    }
+    int dflag = 0;
+    int c;
+
+    while ((c = getopt(argc, argv, "dp:")) != -1)
+        switch (c) {
+            case 'd':
+                dflag = 1;
+                break;
+            case '?':
+                if (optopt == 'p')
+                    fprintf(stderr, "Option -%c requires an argument.\n", optopt);
+                else if (isprint(optopt))
+                    fprintf(stderr, "Unknown option `-%c'.\n", optopt);
+                else
+                    fprintf(stderr,
+                            "Unknown option character `\\x%x'.\n",
+                            optopt);
+                return 1;
+            default:
+                abort();
+        }
+
+    Matrix initialMatrix = (Matrix) MatrixReader{argv[optind]};
+    run(initialMatrix, {dflag});
 
     return 0;
 }
