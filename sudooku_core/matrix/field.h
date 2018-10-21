@@ -26,8 +26,6 @@ public:
 
     virtual ~Field() = default;
 
-    virtual void setPossibleValues(std::vector<unsigned short int> const &);
-
     virtual std::vector<unsigned short int> const &getPossibleValues() const;
 
     virtual void fixValue();

@@ -13,11 +13,10 @@ protected:
 
     void SetUp() override {
         m1 = (Matrix) MatrixReader{"small1.mat"};
-        std::vector<unsigned short int> p1 = {1, 2, 3};
 
-        m1[{1, 2}].setPossibleValues(p1);
-        m1[{2, 2}].setPossibleValues(p1);
-        m1[{3, 2}].setPossibleValues(p1);
+        m1[{1, 2}].removeValue(4);
+        m1[{2, 2}].removeValue(4);
+        m1[{3, 2}].removeValue(4);
     }
 };
 
