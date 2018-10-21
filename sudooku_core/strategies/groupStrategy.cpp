@@ -85,23 +85,15 @@ bool GroupStrategy::simplify(Matrix &matrix) const {
 
 bool GroupStrategy::simplifyGroup(Matrix &matrix,
                                   std::vector<std::pair<unsigned short int, unsigned short int>> const &group) const {
-    bool singularResult = optimizeSingular(matrix, group);
-    bool uniqueResult = optimizeUnique(matrix, group);
-
-    return singularResult || uniqueResult;
-}
-
-bool GroupStrategy::optimizeSingular(Matrix &matrix,
-                                     std::vector<std::pair<unsigned short int, unsigned short int>> const &group) const {
     bool simplified = false;
 
     for (auto const &coordinate : group) {
         auto values = matrix[coordinate].getPossibleValues();
 
         if (values.size() == 1) {
-            if (removeFromGroup(matrix, group, coordinate, values[0])) {
-                simplified = true;
-            }
+            simplified = removeFromGroup(matrix, group, coordinate, values[0]) || simplified;
+        } else if (values.size() > 1) {
+            simplified = optimizeUnique(matrix, group, coordinate, values) || simplified;
         }
     }
 
@@ -109,16 +101,13 @@ bool GroupStrategy::optimizeSingular(Matrix &matrix,
 }
 
 bool GroupStrategy::optimizeUnique(Matrix &matrix,
-                                   std::vector<std::pair<unsigned short int, unsigned short int>> const &group) const {
-    for (auto const &coordinate : group) {
-        auto possibleValues = matrix[coordinate].getPossibleValues();
-        if (possibleValues.size() > 1) {
-            for (auto value : matrix[coordinate].getPossibleValues()) {
-                if (isUniqueInGroup(matrix, group, value)) {
-                    matrix[coordinate].fixValue(value);
-                    return true;
-                }
-            }
+                                   std::vector<std::pair<unsigned short int, unsigned short int>> const &group,
+                                   std::pair<unsigned short int, unsigned short int> const &coordinate,
+                                   std::vector<unsigned short int> const &values) const {
+    for (auto value : values) {
+        if (isUniqueInGroup(matrix, group, value)) {
+            matrix[coordinate].fixValue(value);
+            return true;
         }
     }
 
