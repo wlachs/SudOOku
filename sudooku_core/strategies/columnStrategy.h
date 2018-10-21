@@ -9,6 +9,8 @@
 
 class ColumnStrategy : public SolvingStrategy {
 private:
+    bool isColumnValid(Matrix const &, unsigned short int, unsigned short int) const;
+
     bool simplifyColumn(Matrix &, unsigned short int, unsigned short int) const;
 
     bool optimizeSingular(Matrix &, unsigned short int, unsigned short int) const;
@@ -21,7 +23,7 @@ private:
     bool isUniqueInColumn(Matrix const &, unsigned short int, unsigned short int, unsigned short int) const;
 
 public:
-    bool validate(Matrix const &matrix) const override;
+    bool validate(Matrix const &) const override;
 
     bool simplify(Matrix &) const override;
 };

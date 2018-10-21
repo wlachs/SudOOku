@@ -9,6 +9,8 @@
 
 class RowStrategy : public SolvingStrategy {
 private:
+    bool isRowValid(Matrix const &, unsigned short int, unsigned short int) const;
+
     bool simplifyRow(Matrix &, unsigned short int, unsigned short int) const;
 
     bool optimizeSingular(Matrix &, unsigned short int, unsigned short int) const;

@@ -9,17 +9,29 @@ bool ColumnStrategy::validate(Matrix const &matrix) const {
     auto dimension = matrix.getDimension();
 
     for (unsigned short int column = 1; column <= dimension; ++column) {
-        std::vector<unsigned short int> fixValues = {};
-        for (unsigned short int row = 1; row <= dimension; ++row) {
-            if (matrix[{row, column}].getPossibleValues().size() == 1) {
-                auto fixValue = matrix[{row, column}].getPossibleValues()[0];
-                auto result = std::find(std::begin(fixValues), std::end(fixValues), fixValue);
+        if (!isColumnValid(matrix, column, dimension)) {
+            return false;
+        }
+    }
 
-                if (result != std::end(fixValues)) {
-                    return false;
-                }
+    return true;
+}
 
-                fixValues.push_back(fixValue);
+bool ColumnStrategy::isColumnValid(Matrix const &matrix,
+                                   unsigned short const int column,
+                                   unsigned short const int dimension) const {
+    std::vector<unsigned short int> fixValues = {};
+
+    for (unsigned int row = 1; row <= dimension; ++row) {
+        auto possibleValues = matrix[{row, column}].getPossibleValues();
+
+        if (possibleValues.size() == 1) {
+            auto result = std::find(std::begin(fixValues), std::end(fixValues), possibleValues[0]);
+
+            if (result != std::end(fixValues)) {
+                return false;
+            } else {
+                fixValues.push_back(possibleValues[0]);
             }
         }
     }
