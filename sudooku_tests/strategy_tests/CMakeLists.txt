@@ -2,11 +2,15 @@ add_executable(
         strategy_tests
         ../main.cpp
         columnStrategyTest.cpp
-        rowStrategyTest.cpp groupStrategyTest.cpp)
+        rowStrategyTest.cpp
+        groupStrategyTest.cpp
+)
 
-target_link_libraries(strategy_tests
+target_link_libraries(
+        strategy_tests
         sudooku_core
-        gtest_main)
+        gtest_main
+)
 
 add_test(
         NAME

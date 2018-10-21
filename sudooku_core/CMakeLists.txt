@@ -16,4 +16,5 @@ add_library(
         matrix/forkHelper.cpp
         matrix/forkHelper.h
         matrix/matrixReader.cpp
-        matrix/matrixReader.h)
+        matrix/matrixReader.h
+)
