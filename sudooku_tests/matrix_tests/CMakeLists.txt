@@ -3,6 +3,7 @@ add_executable(
         ../main.cpp
         fieldTest.cpp
         forkHelperTest.cpp
+        matrixTest.cpp
         helper_classes/mockMatrix.h
         helper_classes/mockMatrix.cpp
         helper_classes/mockField.h
