@@ -24,6 +24,7 @@ protected:
     void optimize(Matrix &) const;
 
     bool isSolution(Matrix const &) const;
+
 public:
     Solver() = default;
 

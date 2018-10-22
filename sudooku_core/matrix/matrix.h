@@ -21,6 +21,7 @@ private:
     std::map<std::pair<unsigned short int, unsigned short int>, Field> fields;
 
     void populateEmptyFields();
+
 public:
     Matrix() = default;
 
