@@ -38,10 +38,12 @@ Matrix::Matrix(unsigned short const int dimension,
 }
 
 Matrix &Matrix::operator=(Matrix const &matrix) {
-    delete forkHelper;
-    dimension = matrix.dimension;
-    fields = matrix.fields;
-    forkHelper = new ForkHelper{this};
+    if (this != &matrix) {
+        delete forkHelper;
+        dimension = matrix.dimension;
+        fields = matrix.fields;
+        forkHelper = new ForkHelper{this};
+    }
 
     return *this;
 }
