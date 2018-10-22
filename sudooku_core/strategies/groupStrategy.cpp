@@ -20,7 +20,7 @@ std::vector<Matrix> GroupStrategy::separateToGroups() {
                             {horizontalGroups * groupDimension + x, verticalGroups * groupDimension + y};
                     auto possibleValues = (*constMatrix)[coordinates].getPossibleValues();
                     if (possibleValues.size() == 1) {
-                        group.insert({{x, y}, possibleValues[0]});
+                        group.insert({{x, y}, Field{possibleValues[0]}});
                     }
                 }
             }

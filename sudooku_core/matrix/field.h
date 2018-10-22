@@ -17,9 +17,9 @@ private:
 public:
     Field() = default;
 
-    Field(std::vector<unsigned short int> const &);
+    explicit Field(std::vector<unsigned short int> const &);
 
-    Field(unsigned short int);
+    explicit Field(unsigned short int);
 
     Field &operator=(Field const &) = default;
 

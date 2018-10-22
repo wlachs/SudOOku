@@ -29,7 +29,8 @@ void MatrixReader::parseMatrix() {
             dimension = (unsigned short int) values.size();
             for (unsigned short int columnIndex = 1; columnIndex <= dimension; ++columnIndex) {
                 if (!values[columnIndex - 1].empty()) {
-                    inputMap.insert({{rowIndex, columnIndex}, std::stoi(values[columnIndex - 1])});
+                    inputMap.insert({{rowIndex, columnIndex},
+                                     Field{(unsigned short int) (std::stoi(values[columnIndex - 1]))}});
                 }
             }
 
