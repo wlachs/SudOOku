@@ -19,5 +19,5 @@ add_test(
         COMMAND
         ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/strategy_tests
         WORKING_DIRECTORY
-        ${CMAKE_BINARY_DIR}/../sudooku_tests/testInputs
+        ${CMAKE_BINARY_DIR}/sudooku_tests/testInputs
 )

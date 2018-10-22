@@ -15,12 +15,9 @@ addons:
     token:
       secure: "ZGODjb8MG53oinuJubUn15FkLMijuM5Cv5AU5aJEzLg1ntGyNDtFKU/cE1MjgZcCe+mN1NDl8CpM+dJzqpoEPlMvswT9JUO65+63jt5WEw+IAj7xMRzOPzKYE/SpTsl13PcQc1jH620VyK0pqg+Pz+h4XvkC8c8CbZ2ZZqIeaVTIHQDvIObSjbtG6hXLDIQuEVAj47QOSgyW+J601aCI4rr/eQxvywy2vzzuY8ShcxlnU/x0UsxGVa33NK7gB99Q+MQ1awAt8VWI1dml1tD23CrC5ylMrAZQp7XixR7rG9pvg6UXvLYiK0mzbQrXgyB5CqCR9C+TZM3un9jK9olf+KYo78HHjbGclLVwf6+Yrx4icoX6sNBeh2EX/1BfKWaZas70+jkZV0zr+5vy6+JKdh6S6vEx040RhelhjemBF38e5bx38oH2IdY01q2OSFs9DOa79GhIgLfpWoMQbU8u5Vw5BHegIZ7P/LvQnQGuL53dTCPGOu5G0zmY2QdOxCRW7drCAxhVoI8LfOhY9DOz6WzyJ+NBsgfyJek3xU/lhio/0PagSQh+ssZIXOgNoNhz5GjdH8U8ql0EZz03apwCfgwRJM1au55Yutoyk21c3EeFZR0tjY7GPl//6osBqTBS+2FDtYN1n/eFks3g0yCmHW5s5Gl1uyopvyv4s0YXEfc="
 script:
-- cmake -H. -Bbuild
-- cd build
-- cmake --build .
-- ctest
-- cd ..
+- cmake .
 - build-wrapper-linux-x86-64 --out-dir bw-output make all
+- ctest
 - sonar-scanner
 after_success:
 - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" --exclude build/googletest
