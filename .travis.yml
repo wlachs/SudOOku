@@ -18,7 +18,7 @@ script:
 - cmake .
 - build-wrapper-linux-x86-64 --out-dir bw-output make all
 - ctest
-- sonar-scanner
+- sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output
 after_success:
 - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" --exclude build/googletest
   --exclude sudooku_tests
