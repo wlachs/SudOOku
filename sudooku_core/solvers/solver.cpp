@@ -10,7 +10,7 @@ void Solver::setInitialMatrix(Matrix const &matrix) {
     solutions.clear();
 }
 
-void Solver::addRule(const SolvingStrategy *solvingStrategy) {
+void Solver::addRule(SolvingStrategy *solvingStrategy) {
     strategies.push_back(solvingStrategy);
 }
 

@@ -12,7 +12,7 @@ class Solver {
 protected:
     Matrix initialMatrix;
     unsigned short int dimension;
-    std::vector<const SolvingStrategy *> strategies;
+    std::vector<SolvingStrategy *> strategies;
     std::vector<Matrix> solutions;
 
     void solve(Matrix &);
@@ -30,7 +30,7 @@ public:
 
     void setInitialMatrix(Matrix const &);
 
-    void addRule(const SolvingStrategy *);
+    void addRule(SolvingStrategy *);
 
     void solve();
 
