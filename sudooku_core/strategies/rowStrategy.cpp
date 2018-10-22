@@ -5,21 +5,32 @@
 #include "rowStrategy.h"
 #include <algorithm>
 
-bool RowStrategy::validate(Matrix const &matrix) const {
-    auto dimension = matrix.getDimension();
+bool RowStrategy::validate(Matrix const &m) {
+    constMatrix = &m;
+    dimension = constMatrix->getDimension();
 
-    for (unsigned short int row = 1; row <= dimension; ++row) {
-        std::vector<unsigned short int> fixValues = {};
-        for (unsigned short int column = 1; column <= dimension; ++column) {
-            if (matrix[{row, column}].getPossibleValues().size() == 1) {
-                auto fixValue = matrix[{row, column}].getPossibleValues()[0];
-                auto result = std::find(std::begin(fixValues), std::end(fixValues), fixValue);
+    for (row = 1; row <= dimension; ++row) {
+        if (!isRowValid()) {
+            return false;
+        }
+    }
 
-                if (result != std::end(fixValues)) {
-                    return false;
-                }
+    return true;
+}
 
-                fixValues.push_back(fixValue);
+bool RowStrategy::isRowValid() {
+    std::vector<unsigned short int> fixValues = {};
+
+    for (column = 1; column <= dimension; ++column) {
+        auto possibleValues = (*constMatrix)[{row, column}].getPossibleValues();
+
+        if (possibleValues.size() == 1) {
+            auto result = std::find(std::begin(fixValues), std::end(fixValues), possibleValues[0]);
+
+            if (result != std::end(fixValues)) {
+                return false;
+            } else {
+                fixValues.push_back(possibleValues[0]);
             }
         }
     }
@@ -27,12 +38,13 @@ bool RowStrategy::validate(Matrix const &matrix) const {
     return true;
 }
 
-bool RowStrategy::simplify(Matrix &matrix) const {
-    auto dimension = matrix.getDimension();
+bool RowStrategy::simplify(Matrix &m) {
+    this->matrix = &m;
+    this->dimension = matrix->getDimension();
     bool simplified = false;
 
-    for (unsigned short int row = 1; row <= dimension; ++row) {
-        if (simplifyRow(matrix, row, dimension)) {
+    for (row = 1; row <= dimension; ++row) {
+        if (simplifyRow()) {
             simplified = true;
         }
     }
@@ -40,59 +52,45 @@ bool RowStrategy::simplify(Matrix &matrix) const {
     return simplified;
 }
 
-bool RowStrategy::simplifyRow(Matrix &matrix, unsigned short const int row,
-                              unsigned short const int dimension) const {
+bool RowStrategy::simplifyRow() {
     bool result = false;
 
-    for (unsigned short int column = 1; column <= dimension; ++column) {
-        auto possibleValues = matrix[{row, column}].getPossibleValues();
+    for (column = 1; column <= dimension; ++column) {
+        auto const &possibleValues = (*matrix)[{row, column}].getPossibleValues();
 
         if (possibleValues.size() == 1) {
-            result = optimizeSingular(matrix, row, column, dimension, possibleValues) || result;
+            result = optimizeSingular(possibleValues) || result;
         } else if (possibleValues.size() > 1) {
-            result = optimizeUnique(matrix, row, column, dimension, possibleValues) || result;
+            result = optimizeUnique(possibleValues) || result;
         }
     }
 
     return result;
 }
 
-bool RowStrategy::optimizeSingular(Matrix &matrix,
-                                   unsigned short const int row,
-                                   unsigned short const int column,
-                                   unsigned short const int dimension,
-                                   std::vector<unsigned short int> const &value) const {
-    bool topResult =
-            recursiveRemove(matrix, row, column - 1, dimension, -1, value[0]);
-    bool bottomResult =
-            recursiveRemove(matrix, row, column + 1, dimension, 1, value[0]);
+bool RowStrategy::optimizeSingular(std::vector<unsigned short int> const &value) const {
+    bool topResult = recursiveRemove((unsigned short int) (column - 1), -1, value[0]);
+    bool bottomResult = recursiveRemove((unsigned short int) (column + 1), 1, value[0]);
 
     return topResult || bottomResult;
 }
 
-bool RowStrategy::recursiveRemove(Matrix &matrix,
-                                  unsigned short const int row,
-                                  unsigned short const int column,
-                                  unsigned short const int dimension,
+bool RowStrategy::recursiveRemove(unsigned short const int column,
                                   short const int direction,
                                   unsigned short const int value) const {
     if (column < 1 || column > dimension) {
         return false;
     }
 
-    bool simplified = matrix[{row, column}].removeValue(value);
+    bool simplified = (*matrix)[{row, column}].removeValue(value);
 
-    return recursiveRemove(matrix, row, column + direction, dimension, direction, value) || simplified;
+    return recursiveRemove(column + direction, direction, value) || simplified;
 }
 
-bool RowStrategy::optimizeUnique(Matrix &matrix,
-                                 unsigned short const int row,
-                                 unsigned short const int column,
-                                 unsigned short const int dimension,
-                                 std::vector<unsigned short int> const &values) const {
+bool RowStrategy::optimizeUnique(std::vector<unsigned short int> const &values) const {
     for (auto value : values) {
-        if (isUniqueInRow(matrix, row, dimension, value)) {
-            matrix[{row, column}].fixValue(value);
+        if (isUniqueInRow(value)) {
+            (*matrix)[{row, column}].fixValue(value);
             return true;
         }
     }
@@ -100,12 +98,11 @@ bool RowStrategy::optimizeUnique(Matrix &matrix,
     return false;
 }
 
-bool RowStrategy::isUniqueInRow(Matrix const &matrix, unsigned short const int row, unsigned short const int dimension,
-                                unsigned short const int value) const {
+bool RowStrategy::isUniqueInRow(unsigned short const int value) const {
     unsigned short int count = 0;
 
     for (unsigned short int column = 1; column <= dimension; ++column) {
-        if (matrix[{row, column}].contains(value)) {
+        if ((*matrix)[{row, column}].contains(value)) {
             ++count;
         }
     }

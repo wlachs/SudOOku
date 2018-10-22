@@ -9,31 +9,26 @@
 
 class ColumnStrategy : public SolvingStrategy {
 private:
-    bool isColumnValid(Matrix const &, unsigned short int, unsigned short int) const;
+    const Matrix *constMatrix;
+    Matrix *matrix;
+    unsigned short int row, column, dimension;
 
-    bool simplifyColumn(Matrix &, unsigned short int, unsigned short int) const;
+    bool isColumnValid();
 
-    bool optimizeSingular(Matrix &,
-                          unsigned short int,
-                          unsigned short int,
-                          unsigned short int,
-                          std::vector<unsigned short int> const &) const;
+    bool simplifyColumn();
 
-    bool optimizeUnique(Matrix &,
-                        unsigned short int,
-                        unsigned short int,
-                        unsigned short int,
-                        std::vector<unsigned short int> const &) const;
+    bool optimizeSingular(std::vector<unsigned short int> const &);
 
-    bool recursiveRemove(Matrix &, unsigned short int, unsigned short int,
-                         unsigned short int, short int, unsigned short int) const;
+    bool optimizeUnique(std::vector<unsigned short int> const &);
 
-    bool isUniqueInColumn(Matrix const &, unsigned short int, unsigned short int, unsigned short int) const;
+    bool recursiveRemove(unsigned short int, short int, unsigned short int);
+
+    bool isUniqueInColumn(unsigned short int) const;
 
 public:
-    bool validate(Matrix const &) const override;
+    bool validate(Matrix const &) override;
 
-    bool simplify(Matrix &) const override;
+    bool simplify(Matrix &) override;
 };
 
 #endif //SUDOOKU_COLUMNSTRATEGY_H

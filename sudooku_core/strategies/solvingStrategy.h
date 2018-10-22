@@ -12,9 +12,9 @@ class SolvingStrategy {
 public:
     SolvingStrategy() = default;
 
-    virtual bool validate(Matrix const &) const = 0;
+    virtual bool validate(Matrix const &) = 0;
 
-    virtual bool simplify(Matrix &) const { return false; };
+    virtual bool simplify(Matrix &) { return false; };
 
     virtual ~SolvingStrategy() {}
 };

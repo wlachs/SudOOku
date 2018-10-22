@@ -9,12 +9,13 @@
 
 class DiagonalStrategy : public SolvingStrategy {
 private:
-    bool validateDirection1(Matrix const &, unsigned short int) const;
+    const Matrix *constMatrix;
+    unsigned short int dimension;
 
-    bool validateDirection2(Matrix const &, unsigned short int) const;
+    bool validateInDirection(bool) const;
 
 public:
-    bool validate(Matrix const &) const override;
+    bool validate(Matrix const &) override;
 };
 
 #endif //SUDOOKU_DIAGONALSTRATEGY_H

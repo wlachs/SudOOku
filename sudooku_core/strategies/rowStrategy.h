@@ -9,29 +9,26 @@
 
 class RowStrategy : public SolvingStrategy {
 private:
-    bool simplifyRow(Matrix &, unsigned short int, unsigned short int) const;
+    const Matrix *constMatrix;
+    Matrix *matrix;
+    unsigned short int row, column, dimension;
 
-    bool optimizeSingular(Matrix &,
-                          unsigned short int,
-                          unsigned short int,
-                          unsigned short int,
-                          std::vector<unsigned short int> const &) const;
+    bool isRowValid();
 
-    bool optimizeUnique(Matrix &,
-                        unsigned short int,
-                        unsigned short int,
-                        unsigned short int,
-                        std::vector<unsigned short int> const &) const;
+    bool simplifyRow();
 
-    bool recursiveRemove(Matrix &, unsigned short int, unsigned short int,
-                         unsigned short int, short int, unsigned short int) const;
+    bool optimizeSingular(std::vector<unsigned short int> const &) const;
 
-    bool isUniqueInRow(Matrix const &, unsigned short int, unsigned short int, unsigned short int) const;
+    bool optimizeUnique(std::vector<unsigned short int> const &) const;
+
+    bool recursiveRemove(unsigned short int, short int, unsigned short int) const;
+
+    bool isUniqueInRow(unsigned short int) const;
 
 public:
-    bool validate(Matrix const &) const override;
+    bool validate(Matrix const &) override;
 
-    bool simplify(Matrix &) const override;
+    bool simplify(Matrix &) override;
 };
 
 #endif //SUDOOKU_ROWSTRATEGY_H
