@@ -50,5 +50,6 @@ TEST_F(MatrixTests, fork_test) {
 }
 
 TEST_F(MatrixTests, print_test) {
+    // TODO proper assertion on error
     std::cout << m1;
 }

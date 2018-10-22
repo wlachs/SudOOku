@@ -5,6 +5,7 @@
 //
 
 #include "matrix.h"
+#include <vector>
 
 Matrix::Matrix(Matrix const &matrix) {
     dimension = matrix.dimension;
@@ -28,7 +29,7 @@ void Matrix::populateEmptyFields() {
     }
 }
 
-Matrix::Matrix(unsigned short int dimension,
+Matrix::Matrix(unsigned short const int dimension,
                std::map<std::pair<unsigned short int, unsigned short int>, Field> const &fields) {
     this->dimension = dimension;
     this->fields = fields;

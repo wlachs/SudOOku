@@ -10,7 +10,7 @@ Field::Field(std::vector<unsigned short int> const &possibleValues) {
     this->possibleValues = possibleValues;
 }
 
-Field::Field(unsigned short int value) {
+Field::Field(unsigned short const int value) {
     possibleValues.push_back(value);
 }
 
@@ -24,7 +24,7 @@ void Field::fixValue() {
     possibleValues.push_back(value);
 }
 
-void Field::fixValue(unsigned short int value) {
+void Field::fixValue(unsigned short const int value) {
     possibleValues.clear();
     possibleValues.push_back(value);
 }
@@ -33,7 +33,7 @@ void Field::removeValue() {
     possibleValues.erase(std::begin(possibleValues));
 }
 
-bool Field::removeValue(unsigned short int value) {
+bool Field::removeValue(unsigned short const int value) {
     auto it = std::find(std::begin(possibleValues), std::end(possibleValues), value);
 
     if (it != std::end(possibleValues)) {
