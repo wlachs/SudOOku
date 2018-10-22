@@ -31,9 +31,9 @@ public:
 
     Matrix &operator=(Matrix const &);
 
-    virtual bool operator==(Matrix const &) const;
+    bool operator==(Matrix const &) const;
 
-    virtual bool operator!=(Matrix const &) const;
+    bool operator!=(Matrix const &) const;
 
     virtual ~Matrix();
 
