@@ -30,6 +30,10 @@ public:
 
     Matrix &operator=(Matrix const &);
 
+    virtual bool operator==(Matrix const &) const;
+
+    virtual bool operator!=(Matrix const &) const;
+
     virtual ~Matrix();
 
     virtual Field &operator[](std::pair<unsigned short int, unsigned short int> const &);

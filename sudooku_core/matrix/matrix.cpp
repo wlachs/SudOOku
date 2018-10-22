@@ -46,6 +46,35 @@ Matrix &Matrix::operator=(Matrix const &matrix) {
     return *this;
 }
 
+bool Matrix::operator==(Matrix const &matrix) const {
+    if (dimension != matrix.getDimension()) {
+        return false;
+    }
+
+    for (unsigned short int row = 1; row <= dimension; ++row) {
+        for (unsigned short int column = 1; column <= dimension; ++column) {
+            auto values1 = (*this)[{row, column}].getPossibleValues();
+            auto values2 = matrix[{row, column}].getPossibleValues();
+
+            if (values1.size() != values2.size()) {
+                return false;
+            }
+
+            for (unsigned short int i = 0; i < values1.size(); ++i) {
+                if (values1[i] != values2[i]) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
+bool Matrix::operator!=(Matrix const &matrix) const {
+    return !((*this) == matrix);
+}
+
 Matrix::~Matrix() {
     delete forkHelper;
 }
