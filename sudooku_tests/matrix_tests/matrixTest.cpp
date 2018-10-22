@@ -48,3 +48,21 @@ TEST_F(MatrixTests, fork_test) {
     EXPECT_EQ(1, forkedList1.size());
     EXPECT_EQ(3, forkedList2.size());
 }
+
+TEST_F(MatrixTests, equality_operator_true_check) {
+    Matrix m11 = (Matrix) MatrixReader{"small4.mat"};
+
+    EXPECT_EQ(m1, m11);
+}
+
+TEST_F(MatrixTests, equality_operator_false_check) {
+    Matrix m2 = (Matrix) MatrixReader{"small3.mat"};
+
+    EXPECT_NE(m1, m2);
+}
+
+TEST_F(MatrixTests, equality_operator_dimension_false_check) {
+    Matrix m2 = (Matrix) MatrixReader{"test3.mat"};
+
+    EXPECT_NE(m1, m2);
+}
