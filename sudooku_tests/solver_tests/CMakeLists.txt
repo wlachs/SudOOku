@@ -1,6 +1,7 @@
 add_executable(
         solver_tests
         ../main.cpp
+        solverTest.cpp
 )
 
 target_link_libraries(
