@@ -1,37 +1,32 @@
 sudo: false
-
 language: cpp
-
 compiler: gcc
-
 dist: trusty
-
 before_install:
-# C++17
 - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 - sudo apt-get update -qq
 - pip install --user cpp-coveralls
-
 install:
-# C++17
 - sudo apt-get install -qq g++-6
 - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
-
 addons:
   sonarcloud:
-    organization: "wlchs-github" # the key of the org you chose at step #3
+    organization: "wlchs-github"
     token:
-    - ${SONAR_TOKEN}
-
+      secure: "ZGODjb8MG53oinuJubUn15FkLMijuM5Cv5AU5aJEzLg1ntGyNDtFKU/cE1MjgZcCe+mN1NDl8CpM+dJzqpoEPlMvswT9JUO65+63jt5WEw+IAj7xMRzOPzKYE/SpTsl13PcQc1jH620VyK0pqg+Pz+h4XvkC8c8CbZ2ZZqIeaVTIHQDvIObSjbtG6hXLDIQuEVAj47QOSgyW+J601aCI4rr/eQxvywy2vzzuY8ShcxlnU/x0UsxGVa33NK7gB99Q+MQ1awAt8VWI1dml1tD23CrC5ylMrAZQp7XixR7rG9pvg6UXvLYiK0mzbQrXgyB5CqCR9C+TZM3un9jK9olf+KYo78HHjbGclLVwf6+Yrx4icoX6sNBeh2EX/1BfKWaZas70+jkZV0zr+5vy6+JKdh6S6vEx040RhelhjemBF38e5bx38oH2IdY01q2OSFs9DOa79GhIgLfpWoMQbU8u5Vw5BHegIZ7P/LvQnQGuL53dTCPGOu5G0zmY2QdOxCRW7drCAxhVoI8LfOhY9DOz6WzyJ+NBsgfyJek3xU/lhio/0PagSQh+ssZIXOgNoNhz5GjdH8U8ql0EZz03apwCfgwRJM1au55Yutoyk21c3EeFZR0tjY7GPl//6osBqTBS+2FDtYN1n/eFks3g0yCmHW5s5Gl1uyopvyv4s0YXEfc="
 script:
 - cmake -H. -Bbuild
 - sonar-scanner
 - cd build
 - cmake --build .
 - ctest
-
 after_success:
-- coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" --exclude build/googletest --exclude sudooku_tests
-
+- coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" --exclude build/googletest
+  --exclude sudooku_tests
 notifications:
   email: false
+env:
+  global:
+    secure: q+X5t/ypx0rcZv5lq1d0flaHGbHkqgZ3FqApV0zwl9OwM6tAyV2unRQXaOMmluBCAJb9DObG3yxo6szog6uTJROI4nrN7CJ69OwqLD1iPKN+WPJkD80vfAkprnePVHjehMLgRRmYmco/sfyA1SXSWJ5p61n4PSx0QNyZpyJbjHm2fY6a+vkLgfMYHe8GguB6w2B5+NBaARs8tM9pBfDmdoVAC0MhAY+ke/nSTvkODh787n7l5EREVI35ft+49nmOO1qh4q/g2itRNcE/wJwdeqsYbiharE+N3ufuEZz+RINm3iENImEK2uF6tPvRIR4FkexS2SjjiKTAMbrT81Y4pCDLQ+aJ9hAtlI8tsJZQFtQyJihttozMGUckiLCgdfJJStXMzyRJATaOm0JaXzs7Zk17ot3GXfwDmEnAnH5C0uY2usRfpxV1pU5khYDuU79SLf07ayui4XZcS7dvOU6R1CmyrVQwWMoY3o+A6fkK96npSApgoF4jMa2QfDPPwpfxXNk0RyZmXI+xX2n92s2ZpZ3nVCjP7CM6ogl3RcC6AaciIbROj25RtnHs9TYqm5MQdzb5Z5zbu1YmBOhLqFZS7DZLjpexCqo5zElmYicQUFhb23XAK+WJs0q4b9xXF1CAzmiF5sHZoINt9wKrh2/iOCbayDmpEX/FX1cvAPF6z+o=
+98b13f54de7ce47ef41f2e4faba0087991256d2d:
+  secure: 0Z5vScFbAFzbDZpuwlhOzA66zQX5qGGm8fgq+bFSel3P3J20LFKX04vLbtDM5xtEirVxxFhhpUyNWILZ/efHTN2NYo5s/Pf09Fw0tJIdE+iHNzjBdiyhSh4ZofbZUfbCndFBZDgvJD5c5a5UWPxK2W7LM3xUwuyyxKiJXIMP5C5bVWxHHqKWX0ByKumRCKbbaETpLR9B5HNdpviAE0WF1rOUAEMh1KI176xLJBN8LyZFiK1Bg9swK5HYUm/ZByyRkpZm01csfz6wpQoNLBvsuHI08vgMKBYl09wGo2GAViTYuBu0VOeyOcyuMMLFJcDrO/uljgTWUtjVCAIB2qTuzsSEH3vyYt3bACStmXEN4kQPtZwfaD/jJUuePIVhvhDTuZ+meoAO+aX4fe1DRia6VAk5rhIUkpxcNxAQwSkndy4gJ59E2nY4Z9fF5uuJbXpanurcanI8NseVwsPAZnKDSgYgxvJ4DxAx6w46y2UWvirMYI3wbMC+mhtZ7ukv9uLfUKSrTxpEypMFXY3MUUqKIC5s/ILdlunAKG/C5GdOeGaZBdggaoFGijeSdxL3Zjia8SEkorJshDXV7z1KDBHCrKdcLpfwtySplZcMPlrsCOWiz/60PQcvcpQcMSLnGuOSYNhdFXoO3qBNz/H4pkbrZFUQzEK3kriigaiHzxcTGKA=
