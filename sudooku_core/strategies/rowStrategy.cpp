@@ -101,8 +101,8 @@ bool RowStrategy::optimizeUnique(std::vector<unsigned short int> const &values) 
 bool RowStrategy::isUniqueInRow(unsigned short const int value) const {
     unsigned short int count = 0;
 
-    for (unsigned short int column = 1; column <= dimension; ++column) {
-        if ((*matrix)[{row, column}].contains(value)) {
+    for (unsigned short int local_column = 1; local_column <= dimension; ++local_column) {
+        if ((*matrix)[{row, local_column}].contains(value)) {
             ++count;
         }
     }

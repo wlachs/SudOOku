@@ -11,7 +11,9 @@ class RowStrategy : public SolvingStrategy {
 private:
     const Matrix *constMatrix;
     Matrix *matrix;
-    unsigned short int row, column, dimension;
+    unsigned short int row;
+    unsigned short int column;
+    unsigned short int dimension;
 
     bool isRowValid();
 
