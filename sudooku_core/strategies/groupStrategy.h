@@ -17,8 +17,7 @@ private:
 
     bool singular(Matrix const &) const;
 
-    std::vector<std::vector<std::pair<unsigned short int, unsigned short int>>>
-    getGroupCoordinates(Matrix const &) const;
+    std::vector<std::vector<std::pair<unsigned short int, unsigned short int>>> getGroupCoordinates() const;
 
     bool simplifyGroup(std::vector<std::pair<unsigned short int, unsigned short int>> const &);
 
