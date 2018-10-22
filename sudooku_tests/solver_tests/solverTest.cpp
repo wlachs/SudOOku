@@ -8,6 +8,7 @@
 #include <strategies/columnStrategy.h>
 #include <strategies/groupStrategy.h>
 #include <matrix/matrixReader.h>
+#include <strategies/diagonalStrategy.h>
 
 class SolverTests : public ::testing::Test {
 protected:
@@ -69,4 +70,18 @@ TEST_F(SolverTests, each_solution_is_unique_test) {
             }
         }
     }
+}
+
+TEST_F(SolverTests, diagonal_test) {
+    auto *diagonalStrategy = new DiagonalStrategy{};
+    rules.push_back(diagonalStrategy);
+    s1.addRule(diagonalStrategy);
+
+    Matrix matrix = (Matrix) MatrixReader{"test5.mat"};
+
+    s1.setInitialMatrix(matrix);
+    s1.solve();
+
+    auto solutions = s1.getSolutions();
+    ASSERT_EQ(1, solutions.size());
 }
