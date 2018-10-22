@@ -4,8 +4,7 @@
 
 #include "forkHelper.h"
 
-ForkHelper::ForkHelper(Matrix *matrix) {
-    this->matrix = matrix;
+ForkHelper::ForkHelper(Matrix *matrix) : matrix(matrix) {
     this->forkLength = (unsigned short int) (matrix->getDimension() + 1);
     this->forkCoordinates = {1, 1};
 

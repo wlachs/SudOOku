@@ -8,7 +8,7 @@
 #include "matrix.h"
 
 class ForkHelper {
-protected:
+private:
     Matrix *matrix;
     std::pair<unsigned short int, unsigned short int> forkCoordinates;
     unsigned short int forkLength;
@@ -16,7 +16,7 @@ protected:
     void init();
 
 public:
-    ForkHelper(Matrix *);
+    explicit ForkHelper(Matrix *);
 
     void notify(std::pair<unsigned short int, unsigned short int> const &);
 
