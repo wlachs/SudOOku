@@ -17,7 +17,7 @@ private:
     void parseMatrix();
 
 public:
-    MatrixReader(const char *fileName);
+    explicit MatrixReader(const char *fileName);
 
     explicit operator Matrix() const;
 };
