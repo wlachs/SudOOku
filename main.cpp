@@ -7,18 +7,23 @@
 #include <strategies/rowStrategy.h>
 #include <strategies/groupStrategy.h>
 #include <strategies/columnStrategy.h>
-#include <unistd.h>
 #include <strategies/diagonalStrategy.h>
+#include <unistd.h>
+#include <sudookuPrinter.h>
+#include <console_view/matrixConsolePrinter.h>
+
+void printSolutions(std::vector<Matrix> const &solutions) {
+    MatrixConsolePrinter view{};
+
+    for (Matrix const &solution : solutions) {
+        view.print(solution);
+    }
+}
 
 void runTest(Solver &solver, Matrix const &matrix) {
     solver.setInitialMatrix(matrix);
     solver.solve();
-
-    auto solutions = solver.getSolutions();
-
-    for (Matrix const &solution : solutions) {
-        std::cout << solution << std::endl;
-    }
+    printSolutions(solver.getSolutions());
 }
 
 void run(Matrix const &initialMatrix, std::vector<int> const &params) {

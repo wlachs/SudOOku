@@ -43,7 +43,4 @@ public:
     virtual void notifyChangeAt(std::pair<unsigned short int, unsigned short int> const &);
 };
 
-std::ostream &operator<<(std::ostream &os, Matrix const &);
-
-
 #endif //SUDOOKU_MATRIX_H

@@ -62,26 +62,6 @@ Field const &Matrix::operator[](std::pair<unsigned short int, unsigned short int
     return fields.at(coordinates);
 }
 
-std::ostream &operator<<(std::ostream &os, Matrix const &matrix) {
-    unsigned short const int dimension = matrix.getDimension();
-
-    for (unsigned short int x = 1; x <= dimension; ++x) {
-        for (unsigned short int y = 1; y <= dimension; ++y) {
-            auto possibleValues = matrix[{x, y}].getPossibleValues();
-
-            if (possibleValues.size() == 1) {
-                os << possibleValues[0] << " ";
-            } else {
-                os << "  ";
-            }
-        }
-
-        os << std::endl;
-    }
-
-    return os;
-}
-
 Matrix Matrix::forkFirstReturnSecond() {
     return forkHelper->fork();
 }

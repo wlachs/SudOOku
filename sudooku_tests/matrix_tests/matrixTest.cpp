@@ -48,8 +48,3 @@ TEST_F(MatrixTests, fork_test) {
     EXPECT_EQ(1, forkedList1.size());
     EXPECT_EQ(3, forkedList2.size());
 }
-
-TEST_F(MatrixTests, print_test) {
-    // TODO proper assertion on error
-    std::cout << m1;
-}
