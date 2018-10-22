@@ -2,3 +2,4 @@ ENABLE_TESTING()
 
 add_subdirectory(matrix_tests)
 add_subdirectory(strategy_tests)
+add_subdirectory(solver_tests)
