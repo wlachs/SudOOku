@@ -17,8 +17,15 @@ install:
 - sudo apt-get install -qq g++-6
 - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 
+addons:
+  sonarcloud:
+    organization: "wlchs-github" # the key of the org you chose at step #3
+    token:
+    - ${SONAR_TOKEN}
+
 script:
 - cmake -H. -Bbuild
+- sonar-scanner
 - cd build
 - cmake --build .
 - ctest
