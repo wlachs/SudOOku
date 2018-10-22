@@ -32,13 +32,13 @@ void run(Matrix const &initialMatrix, std::vector<int> const &params) {
     RowStrategy rowStrategy{};
     ColumnStrategy columnStrategy{};
     GroupStrategy groupStrategy{};
+    DiagonalStrategy diagonalStrategy{};
 
     solver.addRule(&rowStrategy);
     solver.addRule(&columnStrategy);
     solver.addRule(&groupStrategy);
 
     if (params[0] == 1) {
-        DiagonalStrategy diagonalStrategy{};
         solver.addRule(&diagonalStrategy);
     }
 
