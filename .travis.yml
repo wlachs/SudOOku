@@ -20,7 +20,6 @@ script:
 - ctest
 - sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output
 after_success:
-- coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" --exclude build/googletest
-  --exclude sudooku_tests
+- coveralls --root . -E ".*external.*" -E ".*CMakeFiles.*" --exclude googletest --exclude sudooku_tests
 notifications:
   email: false
