@@ -9,9 +9,9 @@
 #include "../strategies/solvingStrategy.h"
 
 class Solver {
-protected:
+private:
     Matrix initialMatrix;
-    unsigned short int dimension;
+    unsigned short int dimension{};
     std::vector<SolvingStrategy *> strategies;
     std::vector<Matrix> solutions;
 
