@@ -14,3 +14,15 @@ Object-oriented Sudoku solver ~~& generator~~
 
 ## Generator
 - not implemented yet
+
+## Testing
+ - numerous test inputs in [```sudooku_tests/testInputs```](https://github.com/wlchs/SudOOku/tree/master/sudooku_tests/testInputs)
+ - unit tests for the following classes already implemented:
+    - ```Field```
+    - ```ForkHelper```
+    - ```Matrix```
+    - ```Solver```
+    - ```ColumnStrategy```
+    - ```RowStrategy```
+    - ```GroupStrategy```
+    - ```DiagonalStrategy```
