@@ -10,10 +10,10 @@
 #include <strategies/diagonalStrategy.h>
 #include <unistd.h>
 #include <sudookuPrinter.h>
-#include <console_view/matrixConsolePrinter.h>
+#include <print_matrix_to_file/printMatrixToFile.h>
 
 void printSolutions(std::vector<Matrix> const &solutions) {
-    MatrixConsolePrinter view{};
+    PrintMatrixToFile view{"solutions.txt"};
 
     for (Matrix const &solution : solutions) {
         view.print(solution);
