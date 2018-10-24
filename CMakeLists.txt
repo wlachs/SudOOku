@@ -18,16 +18,19 @@ add_executable(SudOOku main.cpp)
 
 include_directories(sudooku_core)
 include_directories(sudooku_visual)
+include_directories(sudooku_controller)
 include_directories(sudooku_tests)
 
 add_subdirectory(sudooku_core)
 add_subdirectory(sudooku_visual)
+add_subdirectory(sudooku_controller)
 add_subdirectory(sudooku_tests)
 
 target_link_libraries(
         SudOOku
         core
         visual
+        controller
 )
 
 include(cmake/googletest.cmake)
