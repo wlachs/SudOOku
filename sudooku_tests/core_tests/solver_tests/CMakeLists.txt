@@ -1,12 +1,12 @@
 add_executable(
         solver_tests
-        ../main.cpp
+        ../../main.cpp
         solverTest.cpp
 )
 
 target_link_libraries(
         solver_tests
-        sudooku_core
+        core
         gmock_main
 )
 

@@ -1,0 +1,12 @@
+add_library(
+        strategies
+        solvingStrategy.h
+        rowStrategy.cpp
+        columnStrategy.cpp
+        groupStrategy.cpp
+        columnStrategy.h
+        groupStrategy.h
+        rowStrategy.h
+        diagonalStrategy.h
+        diagonalStrategy.cpp
+)

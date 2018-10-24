@@ -1,6 +1,6 @@
 add_executable(
         matrix_tests
-        ../main.cpp
+        ../../main.cpp
         fieldTest.cpp
         forkHelperTest.cpp
         matrixTest.cpp
@@ -11,7 +11,7 @@ add_executable(
 
 target_link_libraries(
         matrix_tests
-        sudooku_core
+        core
         gmock_main
 )
 

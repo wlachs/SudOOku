@@ -1,6 +1,6 @@
 add_executable(
         strategy_tests
-        ../main.cpp
+        ../../main.cpp
         columnStrategyTest.cpp
         rowStrategyTest.cpp
         groupStrategyTest.cpp
@@ -9,7 +9,7 @@ add_executable(
 
 target_link_libraries(
         strategy_tests
-        sudooku_core
+        core
         gmock_main
 )
 

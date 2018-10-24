@@ -1,22 +1,15 @@
+add_subdirectory(matrix)
+add_subdirectory(solvers)
+add_subdirectory(strategies)
+
 add_library(
-        sudooku_core
-        solvers/solver.cpp
-        solvers/solver.h
-        strategies/solvingStrategy.h
-        strategies/rowStrategy.cpp
-        strategies/columnStrategy.cpp
-        strategies/groupStrategy.cpp
-        strategies/columnStrategy.h
-        strategies/groupStrategy.h
-        strategies/rowStrategy.h
-        strategies/diagonalStrategy.h
-        strategies/diagonalStrategy.cpp
-        matrix/matrix.cpp
-        matrix/matrix.h
-        matrix/field.cpp
-        matrix/field.h
-        matrix/forkHelper.cpp
-        matrix/forkHelper.h
-        matrix/matrixReader.cpp
-        matrix/matrixReader.h
+        core
+        main.cpp
+)
+
+target_link_libraries(
+        core
+        matrix
+        solvers
+        strategies
 )

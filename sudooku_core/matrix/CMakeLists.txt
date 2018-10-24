@@ -1,0 +1,11 @@
+add_library(
+        matrix
+        matrix.cpp
+        matrix.h
+        field.cpp
+        field.h
+        forkHelper.cpp
+        forkHelper.h
+        matrixReader.cpp
+        matrixReader.h
+)
