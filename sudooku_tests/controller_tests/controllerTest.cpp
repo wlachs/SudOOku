@@ -28,19 +28,27 @@ protected:
 TEST_F(ControllerTests, input_called_only_once_test) {
     EXPECT_CALL(mockInputHandler, readInput())
             .Times(1);
+
+    sudookuController->run();
 }
 
 TEST_F(ControllerTests, output_handler_start_test) {
     EXPECT_CALL(mockOutputHandler, notifyEvent(SudookuEvent::RUN_START, testing::_))
             .Times(1);
+
+    sudookuController->run();
 }
 
 TEST_F(ControllerTests, output_handler_solution_test) {
     EXPECT_CALL(mockOutputHandler, notifyEvent(SudookuEvent::SOLUTION, testing::_))
             .Times(AtLeast(1));
+
+    sudookuController->run();
 }
 
 TEST_F(ControllerTests, output_handler_end_test) {
     EXPECT_CALL(mockOutputHandler, notifyEvent(SudookuEvent::RUN_END, testing::_))
             .Times(1);
+
+    sudookuController->run();
 }
