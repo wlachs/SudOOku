@@ -5,8 +5,16 @@
 #ifndef SUDOOKU_OUTPUTHANDLER_H
 #define SUDOOKU_OUTPUTHANDLER_H
 
-class OutputHandler {
+#include <matrix/matrix.h>
+#include <sudookuEvents.h>
 
+class OutputHandler {
+public:
+    OutputHandler() = default;
+
+    virtual ~OutputHandler() = default;
+
+    virtual void notifyEvent(SudookuEvent, const Matrix *) = 0;
 };
 
 #endif //SUDOOKU_OUTPUTHANDLER_H

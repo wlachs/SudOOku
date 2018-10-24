@@ -5,8 +5,15 @@
 #ifndef SUDOOKU_INPUTHANDLER_H
 #define SUDOOKU_INPUTHANDLER_H
 
-class InputHandler {
+#include <matrix/matrix.h>
 
+class InputHandler {
+public:
+    InputHandler() = default;
+
+    virtual ~InputHandler() = default;
+
+    virtual Matrix readInput() = 0;
 };
 
 #endif //SUDOOKU_INPUTHANDLER_H

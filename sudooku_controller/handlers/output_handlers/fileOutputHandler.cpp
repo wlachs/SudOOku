@@ -3,3 +3,15 @@
 //
 
 #include "fileOutputHandler.h"
+
+FileOutputHandler::FileOutputHandler(std::string const &) {
+    //TODO open output file
+}
+
+FileOutputHandler::~FileOutputHandler() {
+    //TODO close output file
+}
+
+void FileOutputHandler::notifyEvent(SudookuEvent, const Matrix *) {
+    //TODO print to output file
+}
