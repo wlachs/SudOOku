@@ -7,10 +7,22 @@
 
 #include <handlers/input_handlers/inputHandler.h>
 #include <handlers/output_handlers/outputHandler.h>
+#include <solvers/solver.h>
 
 class SudookuController {
+private:
+    InputHandler *inputHandler = nullptr;
+    OutputHandler *outputHandler = nullptr;
+    Solver *solver = nullptr;
+    std::vector<SolvingStrategy *> rules = {};
+
+    void initializeSolver();
+
 public:
-    SudookuController(InputHandler *, OutputHandler *);
+    SudookuController(InputHandler *, OutputHandler *, Solver *);
+
+    ~SudookuController();
+
     void run();
 };
 
