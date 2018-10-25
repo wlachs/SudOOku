@@ -10,6 +10,14 @@ void Solver::setInitialMatrix(Matrix const &matrix) {
     solutions.clear();
 }
 
+/**
+ * Set solving strategies vector
+ * @param strategies
+ */
+void Solver::setRules(std::vector<SolvingStrategy *> const &strategies) {
+    this->strategies = strategies;
+}
+
 void Solver::addRule(SolvingStrategy *solvingStrategy) {
     strategies.push_back(solvingStrategy);
 }

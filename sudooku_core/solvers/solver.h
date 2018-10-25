@@ -30,6 +30,8 @@ public:
 
     void setInitialMatrix(Matrix const &);
 
+    void setRules(std::vector<SolvingStrategy *> const &);
+
     void addRule(SolvingStrategy *);
 
     void solve();
