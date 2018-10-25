@@ -11,6 +11,8 @@
 class MockInputHandler : public InputHandler {
 public:
     MOCK_METHOD0(readInput, Matrix());
+
+    MOCK_METHOD0(readRules, std::vector<SolvingStrategy *>());
 };
 
 #endif //SUDOOKU_MOCKINPUTHANDLER_H

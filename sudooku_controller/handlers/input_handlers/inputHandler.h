@@ -6,6 +6,8 @@
 #define SUDOOKU_INPUTHANDLER_H
 
 #include <matrix/matrix.h>
+#include <strategies/solvingStrategy.h>
+#include <vector>
 
 class InputHandler {
 public:
@@ -14,6 +16,8 @@ public:
     virtual ~InputHandler() = default;
 
     virtual Matrix readInput() = 0;
+
+    virtual std::vector<SolvingStrategy *> readRules() = 0;
 };
 
 #endif //SUDOOKU_INPUTHANDLER_H
