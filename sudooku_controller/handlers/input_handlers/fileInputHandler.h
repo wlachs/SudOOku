@@ -7,10 +7,14 @@
 
 #include "inputHandler.h"
 #include <string>
+#include <fstream>
 
 class FileInputHandler : public InputHandler {
 private:
-    std::string fileName;
+    std::ifstream inputFile;
+    Matrix matrix;
+    unsigned short int dimension;
+    const char SEPARATOR = ';';
 
 public:
     explicit FileInputHandler(std::string const &);
@@ -18,6 +22,8 @@ public:
     virtual ~FileInputHandler();
 
     virtual Matrix readInput();
+
+    virtual std::vector<SolvingStrategy *> readRules();
 };
 
 #endif //SUDOOKU_FILEINPUTHANDLER_H
