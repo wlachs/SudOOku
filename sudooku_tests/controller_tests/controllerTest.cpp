@@ -25,7 +25,7 @@ protected:
 
         rules = {new GroupStrategy{}};
         EXPECT_CALL(mockInputHandler, readRules())
-                .WillRepeatedly(Return(rules));
+                .WillOnce(Return(rules));
     }
 
     void TearDown() override {
