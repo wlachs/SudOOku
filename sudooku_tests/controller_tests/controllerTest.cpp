@@ -80,7 +80,7 @@ TEST_F(ControllerTests, real_solve_test) {
     EXPECT_CALL(mockOutputHandler, notifyEvent(SudookuEvent::SOLUTION, testing::_))
             .Times(4);
 
-    FileInputHandler f{"test3.mat"};
+    FileInputHandler f{{false}, "test3.mat"};
     SudookuController c{&f, &mockOutputHandler, &solver};
 
     c.run();

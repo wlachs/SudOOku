@@ -6,13 +6,14 @@
 #include <strategies/rowStrategy.h>
 #include <strategies/columnStrategy.h>
 #include <strategies/groupStrategy.h>
+#include <strategies/diagonalStrategy.h>
 #include "fileInputHandler.h"
 
 /**
  * Open input file with the given name
  * @param fileName
  */
-FileInputHandler::FileInputHandler(std::string const &fileName) {
+FileInputHandler::FileInputHandler(std::vector<bool> const &flags, std::string const &fileName) : flags(flags) {
     inputFile.open(fileName);
 }
 
@@ -65,9 +66,13 @@ Matrix FileInputHandler::readInput() {
  * @return solving strategies
  */
 std::vector<SolvingStrategy *> FileInputHandler::readRules() {
-    return {
+    std::vector<SolvingStrategy *> rules = {
             new RowStrategy{},
             new ColumnStrategy{},
-            new GroupStrategy{}
-    };
+            new GroupStrategy{}};
+
+    if (flags[0]) {
+        rules.push_back(new DiagonalStrategy{});
+    }
+    return rules;
 }

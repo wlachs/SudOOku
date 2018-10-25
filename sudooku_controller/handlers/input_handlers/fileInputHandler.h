@@ -15,9 +15,10 @@ private:
     Matrix matrix;
     unsigned short int dimension;
     const char SEPARATOR = ';';
+    std::vector<bool> flags{};
 
 public:
-    explicit FileInputHandler(std::string const &);
+    explicit FileInputHandler(std::vector<bool> const &, std::string const &);
 
     virtual ~FileInputHandler();
 

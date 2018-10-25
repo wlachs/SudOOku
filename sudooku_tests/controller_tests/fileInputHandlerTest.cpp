@@ -11,7 +11,7 @@ protected:
     InputHandler *inputHandler{};
 
     void SetUp() override {
-        inputHandler = new FileInputHandler{"test1.mat"};
+        inputHandler = new FileInputHandler{{false}, "test1.mat"};
     }
 
     void TearDown() override {
