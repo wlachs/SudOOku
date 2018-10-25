@@ -10,12 +10,10 @@
 
 class PrintMatrixToFile : public SudookuPrinter {
 private:
-    std::ofstream solutionsFile;
+    std::ofstream &solutionsFile;
 
 public:
-    explicit PrintMatrixToFile(std::string const &);
-
-    virtual ~PrintMatrixToFile();
+    explicit PrintMatrixToFile(std::ofstream &);
 
     virtual void print(Matrix const &);
 };
