@@ -26,6 +26,14 @@ void SudookuController::run() {
     // Execute the solver function
     solver->solve();
 
+    // Retrieve solutions
+    auto const &solutions = solver->getSolutions();
+
+    // Send solutions to output handler
+    for (auto const &solution : solutions) {
+        outputHandler->notifyEvent(SudookuEvent::SOLUTION, &solution);
+    }
+
     // Notify output handler of the results
     outputHandler->notifyEvent(SudookuEvent::RUN_END, nullptr);
 }

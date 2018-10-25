@@ -7,9 +7,10 @@
 #include <sudookuController.h>
 #include <controller_tests/helper_classes/mockInputHandler.h>
 #include <controller_tests/helper_classes/mockOutputHandler.h>
-#include <strategies/rowStrategy.h>
+#include <strategies/groupStrategy.h>
 
 using ::testing::AtLeast;
+using ::testing::Return;
 
 class ControllerTests : public ::testing::Test {
 protected:
@@ -17,9 +18,14 @@ protected:
     SudookuController *sudookuController = nullptr;
     MockInputHandler mockInputHandler{};
     MockOutputHandler mockOutputHandler{};
+    std::vector<SolvingStrategy *> rules = {};
 
     void SetUp() override {
         sudookuController = new SudookuController{&mockInputHandler, &mockOutputHandler, &solver};
+
+        rules = {new GroupStrategy{}};
+        EXPECT_CALL(mockInputHandler, readRules())
+                .WillRepeatedly(Return(rules));
     }
 
     void TearDown() override {
@@ -47,7 +53,7 @@ TEST_F(ControllerTests, output_handler_solution_test) {
     EXPECT_CALL(mockOutputHandler, notifyEvent(testing::_, testing::_))
             .Times(AtLeast(0));
     EXPECT_CALL(mockOutputHandler, notifyEvent(SudookuEvent::SOLUTION, testing::_))
-            .Times(0);
+            .Times(AtLeast(1));
 
     sudookuController->run();
 }
