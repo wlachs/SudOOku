@@ -3,6 +3,7 @@ add_executable(
         ../main.cpp
         controllerTest.cpp
         fileInputHandlerTest.cpp
+        fileOutputHandlerTest.cpp
         helper_classes/mockInputHandler.h
         helper_classes/mockOutputHandler.h
 )
