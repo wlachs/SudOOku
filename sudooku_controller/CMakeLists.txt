@@ -1,4 +1,5 @@
 add_subdirectory(handlers)
+add_subdirectory(exceptions)
 
 add_library(
         controller
@@ -11,4 +12,5 @@ target_link_libraries(
         controller
         input_handler
         output_handler
+        controller_exceptions
 )
