@@ -7,8 +7,15 @@
 
 #include "outputHandler.h"
 #include <string>
+#include <fstream>
+#include <print_matrix_to_file/printMatrixToFile.h>
 
 class FileOutputHandler : public OutputHandler {
+private:
+    std::string solutionsFileName{};
+    std::ofstream solutionsFile{};
+    PrintMatrixToFile *printMatrixToFile;
+
 public:
     FileOutputHandler(std::string const &);
 
