@@ -17,7 +17,7 @@ private:
     PrintMatrixToFile *printMatrixToFile;
 
 public:
-    FileOutputHandler(std::string const &);
+    explicit FileOutputHandler(std::string const &);
 
     virtual ~FileOutputHandler();
 
