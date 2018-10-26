@@ -32,6 +32,8 @@ private:
                          unsigned short int) const;
 
 public:
+    GroupStrategy() = default;
+
     bool validate(Matrix const &matrix) override;
 
     bool simplify(Matrix &) override;
