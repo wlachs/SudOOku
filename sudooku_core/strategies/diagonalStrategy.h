@@ -15,7 +15,7 @@ private:
     bool validateInDirection(bool) const;
 
 public:
-    DiagonalStrategy() = default
+    DiagonalStrategy() = default;
 
     bool validate(Matrix const &) override;
 
