@@ -18,7 +18,7 @@ bool DiagonalStrategy::validateInDirection(const bool forward) const {
     for (unsigned short int row_column = 1; row_column <= dimension; ++row_column) {
         unsigned short int specifier = row_column;
         if (!forward) {
-            specifier = (unsigned short int) (dimension - specifier + 1);
+            specifier = static_cast<unsigned short int>(dimension - specifier + 1);
         }
 
         auto values = (*constMatrix)[{row_column, specifier}].getPossibleValues();

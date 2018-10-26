@@ -15,8 +15,8 @@ void Solver::setInitialMatrix(Matrix const &matrix) {
  * Set solving strategies vector
  * @param strategies
  */
-void Solver::setRules(std::vector<SolvingStrategy *> const &strategies) {
-    this->strategies = strategies;
+void Solver::setRules(std::vector<SolvingStrategy *> const &strategies_) {
+    strategies = strategies_;
 }
 
 void Solver::addRule(SolvingStrategy *solvingStrategy) {

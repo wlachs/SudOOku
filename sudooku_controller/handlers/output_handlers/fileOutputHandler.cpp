@@ -39,6 +39,9 @@ void FileOutputHandler::notifyEvent(SudookuEvent event, const Matrix *matrix) {
         case RUN_END:
             solutionsFile.close();
             break;
+
+        default:
+            break;
     }
 }
 

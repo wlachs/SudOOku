@@ -10,8 +10,8 @@
  * @param outputHandler
  * @param solver
  */
-SudookuController::SudookuController(InputHandler *inputHandler, OutputHandler *outputHandler, Solver *solver)
-        : inputHandler(inputHandler), outputHandler(outputHandler), solver(solver) {}
+SudookuController::SudookuController(InputHandler *inputHandler_, OutputHandler *outputHandler_, Solver *solver_)
+        : inputHandler(inputHandler_), outputHandler(outputHandler_), solver(solver_) {}
 
 /**
  * Should first receive input from any input handler

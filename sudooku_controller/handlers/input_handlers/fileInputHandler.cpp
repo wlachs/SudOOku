@@ -4,16 +4,16 @@
 
 #include <sstream>
 #include <strategies/rowStrategy.h>
+#include <strategies/diagonalStrategy.h>
 #include <strategies/columnStrategy.h>
 #include <strategies/groupStrategy.h>
-#include <strategies/diagonalStrategy.h>
 #include "fileInputHandler.h"
 
 /**
  * Open input file with the given name
  * @param fileName
  */
-FileInputHandler::FileInputHandler(std::vector<bool> const &flags, std::string const &fileName) : flags(flags) {
+FileInputHandler::FileInputHandler(std::vector<bool> const &flags_, std::string const &fileName) : flags(flags_) {
     inputFile.open(fileName);
 }
 
@@ -43,11 +43,11 @@ Matrix FileInputHandler::readInput() {
                 values.push_back(segment);
             }
 
-            dimension = (unsigned short int) values.size();
+            dimension = static_cast<unsigned short int>(values.size());
             for (unsigned short int columnIndex = 1; columnIndex <= dimension; ++columnIndex) {
                 if (!values[columnIndex - 1].empty()) {
                     inputMap.insert({{rowIndex, columnIndex},
-                                     Field{(unsigned short int) (std::stoi(values[columnIndex - 1]))}});
+                                     Field{static_cast<unsigned short int>(std::stoi(values[columnIndex - 1]))}});
                 }
             }
 

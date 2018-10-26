@@ -12,7 +12,7 @@ protected:
     Matrix m1;
 
     void SetUp() override {
-        m1 = (Matrix) MatrixReader{"small1.mat"};
+        m1 = static_cast<Matrix>(MatrixReader{"small1.mat"});
 
         m1[{1, 2}].removeValue(4);
         m1[{2, 2}].removeValue(4);
@@ -21,7 +21,7 @@ protected:
 };
 
 TEST_F(ColumnStrategyTests, validation_check_false) {
-    Matrix invalid = (Matrix) MatrixReader{"invalid1.mat"};
+    Matrix invalid = static_cast<Matrix>(MatrixReader{"invalid1.mat"});
     ASSERT_FALSE(columnStrategy.validate(invalid));
 }
 

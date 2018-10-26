@@ -13,7 +13,7 @@ protected:
 
     void SetUp() override {
         diagonalStrategy = new DiagonalStrategy{};
-        m1 = (Matrix) MatrixReader{"small4.mat"};
+        m1 = static_cast<Matrix>(MatrixReader{"small4.mat"});
 
         m1[{1, 1}].removeValue(4);
         m1[{2, 2}].removeValue(4);
@@ -26,12 +26,12 @@ protected:
 };
 
 TEST_F(DiagonalStrategyTests, validation_check_false_1) {
-    Matrix invalid = (Matrix) MatrixReader{"invalid4.mat"};
+    Matrix invalid = static_cast<Matrix>(MatrixReader{"invalid4.mat"});
     ASSERT_FALSE(diagonalStrategy->validate(invalid));
 }
 
 TEST_F(DiagonalStrategyTests, validation_check_false_2) {
-    Matrix invalid = (Matrix) MatrixReader{"invalid5.mat"};
+    Matrix invalid = static_cast<Matrix>(MatrixReader{"invalid5.mat"});
     ASSERT_FALSE(diagonalStrategy->validate(invalid));
 }
 

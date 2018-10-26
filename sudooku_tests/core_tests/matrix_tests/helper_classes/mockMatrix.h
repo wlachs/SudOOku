@@ -13,7 +13,7 @@ class MockMatrix : public Matrix {
 private:
     MockField mockField;
 public:
-    MOCK_METHOD0(getDimension, unsigned short int());
+    MOCK_CONST_METHOD0(getDimension, unsigned short int());
 
     MOCK_METHOD0(forkFirstReturnSecond, Matrix());
 

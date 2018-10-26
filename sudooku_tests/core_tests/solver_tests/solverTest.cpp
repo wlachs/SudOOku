@@ -7,8 +7,8 @@
 #include <strategies/rowStrategy.h>
 #include <strategies/columnStrategy.h>
 #include <strategies/groupStrategy.h>
-#include <matrix/matrixReader.h>
 #include <strategies/diagonalStrategy.h>
+#include <matrix/matrixReader.h>
 
 class SolverTests : public ::testing::Test {
 protected:
@@ -35,7 +35,7 @@ protected:
 };
 
 TEST_F(SolverTests, small_solvable_test) {
-    Matrix matrix = (Matrix) MatrixReader{"small1.mat"};
+    Matrix matrix = static_cast<Matrix>(MatrixReader{"small1.mat"});
 
     s1.setInitialMatrix(matrix);
     s1.solve();
@@ -45,7 +45,7 @@ TEST_F(SolverTests, small_solvable_test) {
 }
 
 TEST_F(SolverTests, small_not_solvable_test) {
-    Matrix matrix = (Matrix) MatrixReader{"invalid1.mat"};
+    Matrix matrix = static_cast<Matrix>(MatrixReader{"invalid1.mat"});
 
     s1.setInitialMatrix(matrix);
     s1.solve();
@@ -55,7 +55,7 @@ TEST_F(SolverTests, small_not_solvable_test) {
 }
 
 TEST_F(SolverTests, each_solution_is_unique_test) {
-    Matrix matrix = (Matrix) MatrixReader{"test3.mat"};
+    Matrix matrix = static_cast<Matrix>(MatrixReader{"test3.mat"});
 
     s1.setInitialMatrix(matrix);
     s1.solve();
@@ -77,7 +77,7 @@ TEST_F(SolverTests, diagonal_test) {
     rules.push_back(diagonalStrategy);
     s1.addRule(diagonalStrategy);
 
-    Matrix matrix = (Matrix) MatrixReader{"test5.mat"};
+    Matrix matrix = static_cast<Matrix>(MatrixReader{"test5.mat"});
 
     s1.setInitialMatrix(matrix);
     s1.solve();

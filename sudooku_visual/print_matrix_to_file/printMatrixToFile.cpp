@@ -4,7 +4,7 @@
 
 #include "printMatrixToFile.h"
 
-PrintMatrixToFile::PrintMatrixToFile(std::ofstream &solutionsFile) : solutionsFile(solutionsFile) {}
+PrintMatrixToFile::PrintMatrixToFile(std::ofstream &solutionsFile_) : solutionsFile(solutionsFile_) {}
 
 void PrintMatrixToFile::print(Matrix const &matrix) {
     unsigned short const int dimension = matrix.getDimension();
