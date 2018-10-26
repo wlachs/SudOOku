@@ -6,6 +6,7 @@
 #define SUDOOKU_FILEINPUTHANDLER_H
 
 #include "inputHandler.h"
+#include <strategies/solvingStrategy.h>
 #include <string>
 #include <fstream>
 

@@ -13,5 +13,6 @@ target_link_libraries(
         input_handler
         output_handler
         controller_exceptions
+        core
         visual
 )
