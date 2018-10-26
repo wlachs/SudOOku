@@ -16,6 +16,8 @@ public:
     explicit PrintMatrixToFile(std::ofstream &);
 
     virtual void print(Matrix const &);
+
+    virtual ~PrintMatrixToFile() = default;
 };
 
 #endif //SUDOOKU_PRINTMATRIXTOFILE_H
