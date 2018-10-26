@@ -31,6 +31,8 @@ public:
     bool validate(Matrix const &) override;
 
     bool simplify(Matrix &) override;
+
+    virtual ~RowStrategy() = default;
 };
 
 #endif //SUDOOKU_ROWSTRATEGY_H

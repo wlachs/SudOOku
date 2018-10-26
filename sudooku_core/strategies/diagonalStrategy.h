@@ -16,6 +16,8 @@ private:
 
 public:
     bool validate(Matrix const &) override;
+
+    virtual ~DiagonalStrategy() = default;
 };
 
 #endif //SUDOOKU_DIAGONALSTRATEGY_H
