@@ -4,3 +4,10 @@ add_library(
         fileOutputHandler.cpp
         fileOutputHandler.h
 )
+
+target_link_libraries(
+        output_handler
+        controller_exceptions
+        core
+        visual
+)

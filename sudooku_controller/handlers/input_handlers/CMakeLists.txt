@@ -4,3 +4,8 @@ add_library(
         fileInputHandler.cpp
         fileInputHandler.h
 )
+
+target_link_libraries(
+        input_handler
+        core
+)
