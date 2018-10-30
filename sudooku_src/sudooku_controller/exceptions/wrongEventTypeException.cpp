@@ -4,6 +4,11 @@
 
 #include "wrongEventTypeException.h"
 
+/**
+ * Exception description for the case when the SudookuEvent passed to the OutputHandler
+ * object is incorrect
+ * @return exception description
+ */
 const char *WrongEventTypeException::what() const noexcept {
     return "Undefined SudookuEvent!";
 }

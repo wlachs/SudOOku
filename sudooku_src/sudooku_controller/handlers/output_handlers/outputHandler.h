@@ -8,6 +8,9 @@
 #include <sudooku_core/matrix/matrix.h>
 #include <sudooku_controller/sudookuEvents.h>
 
+/**
+ * Abstract class interface responsible for handling the output of the application
+ */
 class OutputHandler {
 public:
     OutputHandler() = default;

@@ -10,6 +10,9 @@
 #include <string>
 #include <fstream>
 
+/**
+ * InputHandler implementation for File inputs
+ */
 class FileInputHandler : public InputHandler {
 private:
     std::ifstream inputFile;
@@ -21,11 +24,11 @@ private:
 public:
     explicit FileInputHandler(std::vector<bool> const &, std::string const &);
 
-    virtual ~FileInputHandler();
+    ~FileInputHandler() override;
 
-    virtual Matrix readInput();
+    Matrix readInput() override;
 
-    virtual std::vector<SolvingStrategy *> readRules();
+    std::vector<SolvingStrategy *> readRules() override;
 };
 
 #endif //SUDOOKU_FILEINPUTHANDLER_H

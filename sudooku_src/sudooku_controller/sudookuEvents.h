@@ -5,10 +5,18 @@
 #ifndef SUDOOKU_SUDOOKUEVENTS_H
 #define SUDOOKU_SUDOOKUEVENTS_H
 
+/**
+ * Event types for OutputHandler to determine behavior
+ */
 enum SudookuEvent {
-    RUN_START,
-    SOLUTION,
-    RUN_END
+    /* Should be called when the execution is started */
+            RUN_START,
+
+    /* Should be called when a solution is found */
+            SOLUTION,
+
+    /* Should be called when the execution is finished */
+            RUN_END
 };
 
 #endif //SUDOOKU_SUDOOKUEVENTS_H
