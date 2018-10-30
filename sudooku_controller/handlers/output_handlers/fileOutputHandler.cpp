@@ -3,6 +3,7 @@
 //
 
 #include <exceptions/noMatrixProvidedException.h>
+#include <exceptions/wrongEventTypeException.h>
 #include "fileOutputHandler.h"
 
 /**
@@ -32,7 +33,7 @@ void FileOutputHandler::notifyEvent(SudookuEvent event, const Matrix *matrix) {
             if (matrix != nullptr) {
                 printMatrixToFile->print(*matrix);
             } else {
-                throw NoMatrixProvidedException();
+                throw NoMatrixProvidedException{};
             }
             break;
 
@@ -41,7 +42,7 @@ void FileOutputHandler::notifyEvent(SudookuEvent event, const Matrix *matrix) {
             break;
 
         default:
-            break;
+            throw WrongEventTypeException{};
     }
 }
 
