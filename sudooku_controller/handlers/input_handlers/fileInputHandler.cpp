@@ -58,7 +58,6 @@ Matrix FileInputHandler::readInput() {
     }
 
     return matrix;
-
 }
 
 /**
