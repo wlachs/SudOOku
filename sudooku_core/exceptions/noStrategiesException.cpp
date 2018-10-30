@@ -5,6 +5,6 @@
 #include "noStrategiesException.h"
 
 const char *NoStrategiesException::what() const noexcept {
-    return "No strategies specified!\n";
+    return "No strategies specified!";
 }
 

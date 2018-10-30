@@ -9,6 +9,7 @@
 #include <strategies/groupStrategy.h>
 #include <strategies/diagonalStrategy.h>
 #include <matrix/matrixReader.h>
+#include <exceptions/noStrategiesException.h>
 
 class SolverTests : public ::testing::Test {
 protected:
@@ -28,7 +29,7 @@ protected:
     }
 
     void TearDown() override {
-        for (auto p : rules) {
+        for (auto &p : rules) {
             delete p;
         }
     }
@@ -84,4 +85,18 @@ TEST_F(SolverTests, diagonal_test) {
 
     auto solutions = s1.getSolutions();
     ASSERT_EQ(1, solutions.size());
+}
+
+TEST_F(SolverTests, solve_empty_test) {
+    Solver solver{};
+
+    try {
+        solver.solve();
+    }
+    catch (NoStrategiesException &e) {
+        EXPECT_EQ(std::string{"No strategies specified!"}, e.what());
+    }
+    catch (...) {
+        FAIL() << "Expected NoStrategiesException";
+    }
 }
