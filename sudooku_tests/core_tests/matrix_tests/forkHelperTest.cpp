@@ -8,10 +8,10 @@
 class ForkHelperTests : public ::testing::Test {
 protected:
     Matrix m1;
-    ForkHelper *forkHelper;
+    ForkHelper *forkHelper{};
 
     void SetUp() override {
-        m1 = (Matrix) MatrixReader{"small4.mat"};
+        m1 = static_cast<Matrix>(MatrixReader{"small4.mat"});
         m1[{4, 4}].removeValue(4);
         forkHelper = new ForkHelper{&m1};
     }

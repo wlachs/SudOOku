@@ -5,7 +5,6 @@
 //
 
 #include "matrix.h"
-#include <vector>
 
 Matrix::Matrix(Matrix const &matrix) {
     dimension = matrix.dimension;
@@ -29,9 +28,9 @@ void Matrix::populateEmptyFields() {
     }
 }
 
-Matrix::Matrix(unsigned short const int dimension,
-               std::map<std::pair<unsigned short int, unsigned short int>, Field> const &fields)
-        : dimension(dimension), fields(fields) {
+Matrix::Matrix(unsigned short const int dimension_,
+               std::map<std::pair<unsigned short int, unsigned short int>, Field> const &fields_)
+        : dimension(dimension_), fields(fields_) {
     populateEmptyFields();
     this->forkHelper = new ForkHelper{this};
 }

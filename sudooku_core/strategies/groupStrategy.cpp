@@ -3,7 +3,7 @@
 //
 
 #include "groupStrategy.h"
-#include <cmath>
+#include <math.h>
 #include <algorithm>
 
 std::vector<Matrix> GroupStrategy::separateToGroups() {
@@ -25,7 +25,7 @@ std::vector<Matrix> GroupStrategy::separateToGroups() {
                 }
             }
 
-            Matrix temp{(unsigned short int) groupDimension, group};
+            Matrix temp{static_cast<unsigned short int>(groupDimension), group};
             result.push_back(temp);
         }
     }
@@ -33,13 +33,13 @@ std::vector<Matrix> GroupStrategy::separateToGroups() {
     return result;
 }
 
-bool GroupStrategy::singular(Matrix const &matrix) const {
+bool GroupStrategy::singular(Matrix const &matrix_) const {
     std::vector<unsigned short int> elements = {};
-    auto group_dimension = matrix.getDimension();
+    auto group_dimension = matrix_.getDimension();
 
     for (unsigned short int x = 1; x <= group_dimension; ++x) {
         for (unsigned short int y = 1; y <= group_dimension; ++y) {
-            auto list = matrix[{x, y}].getPossibleValues();
+            auto list = matrix_[{x, y}].getPossibleValues();
 
             if (list.size() == 1) {
                 auto result = std::find(std::begin(elements), std::end(elements), list[0]);

@@ -4,18 +4,18 @@
 
 #include "forkHelper.h"
 
-ForkHelper::ForkHelper(Matrix *matrix) : matrix(matrix) {
-    this->forkLength = (unsigned short int) (matrix->getDimension() + 1);
+ForkHelper::ForkHelper(Matrix *matrix_) : matrix(matrix_) {
+    this->forkLength = static_cast<unsigned short int>(matrix->getDimension() + 1);
     this->forkCoordinates = {1, 1};
 
     init();
 }
 
 void ForkHelper::notify(std::pair<unsigned short int, unsigned short int> const &coordinates) {
-    auto potentialValuesSize = (unsigned short int) (*matrix)[coordinates].getPossibleValues().size();
+    auto potentialValuesSize = static_cast<unsigned short int>((*matrix)[coordinates].getPossibleValues().size());
 
     if (potentialValuesSize <= 1) {
-        forkLength = (unsigned short int) (matrix->getDimension() + 1);
+        forkLength = static_cast<unsigned short int>(matrix->getDimension() + 1);
         init();
     } else if (potentialValuesSize < forkLength) {
         forkLength = potentialValuesSize;

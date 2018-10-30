@@ -26,3 +26,6 @@ Object-oriented Sudoku solver ~~& generator~~
     - ```RowStrategy```
     - ```GroupStrategy```
     - ```DiagonalStrategy```
+    - ```SudookuController```
+    - ```FileInputHandler```
+    - ```FileOutputHandler```

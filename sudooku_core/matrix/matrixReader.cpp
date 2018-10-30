@@ -26,11 +26,11 @@ void MatrixReader::parseMatrix() {
                 values.push_back(segment);
             }
 
-            dimension = (unsigned short int) values.size();
+            dimension = static_cast<unsigned short int>(values.size());
             for (unsigned short int columnIndex = 1; columnIndex <= dimension; ++columnIndex) {
                 if (!values[columnIndex - 1].empty()) {
                     inputMap.insert({{rowIndex, columnIndex},
-                                     Field{(unsigned short int) (std::stoi(values[columnIndex - 1]))}});
+                                     Field{static_cast<unsigned short int>(std::stoi(values[columnIndex - 1]))}});
                 }
             }
 

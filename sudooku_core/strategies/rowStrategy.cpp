@@ -69,22 +69,22 @@ bool RowStrategy::simplifyRow() {
 }
 
 bool RowStrategy::optimizeSingular(std::vector<unsigned short int> const &value) const {
-    bool topResult = recursiveRemove((unsigned short int) (column - 1), -1, value[0]);
-    bool bottomResult = recursiveRemove((unsigned short int) (column + 1), 1, value[0]);
+    bool topResult = recursiveRemove(static_cast<unsigned short int>(column - 1), -1, value[0]);
+    bool bottomResult = recursiveRemove(static_cast<unsigned short int>(column + 1), 1, value[0]);
 
     return topResult || bottomResult;
 }
 
-bool RowStrategy::recursiveRemove(unsigned short const int column,
+bool RowStrategy::recursiveRemove(unsigned short const int column_,
                                   short const int direction,
                                   unsigned short const int value) const {
-    if (column < 1 || column > dimension) {
+    if (column_ < 1 || column_ > dimension) {
         return false;
     }
 
-    bool simplified = (*matrix)[{row, column}].removeValue(value);
+    bool simplified = (*matrix)[{row, column_}].removeValue(value);
 
-    return recursiveRemove(column + direction, direction, value) || simplified;
+    return recursiveRemove(column_ + direction, direction, value) || simplified;
 }
 
 bool RowStrategy::optimizeUnique(std::vector<unsigned short int> const &values) const {

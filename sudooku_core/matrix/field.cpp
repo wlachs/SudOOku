@@ -6,7 +6,7 @@
 #include "matrix.h"
 #include <algorithm>
 
-Field::Field(std::vector<unsigned short int> const &possibleValues) : possibleValues(possibleValues) {}
+Field::Field(std::vector<unsigned short int> const &possibleValues_) : possibleValues(possibleValues_) {}
 
 Field::Field(unsigned short const int value) {
     possibleValues.push_back(value);

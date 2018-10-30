@@ -28,9 +28,13 @@ private:
     bool isUniqueInColumn(unsigned short int) const;
 
 public:
+    ColumnStrategy() = default;
+
     bool validate(Matrix const &) override;
 
     bool simplify(Matrix &) override;
+
+    virtual ~ColumnStrategy() = default;
 };
 
 #endif //SUDOOKU_COLUMNSTRATEGY_H

@@ -15,7 +15,11 @@ private:
     bool validateInDirection(bool) const;
 
 public:
+    DiagonalStrategy() = default;
+
     bool validate(Matrix const &) override;
+
+    virtual ~DiagonalStrategy() = default;
 };
 
 #endif //SUDOOKU_DIAGONALSTRATEGY_H

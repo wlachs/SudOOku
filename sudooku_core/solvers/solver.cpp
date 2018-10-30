@@ -2,6 +2,7 @@
 // Created by Borbély László on 2018. 09. 15..
 //
 
+#include <exceptions/noStrategiesException.h>
 #include "solver.h"
 
 void Solver::setInitialMatrix(Matrix const &matrix) {
@@ -10,11 +11,29 @@ void Solver::setInitialMatrix(Matrix const &matrix) {
     solutions.clear();
 }
 
+/**
+ * Set solving strategies vector
+ * @param strategies
+ */
+void Solver::setRules(std::vector<SolvingStrategy *> const &strategies_) {
+    strategies = strategies_;
+}
+
 void Solver::addRule(SolvingStrategy *solvingStrategy) {
     strategies.push_back(solvingStrategy);
 }
 
+/**
+ * Start solver
+ * Should throw exception if no rules are set
+ */
 void Solver::solve() {
+    // Check rules, throw exception if it's not specified
+    if (strategies.empty()) {
+        throw NoStrategiesException{};
+    }
+
+    // Start execution
     solve(initialMatrix);
 }
 
