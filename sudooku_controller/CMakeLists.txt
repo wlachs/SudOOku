@@ -10,9 +10,9 @@ add_library(
 
 target_link_libraries(
         controller
-        input_handler
-        output_handler
         controller_exceptions
         core
         visual
+        input_handler
+        output_handler
 )
