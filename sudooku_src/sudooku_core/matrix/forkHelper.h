@@ -7,6 +7,11 @@
 
 #include "matrix.h"
 
+class Matrix;
+
+/**
+ * Class to help deciding at which position the Matrix should be forked
+ */
 class ForkHelper {
 private:
     Matrix *matrix;
