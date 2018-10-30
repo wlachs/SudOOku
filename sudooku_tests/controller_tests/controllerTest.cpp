@@ -85,3 +85,15 @@ TEST_F(ControllerTests, real_solve_test) {
 
     c.run();
 }
+
+TEST_F(ControllerTests, real_solve_diagonal_test) {
+    EXPECT_CALL(mockOutputHandler, notifyEvent(testing::_, testing::_))
+            .Times(AtLeast(0));
+    EXPECT_CALL(mockOutputHandler, notifyEvent(SudookuEvent::SOLUTION, testing::_))
+            .Times(1);
+
+    FileInputHandler f{{true}, "test5.mat"};
+    SudookuController c{&f, &mockOutputHandler, &solver};
+
+    c.run();
+}
