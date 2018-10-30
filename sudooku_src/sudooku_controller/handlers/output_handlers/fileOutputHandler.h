@@ -8,7 +8,7 @@
 #include "outputHandler.h"
 #include <string>
 #include <fstream>
-#include <print_matrix_to_file/printMatrixToFile.h>
+#include <sudooku_visual/print_matrix_to_file/printMatrixToFile.h>
 
 class FileOutputHandler : public OutputHandler {
 private:

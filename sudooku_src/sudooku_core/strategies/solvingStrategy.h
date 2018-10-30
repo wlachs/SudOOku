@@ -5,8 +5,8 @@
 #ifndef SUDOOKU_SOLVINGSTRATEGY_H
 #define SUDOOKU_SOLVINGSTRATEGY_H
 
-#include "../matrix/field.h"
-#include "../matrix/matrix.h"
+#include <sudooku_core/matrix/field.h>
+#include <sudooku_core/matrix/matrix.h>
 
 class SolvingStrategy {
 public:

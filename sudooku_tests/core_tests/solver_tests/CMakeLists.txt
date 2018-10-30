@@ -8,6 +8,7 @@ target_link_libraries(
         solver_tests
         core
         gmock_main
+        input_handler
 )
 
 add_test(

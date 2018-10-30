@@ -11,6 +11,7 @@ target_link_libraries(
         strategy_tests
         core
         gmock_main
+        input_handler
 )
 
 add_test(

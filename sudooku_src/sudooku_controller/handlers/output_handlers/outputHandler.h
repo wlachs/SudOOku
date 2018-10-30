@@ -5,8 +5,8 @@
 #ifndef SUDOOKU_OUTPUTHANDLER_H
 #define SUDOOKU_OUTPUTHANDLER_H
 
-#include <matrix/matrix.h>
-#include <sudookuEvents.h>
+#include <sudooku_core/matrix/matrix.h>
+#include <sudooku_controller/sudookuEvents.h>
 
 class OutputHandler {
 public:

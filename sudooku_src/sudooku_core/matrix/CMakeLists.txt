@@ -6,6 +6,4 @@ add_library(
         field.h
         forkHelper.cpp
         forkHelper.h
-        matrixReader.cpp
-        matrixReader.h
 )

@@ -2,8 +2,8 @@
 // Created by Borbély László on 2018. 10. 21..
 //
 
-#include <strategies/rowStrategy.h>
-#include <matrix/matrixReader.h>
+#include <sudooku_core/strategies/rowStrategy.h>
+#include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 #include "gtest/gtest.h"
 
 class RowStrategyTests : public ::testing::Test {
@@ -12,7 +12,7 @@ protected:
     Matrix m1;
 
     void SetUp() override {
-        m1 = static_cast<Matrix>(MatrixReader{"small2.mat"});
+        m1 = FileInputHandler{{false}, "small2.mat"}.readInput();
 
         m1[{2, 1}].removeValue(4);
         m1[{2, 2}].removeValue(4);
@@ -21,7 +21,7 @@ protected:
 };
 
 TEST_F(RowStrategyTests, validation_check_false) {
-    Matrix invalid = static_cast<Matrix>(MatrixReader{"invalid2.mat"});
+    Matrix invalid = FileInputHandler{{false}, "invalid2.mat"}.readInput();
 
     ASSERT_FALSE(rowStrategy.validate(invalid));
 }

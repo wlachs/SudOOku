@@ -2,8 +2,8 @@
 // Created by Borbély László on 2018. 10. 21..
 //
 
-#include <strategies/diagonalStrategy.h>
-#include <matrix/matrixReader.h>
+#include <sudooku_core/strategies/diagonalStrategy.h>
+#include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 #include "gtest/gtest.h"
 
 class DiagonalStrategyTests : public ::testing::Test {
@@ -13,7 +13,7 @@ protected:
 
     void SetUp() override {
         diagonalStrategy = new DiagonalStrategy{};
-        m1 = static_cast<Matrix>(MatrixReader{"small4.mat"});
+        m1 = FileInputHandler{{false}, "small4.mat"}.readInput();
 
         m1[{1, 1}].removeValue(4);
         m1[{2, 2}].removeValue(4);
@@ -26,12 +26,12 @@ protected:
 };
 
 TEST_F(DiagonalStrategyTests, validation_check_false_1) {
-    Matrix invalid = static_cast<Matrix>(MatrixReader{"invalid4.mat"});
+    Matrix invalid = FileInputHandler{{false}, "invalid4.mat"}.readInput();
     ASSERT_FALSE(diagonalStrategy->validate(invalid));
 }
 
 TEST_F(DiagonalStrategyTests, validation_check_false_2) {
-    Matrix invalid = static_cast<Matrix>(MatrixReader{"invalid5.mat"});
+    Matrix invalid = FileInputHandler{{false}, "invalid5.mat"}.readInput();
     ASSERT_FALSE(diagonalStrategy->validate(invalid));
 }
 

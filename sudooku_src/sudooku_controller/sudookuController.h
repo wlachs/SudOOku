@@ -5,9 +5,9 @@
 #ifndef SUDOOKU_SUDOOKUCONTROLLER_H
 #define SUDOOKU_SUDOOKUCONTROLLER_H
 
-#include <handlers/input_handlers/inputHandler.h>
-#include <handlers/output_handlers/outputHandler.h>
-#include <solvers/solver.h>
+#include <sudooku_controller/handlers/input_handlers/inputHandler.h>
+#include <sudooku_controller/handlers/output_handlers/outputHandler.h>
+#include <sudooku_core/solvers/solver.h>
 
 class SudookuController {
 private:

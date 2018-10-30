@@ -5,7 +5,7 @@
 #ifndef SUDOOKU_MOCKOUTPUTHANDLER_H
 #define SUDOOKU_MOCKOUTPUTHANDLER_H
 
-#include <handlers/output_handlers/outputHandler.h>
+#include <sudooku_controller/handlers/output_handlers/outputHandler.h>
 #include "gmock/gmock.h"
 
 class MockOutputHandler : public OutputHandler {

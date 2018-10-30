@@ -3,13 +3,13 @@
 //
 
 #include <gtest/gtest.h>
-#include <solvers/solver.h>
-#include <strategies/rowStrategy.h>
-#include <strategies/columnStrategy.h>
-#include <strategies/groupStrategy.h>
-#include <strategies/diagonalStrategy.h>
-#include <matrix/matrixReader.h>
-#include <exceptions/noStrategiesException.h>
+#include <sudooku_core/solvers/solver.h>
+#include <sudooku_core/strategies/rowStrategy.h>
+#include <sudooku_core/strategies/columnStrategy.h>
+#include <sudooku_core/strategies/groupStrategy.h>
+#include <sudooku_core/strategies/diagonalStrategy.h>
+#include <sudooku_core/exceptions/noStrategiesException.h>
+#include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 
 class SolverTests : public ::testing::Test {
 protected:
@@ -36,7 +36,7 @@ protected:
 };
 
 TEST_F(SolverTests, small_solvable_test) {
-    Matrix matrix = static_cast<Matrix>(MatrixReader{"small1.mat"});
+    Matrix matrix = FileInputHandler{{false}, "small1.mat"}.readInput();
 
     s1.setInitialMatrix(matrix);
     s1.solve();
@@ -46,7 +46,7 @@ TEST_F(SolverTests, small_solvable_test) {
 }
 
 TEST_F(SolverTests, small_not_solvable_test) {
-    Matrix matrix = static_cast<Matrix>(MatrixReader{"invalid1.mat"});
+    Matrix matrix = FileInputHandler{{false}, "invalid1.mat"}.readInput();
 
     s1.setInitialMatrix(matrix);
     s1.solve();
@@ -56,7 +56,7 @@ TEST_F(SolverTests, small_not_solvable_test) {
 }
 
 TEST_F(SolverTests, each_solution_is_unique_test) {
-    Matrix matrix = static_cast<Matrix>(MatrixReader{"test3.mat"});
+    Matrix matrix = FileInputHandler{{false}, "test3.mat"}.readInput();
 
     s1.setInitialMatrix(matrix);
     s1.solve();
@@ -78,7 +78,7 @@ TEST_F(SolverTests, diagonal_test) {
     rules.push_back(diagonalStrategy);
     s1.addRule(diagonalStrategy);
 
-    Matrix matrix = static_cast<Matrix>(MatrixReader{"test5.mat"});
+    Matrix matrix = FileInputHandler{{false}, "test5.mat"}.readInput();
 
     s1.setInitialMatrix(matrix);
     s1.solve();

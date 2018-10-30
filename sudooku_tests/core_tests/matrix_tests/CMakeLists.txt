@@ -13,6 +13,7 @@ target_link_libraries(
         matrix_tests
         core
         gmock_main
+        input_handler
 )
 
 add_test(

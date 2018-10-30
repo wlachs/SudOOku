@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include <matrix/matrixReader.h>
+#include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 
 class ForkHelperTests : public ::testing::Test {
 protected:
@@ -11,7 +11,7 @@ protected:
     ForkHelper *forkHelper{};
 
     void SetUp() override {
-        m1 = static_cast<Matrix>(MatrixReader{"small4.mat"});
+        m1 = FileInputHandler{{false}, "small4.mat"}.readInput();
         m1[{4, 4}].removeValue(4);
         forkHelper = new ForkHelper{&m1};
     }

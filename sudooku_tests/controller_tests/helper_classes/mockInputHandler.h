@@ -5,7 +5,7 @@
 #ifndef SUDOOKU_MOCKINPUTHANDLER_H
 #define SUDOOKU_MOCKINPUTHANDLER_H
 
-#include <handlers/input_handlers/inputHandler.h>
+#include <sudooku_controller/handlers/input_handlers/inputHandler.h>
 #include "gmock/gmock.h"
 
 class MockInputHandler : public InputHandler {
