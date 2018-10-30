@@ -3,13 +3,13 @@
 //
 
 #include <gtest/gtest.h>
-#include <solvers/solver.h>
-#include <strategies/rowStrategy.h>
-#include <strategies/columnStrategy.h>
-#include <strategies/groupStrategy.h>
-#include <strategies/diagonalStrategy.h>
-#include <exceptions/noStrategiesException.h>
-#include <handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_core/solvers/solver.h>
+#include <sudooku_core/strategies/rowStrategy.h>
+#include <sudooku_core/strategies/columnStrategy.h>
+#include <sudooku_core/strategies/groupStrategy.h>
+#include <sudooku_core/strategies/diagonalStrategy.h>
+#include <sudooku_core/exceptions/noStrategiesException.h>
+#include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 
 class SolverTests : public ::testing::Test {
 protected:

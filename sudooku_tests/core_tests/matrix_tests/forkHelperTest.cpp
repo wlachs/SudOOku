@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include <handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 
 class ForkHelperTests : public ::testing::Test {
 protected:

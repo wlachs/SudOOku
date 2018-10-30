@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include <handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 
 class FileInputHandlerTests : public ::testing::Test {
 protected:

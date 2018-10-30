@@ -2,8 +2,9 @@
 // Created by Borbély László on 2018. 10. 16..
 //
 
-#include <strategies/columnStrategy.h>
-#include <handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_core/strategies/columnStrategy.h>
+#include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_core/matrix/matrix.h>
 #include "gtest/gtest.h"
 
 class ColumnStrategyTests : public ::testing::Test {

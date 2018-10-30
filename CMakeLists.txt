@@ -14,24 +14,11 @@ endif ()
 
 set(CMAKE_CXX_STANDARD 14)  # enable C++14 standard
 
-add_executable(SudOOku main.cpp)
-
-include_directories(sudooku_core)
-include_directories(sudooku_visual)
-include_directories(sudooku_controller)
+include_directories(sudooku_src)
 include_directories(sudooku_tests)
 
-add_subdirectory(sudooku_core)
-add_subdirectory(sudooku_visual)
-add_subdirectory(sudooku_controller)
+add_subdirectory(sudooku_src)
 add_subdirectory(sudooku_tests)
-
-target_link_libraries(
-        SudOOku
-        core
-        visual
-        controller
-)
 
 include(cmake/googletest.cmake)
 fetch_googletest(

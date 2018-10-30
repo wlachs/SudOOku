@@ -4,11 +4,11 @@
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include <sudookuController.h>
+#include <sudooku_controller/sudookuController.h>
 #include <controller_tests/helper_classes/mockInputHandler.h>
 #include <controller_tests/helper_classes/mockOutputHandler.h>
-#include <strategies/groupStrategy.h>
-#include <handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_core/strategies/groupStrategy.h>
+#include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 
 using ::testing::AtLeast;
 using ::testing::Return;

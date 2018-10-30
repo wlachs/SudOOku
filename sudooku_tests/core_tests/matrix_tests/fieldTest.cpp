@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include <matrix/field.h>
+#include <sudooku_core/matrix/field.h>
 #include <vector>
 
 class FieldTests : public ::testing::Test {

@@ -5,8 +5,8 @@
 #ifndef SUDOOKU_SOLVER_H
 #define SUDOOKU_SOLVER_H
 
-#include "../matrix/matrix.h"
-#include "../strategies/solvingStrategy.h"
+#include <sudooku_core/matrix/matrix.h>
+#include <sudooku_core/strategies/solvingStrategy.h>
 
 class Solver {
 private:

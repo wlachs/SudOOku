@@ -5,7 +5,7 @@
 #ifndef SUDOOKU_MOCKMATRIX_H
 #define SUDOOKU_MOCKMATRIX_H
 
-#include <matrix/matrix.h>
+#include <sudooku_core/matrix/matrix.h>
 #include "gmock/gmock.h"
 #include "mockField.h"
 

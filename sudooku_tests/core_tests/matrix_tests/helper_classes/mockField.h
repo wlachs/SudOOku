@@ -5,7 +5,7 @@
 #ifndef SUDOOKU_MOCKFIELD_H
 #define SUDOOKU_MOCKFIELD_H
 
-#include <matrix/field.h>
+#include <sudooku_core/matrix/field.h>
 #include "gmock/gmock.h"
 
 class MockField : public Field {

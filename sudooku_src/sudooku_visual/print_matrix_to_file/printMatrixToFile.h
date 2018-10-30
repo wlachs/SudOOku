@@ -5,7 +5,7 @@
 #ifndef SUDOOKU_PRINTMATRIXTOFILE_H
 #define SUDOOKU_PRINTMATRIXTOFILE_H
 
-#include <sudookuPrinter.h>
+#include <sudooku_visual/sudookuPrinter.h>
 #include <fstream>
 
 class PrintMatrixToFile : public SudookuPrinter {

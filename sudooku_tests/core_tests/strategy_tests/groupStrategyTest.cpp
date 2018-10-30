@@ -2,8 +2,8 @@
 // Created by Borbély László on 2018. 10. 21..
 //
 
-#include <strategies/groupStrategy.h>
-#include <handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_core/strategies/groupStrategy.h>
+#include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 #include "gtest/gtest.h"
 
 class GroupStrategyTests : public ::testing::Test {

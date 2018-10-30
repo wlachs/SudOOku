@@ -4,11 +4,11 @@
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include <handlers/output_handlers/outputHandler.h>
-#include <handlers/output_handlers/fileOutputHandler.h>
-#include <handlers/input_handlers/fileInputHandler.h>
-#include <exceptions/noMatrixProvidedException.h>
-#include <exceptions/wrongEventTypeException.h>
+#include <sudooku_controller/handlers/output_handlers/outputHandler.h>
+#include <sudooku_controller/handlers/output_handlers/fileOutputHandler.h>
+#include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_controller/exceptions/noMatrixProvidedException.h>
+#include <sudooku_controller/exceptions/wrongEventTypeException.h>
 
 class FileOutputHandlerTests : public ::testing::Test {
 protected:

@@ -3,8 +3,8 @@
 //
 
 #include <gtest/gtest.h>
-#include <matrix/matrix.h>
-#include <handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_core/matrix/matrix.h>
+#include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 
 class MatrixTests : public ::testing::Test {
 protected:

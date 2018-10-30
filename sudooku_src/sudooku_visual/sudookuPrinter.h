@@ -5,7 +5,7 @@
 #ifndef SUDOOKU_SUDOOKUPRINTER_H
 #define SUDOOKU_SUDOOKUPRINTER_H
 
-#include <matrix/matrix.h>
+#include <sudooku_core/matrix/matrix.h>
 
 class SudookuPrinter {
 public:
