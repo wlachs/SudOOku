@@ -12,6 +12,9 @@
 
 class ForkHelper;
 
+/**
+ * Class for storing n*n instances of Field object
+ */
 class Matrix {
 private:
     unsigned short int dimension;
