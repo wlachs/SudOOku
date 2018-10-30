@@ -3,7 +3,7 @@
 //
 
 #include <strategies/groupStrategy.h>
-#include <matrix/matrixReader.h>
+#include <handlers/input_handlers/fileInputHandler.h>
 #include "gtest/gtest.h"
 
 class GroupStrategyTests : public ::testing::Test {
@@ -12,7 +12,7 @@ protected:
     Matrix m1;
 
     void SetUp() override {
-        m1 = static_cast<Matrix>(MatrixReader{"small3.mat"});
+        m1 = FileInputHandler{{false}, "small3.mat"}.readInput();
 
         m1[{1, 3}].removeValue(4);
         m1[{1, 4}].removeValue(4);
@@ -21,7 +21,7 @@ protected:
 };
 
 TEST_F(GroupStrategyTests, validation_check_false) {
-    Matrix invalid = static_cast<Matrix>(MatrixReader{"invalid3.mat"});
+    Matrix invalid = FileInputHandler{{false}, "invalid3.mat"}.readInput();
 
     ASSERT_FALSE(groupStrategy.validate(invalid));
 }

@@ -4,14 +4,14 @@
 
 #include <gtest/gtest.h>
 #include <matrix/matrix.h>
-#include <matrix/matrixReader.h>
+#include <handlers/input_handlers/fileInputHandler.h>
 
 class MatrixTests : public ::testing::Test {
 protected:
     Matrix m1;
 
     void SetUp() override {
-        m1 = static_cast<Matrix>(MatrixReader{"small4.mat"});
+        m1 = FileInputHandler{{false}, "small4.mat"}.readInput();
     }
 };
 
@@ -50,19 +50,19 @@ TEST_F(MatrixTests, fork_test) {
 }
 
 TEST_F(MatrixTests, equality_operator_true_check) {
-    Matrix m11 = static_cast<Matrix>(MatrixReader{"small4.mat"});
+    Matrix m11 = FileInputHandler{{false}, "small4.mat"}.readInput();
 
     EXPECT_EQ(m1, m11);
 }
 
 TEST_F(MatrixTests, equality_operator_false_check) {
-    Matrix m2 = static_cast<Matrix>(MatrixReader{"small3.mat"});
+    Matrix m2 = FileInputHandler{{false}, "small3.mat"}.readInput();
 
     EXPECT_NE(m1, m2);
 }
 
 TEST_F(MatrixTests, equality_operator_dimension_false_check) {
-    Matrix m2 = static_cast<Matrix>(MatrixReader{"test3.mat"});
+    Matrix m2 = FileInputHandler{{false}, "small3.mat"}.readInput();
 
     EXPECT_NE(m1, m2);
 }

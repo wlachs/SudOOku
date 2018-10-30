@@ -3,7 +3,7 @@
 //
 
 #include <strategies/columnStrategy.h>
-#include <matrix/matrixReader.h>
+#include <handlers/input_handlers/fileInputHandler.h>
 #include "gtest/gtest.h"
 
 class ColumnStrategyTests : public ::testing::Test {
@@ -12,7 +12,7 @@ protected:
     Matrix m1;
 
     void SetUp() override {
-        m1 = static_cast<Matrix>(MatrixReader{"small1.mat"});
+        m1 = FileInputHandler{{false}, "small1.mat"}.readInput();
 
         m1[{1, 2}].removeValue(4);
         m1[{2, 2}].removeValue(4);
@@ -21,7 +21,7 @@ protected:
 };
 
 TEST_F(ColumnStrategyTests, validation_check_false) {
-    Matrix invalid = static_cast<Matrix>(MatrixReader{"invalid1.mat"});
+    Matrix invalid = FileInputHandler{{false}, "invalid1.mat"}.readInput();
     ASSERT_FALSE(columnStrategy.validate(invalid));
 }
 
