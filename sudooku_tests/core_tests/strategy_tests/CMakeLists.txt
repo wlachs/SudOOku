@@ -9,7 +9,7 @@ add_executable(
 
 target_link_libraries(
         strategy_tests
-        core
+        strategies
         gmock_main
         input_handler
 )
