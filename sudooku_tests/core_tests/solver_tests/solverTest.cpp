@@ -107,7 +107,6 @@ TEST_F(SolverTests, each_solution_is_unique_test) {
     /* Check for each solution whether it's different from all other solutions */
     for (unsigned short int i = 0; i < 4; ++i) {
         for (unsigned short int j = 0; j < 4; ++j) {
-
             /* Don't compare to self */
             if (i != j) {
                 EXPECT_NE(solutions[i], solutions[j]);

@@ -26,7 +26,6 @@ FileOutputHandler::FileOutputHandler(std::string const &fileName) : solutionsFil
  */
 void FileOutputHandler::notifyEvent(SudookuEvent event, const Matrix *matrix) {
     switch (event) {
-
         /* Always gets called as the execution starts in the Solver object.
          * Opens the output file */
         case RUN_START:

@@ -70,7 +70,6 @@ bool Solver::hasNoPotentialValues(Matrix const &matrix) const {
     /* Iterate through all possible coordiates to check emptiness */
     for (unsigned short int x = 1; x <= dimension; ++x) {
         for (unsigned short int y = 1; y <= dimension; ++y) {
-
             /* Empty vector means no possible solution */
             if (matrix[{x, y}].getPossibleValues().empty()) {
                 return true;

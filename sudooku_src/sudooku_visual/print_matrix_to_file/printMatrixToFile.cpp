@@ -21,7 +21,6 @@ void PrintMatrixToFile::print(Matrix const &matrix) {
     /* Iterate over each pair of coordinates */
     for (unsigned short int x = 1; x <= dimension; ++x) {
         for (unsigned short int y = 1; y <= dimension; ++y) {
-
             /* Retrieve possible values of the Field */
             auto possibleValues = matrix[{x, y}].getPossibleValues();
 

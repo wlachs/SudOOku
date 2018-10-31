@@ -48,7 +48,6 @@ void Matrix::populateEmptyFields() {
 Matrix::Matrix(unsigned short const int dimension_,
                std::map<std::pair<unsigned short int, unsigned short int>, Field> const &fields_)
         : dimension(dimension_), fields(fields_) {
-
     /* Populate empty fields */
     populateEmptyFields();
 

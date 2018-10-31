@@ -28,7 +28,6 @@ std::vector<Matrix> GroupStrategy::separateToGroups() {
              * Pay attention that the coordinates in the input Matrix and the group Matrix are different! */
             for (unsigned short int x = 1; x <= groupDimension; ++x) {
                 for (unsigned short int y = 1; y <= groupDimension; ++y) {
-
                     /* Calculate group coordinates from original coordinates */
                     std::pair<unsigned short int, unsigned short int> coordinates =
                             {horizontalGroups * groupDimension + x, verticalGroups * groupDimension + y};
@@ -157,7 +156,6 @@ bool GroupStrategy::simplifyGroup(std::vector<std::pair<unsigned short int, unsi
 
     /* Check each group separately */
     for (auto const &coordinate : group) {
-
         /* Store group values */
         auto &values = (*matrix)[coordinate].getPossibleValues();
 
@@ -186,7 +184,6 @@ bool GroupStrategy::optimizeUnique(std::vector<std::pair<unsigned short int, uns
                                    std::vector<unsigned short int> const &values) const {
     /* Iterate over each value in the vector of values */
     for (auto &value : values) {
-
         /* If a unique value is found, fix it */
         if (isUniqueInGroup(group, value)) {
             (*matrix)[coordinate].fixValue(value);
@@ -213,7 +210,6 @@ bool GroupStrategy::isUniqueInGroup(std::vector<std::pair<unsigned short int, un
 
     /* Check for each coordinate in the group whether it possibly contains the searched value */
     for (auto const &coordinate : group) {
-
         /* Increase hit count if yes */
         if ((*matrix)[coordinate].contains(value)) {
             ++count;
@@ -241,7 +237,6 @@ bool GroupStrategy::removeFromGroup(std::vector<std::pair<unsigned short int, un
     for (auto const &coordinate : group) {
         /* If the coordinate is not equal to the one in the ignore parameter, try to remove value from it */
         if (coordinate != ignore && (*matrix)[coordinate].removeValue(value)) {
-
             /* If a value was successfully removed, it means the optimization was successful */
             simplified = true;
         }
@@ -264,14 +259,12 @@ std::vector<std::vector<std::pair<unsigned short int, unsigned short int>>> Grou
     /* Iterate over each group */
     for (unsigned short int horizontalGroups = 0; horizontalGroups < groupDimension; ++horizontalGroups) {
         for (unsigned short int verticalGroups = 0; verticalGroups < groupDimension; ++verticalGroups) {
-
             /* Initialize vector containing the coordinates of a certain group */
             std::vector<std::pair<unsigned short int, unsigned short int>> group = {};
 
             /* Calculate Field coordinates based on group index and group dimension */
             for (unsigned short int x = 1; x <= groupDimension; ++x) {
                 for (unsigned short int y = 1; y <= groupDimension; ++y) {
-
                     /* Construct Field coordinates with the certain values in the vector */
                     group.emplace_back(horizontalGroups * groupDimension + x, verticalGroups * groupDimension + y);
                 }

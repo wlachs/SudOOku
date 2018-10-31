@@ -25,7 +25,6 @@ int main(int argc, char *argv[]) {
     /* Parse command line parameters */
     while ((commandLineParameter = getopt(argc, argv, "dp:")) != -1)
         switch (commandLineParameter) {
-
             /* If the '-d' flag is set, use DiagonalStrategy */
             case 'd':
                 diagonalStrategyFlag = true;

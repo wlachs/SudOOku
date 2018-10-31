@@ -49,7 +49,6 @@ void ForkHelper::init() {
 
     for (unsigned short int x = 1; x <= dimension; ++x) {
         for (unsigned short int y = 1; y <= dimension; ++y) {
-
             /* We have to make sure that the length of vector isn't one, otherwise we get stuck in an
              * infinite loop */
             if ((*matrix)[{x, y}].getPossibleValues().size() > 1) {
