@@ -37,7 +37,7 @@ public:
 
     bool simplify(Matrix &) override;
 
-    virtual ~ColumnStrategy() = default;
+    ~ColumnStrategy() override = default;
 };
 
 #endif //SUDOOKU_COLUMNSTRATEGY_H
