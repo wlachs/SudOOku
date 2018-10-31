@@ -8,6 +8,9 @@
 #include <sudooku_core/matrix/field.h>
 #include "gmock/gmock.h"
 
+/**
+ * Mock class of Field
+ */
 class MockField : public Field {
 public:
     MOCK_CONST_METHOD0(getPossibleValues, std::vector<unsigned short int> const &());
