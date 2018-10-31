@@ -43,7 +43,7 @@ bool RowStrategy::isRowValid() {
         if (possibleValues.size() == 1) {
             auto result = std::find(std::begin(fixValues), std::end(fixValues), possibleValues[0]);
 
-            /* Check whether the values has already been seen */
+            /* Check whether the value has already been seen */
             if (result != std::end(fixValues)) {
                 return false;
             } else {
@@ -147,10 +147,10 @@ bool RowStrategy::recursiveRemove(unsigned short const int column_,
 }
 
 /**
- * Optimize uniques row values
+ * Optimize unique row values
  * It might happen that there are no singular values in a row but in the value vectors there is an element at a certain
  * coordinate of the row where it can be written and nowhere else
- * If this is the case, replace the vector of the matchin Field with the mentioned value
+ * If this is the case, replace the vector of the matching Field with the mentioned value
  * @param values
  * @return
  */
@@ -184,6 +184,6 @@ bool RowStrategy::isUniqueInRow(unsigned short const int value) const {
         }
     }
 
-    /* Value is unique if the hit count equals to 1 */
+    /* Value is unique if the hit count equals 1 */
     return count == 1;
 }

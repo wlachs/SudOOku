@@ -7,13 +7,16 @@
 
 #include "solvingStrategy.h"
 
+/**
+ * A SolvingStrategy to ensure there is exactly one instance of every possible value in each column of the Matrix
+ */
 class ColumnStrategy : public SolvingStrategy {
 private:
-    const Matrix *constMatrix;
-    Matrix *matrix;
-    unsigned short int row;
-    unsigned short int column;
-    unsigned short int dimension;
+    const Matrix *constMatrix{};
+    Matrix *matrix{};
+    unsigned short int row{};
+    unsigned short int column{};
+    unsigned short int dimension{};
 
     bool isColumnValid();
 
