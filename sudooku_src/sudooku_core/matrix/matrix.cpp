@@ -11,9 +11,29 @@
  * @param matrix
  */
 Matrix::Matrix(Matrix const &matrix) {
+    /* Set class variables */
     dimension = matrix.dimension;
     fields = matrix.fields;
+
+    /* Allocate new ForkHelper */
     forkHelper = new ForkHelper{this};
+}
+
+/**
+ * Matrix move constructor
+ * 'Steals' the values from the Matrix passed as a parameter and resets it's values
+ * @param matrix
+ */
+Matrix::Matrix(Matrix &&matrix) noexcept {
+    /* Set class variables */
+    dimension = matrix.dimension;
+    fields = matrix.fields;
+    forkHelper = matrix.forkHelper;
+
+    /* Set rvalue Matrix variables to default */
+    matrix.dimension = 0;
+    matrix.fields = {};
+    matrix.forkHelper = nullptr;
 }
 
 /**

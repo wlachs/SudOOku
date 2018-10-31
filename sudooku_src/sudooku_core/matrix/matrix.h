@@ -30,6 +30,8 @@ public:
 
     Matrix(Matrix const &);
 
+    Matrix(Matrix &&) noexcept;
+
     Matrix(unsigned short int, std::map<std::pair<unsigned short int, unsigned short int>, Field> const &);
 
     Matrix &operator=(Matrix const &);
