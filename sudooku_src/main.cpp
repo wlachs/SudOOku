@@ -8,15 +8,29 @@
 #include <handlers/input_handlers/fileInputHandler.h>
 #include <handlers/output_handlers/fileOutputHandler.h>
 
+/**
+ * Main application function
+ * Parses command line arguments, initializes the application and starts execution
+ * @param argc
+ * @param argv
+ * @return
+ */
 int main(int argc, char *argv[]) {
-    bool dflag = false;
-    int c;
+    /* Check whether the flag for DiagonalStrategy is set */
+    bool diagonalStrategyFlag = false;
 
-    while ((c = getopt(argc, argv, "dp:")) != -1)
-        switch (c) {
+    /* Local variable for parsing command line parameters */
+    int commandLineParameter;
+
+    /* Parse command line parameters */
+    while ((commandLineParameter = getopt(argc, argv, "dp:")) != -1)
+        switch (commandLineParameter) {
+            /* If the '-d' flag is set, use DiagonalStrategy */
             case 'd':
-                dflag = true;
+                diagonalStrategyFlag = true;
                 break;
+
+                /* In case of an unknown flag, notify user on the standard error output */
             case '?':
                 if (optopt == 'p')
                     fprintf(stderr, "Option -%c requires an argument.\n", optopt);
@@ -27,15 +41,27 @@ int main(int argc, char *argv[]) {
                             "Unknown option character `\\x%x'.\n",
                             optopt);
                 return 1;
+
+                /* Otherwise, abort execution */
             default:
                 abort();
         }
 
-    FileInputHandler fileInputHandler{{dflag}, argv[optind]};
+    /* Initialize classes for puzzle solving
+     * The path of the input file is also passed as a command line parameter */
+    FileInputHandler fileInputHandler{{diagonalStrategyFlag}, argv[optind]};
+
+    /* Specify output file name */
+    /* TODO: get output file name as a command line parameter */
     FileOutputHandler fileOutputHandler{"solutions.txt"};
+
+    /* Initialize solver */
     Solver solver{};
 
+    /* Initialize controller with the necessary parameters */
     SudookuController sudookuController{&fileInputHandler, &fileOutputHandler, &solver};
+
+    /* Start the program */
     sudookuController.run();
 
     return 0;

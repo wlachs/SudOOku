@@ -7,13 +7,16 @@
 
 #include "solvingStrategy.h"
 
+/**
+ * A SolvingStrategy to ensure there is exactly one instance of every possible value in each row of the Matrix
+ */
 class RowStrategy : public SolvingStrategy {
 private:
-    const Matrix *constMatrix;
-    Matrix *matrix;
-    unsigned short int row;
-    unsigned short int column;
-    unsigned short int dimension;
+    const Matrix *constMatrix{};
+    Matrix *matrix{};
+    unsigned short int row{};
+    unsigned short int column{};
+    unsigned short int dimension{};
 
     bool isRowValid();
 
@@ -34,7 +37,7 @@ public:
 
     bool simplify(Matrix &) override;
 
-    virtual ~RowStrategy() = default;
+    ~RowStrategy() override = default;
 };
 
 #endif //SUDOOKU_ROWSTRATEGY_H

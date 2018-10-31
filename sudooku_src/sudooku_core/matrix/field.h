@@ -5,11 +5,12 @@
 #ifndef SUDOOKU_FIELD_H
 #define SUDOOKU_FIELD_H
 
-
 #include <vector>
 
-class Matrix;
-
+/**
+ * Field class representing one element of the Matrix
+ * Contains all the possible values in the specific position
+ */
 class Field {
 private:
     std::vector<unsigned short int> possibleValues = {};

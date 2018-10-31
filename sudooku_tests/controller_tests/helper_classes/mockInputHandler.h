@@ -8,6 +8,9 @@
 #include <sudooku_controller/handlers/input_handlers/inputHandler.h>
 #include "gmock/gmock.h"
 
+/**
+ * Mock class of InputHandler
+ */
 class MockInputHandler : public InputHandler {
 public:
     MOCK_METHOD0(readInput, Matrix());

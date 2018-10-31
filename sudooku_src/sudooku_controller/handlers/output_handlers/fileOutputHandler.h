@@ -10,6 +10,9 @@
 #include <fstream>
 #include <sudooku_visual/print_matrix_to_file/printMatrixToFile.h>
 
+/**
+ * OutputHandler implementation for File outputs
+ */
 class FileOutputHandler : public OutputHandler {
 private:
     std::string solutionsFileName{};
@@ -19,9 +22,9 @@ private:
 public:
     explicit FileOutputHandler(std::string const &);
 
-    virtual ~FileOutputHandler();
+    ~FileOutputHandler() override;
 
-    virtual void notifyEvent(SudookuEvent, const Matrix *);
+    void notifyEvent(SudookuEvent, const Matrix *) override;
 };
 
 #endif //SUDOOKU_FILEOUTPUTHANDLER_H

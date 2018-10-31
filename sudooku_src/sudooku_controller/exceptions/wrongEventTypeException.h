@@ -7,6 +7,10 @@
 
 #include <exception>
 
+/**
+ * Exception class
+ * Should be thrown when the OutputHandler::notifyEvent(...) function gets called with an incorrect event type
+ */
 class WrongEventTypeException : public std::exception {
 public:
     const char *what() const noexcept override;

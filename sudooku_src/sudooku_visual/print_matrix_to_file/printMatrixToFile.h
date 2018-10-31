@@ -8,6 +8,10 @@
 #include <sudooku_visual/sudookuPrinter.h>
 #include <fstream>
 
+/**
+ * Implementation of SudookuPrinter
+ * Writes the puzzle to an output file stream passed as a constructor parameter
+ */
 class PrintMatrixToFile : public SudookuPrinter {
 private:
     std::ofstream &solutionsFile;
@@ -15,9 +19,9 @@ private:
 public:
     explicit PrintMatrixToFile(std::ofstream &);
 
-    virtual void print(Matrix const &);
+    void print(Matrix const &) override;
 
-    virtual ~PrintMatrixToFile() = default;
+    ~PrintMatrixToFile() override = default;
 };
 
 #endif //SUDOOKU_PRINTMATRIXTOFILE_H

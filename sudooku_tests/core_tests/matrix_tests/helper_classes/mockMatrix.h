@@ -9,9 +9,10 @@
 #include "gmock/gmock.h"
 #include "mockField.h"
 
+/**
+ * Mock class of Matrix
+ */
 class MockMatrix : public Matrix {
-private:
-    MockField mockField;
 public:
     MOCK_CONST_METHOD0(getDimension, unsigned short int());
 

@@ -4,6 +4,11 @@
 
 #include "noMatrixProvidedException.h"
 
+/**
+ * Exception description for the case when no *Matrix is passed to the OutputHandler
+ * object on solution notification
+ * @return exception description
+ */
 const char *NoMatrixProvidedException::what() const noexcept {
     return "No matrix provided to notify function!";
 }

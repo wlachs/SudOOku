@@ -7,10 +7,13 @@
 
 #include "solvingStrategy.h"
 
+/**
+ * A SolvingStrategy to ensure there is exactly one instance of every possible value in the diagonal of the Matrix
+ */
 class DiagonalStrategy : public SolvingStrategy {
 private:
-    const Matrix *constMatrix;
-    unsigned short int dimension;
+    const Matrix *constMatrix{};
+    unsigned short int dimension{};
 
     bool validateInDirection(bool) const;
 
@@ -19,7 +22,7 @@ public:
 
     bool validate(Matrix const &) override;
 
-    virtual ~DiagonalStrategy() = default;
+    ~DiagonalStrategy() override = default;
 };
 
 #endif //SUDOOKU_DIAGONALSTRATEGY_H

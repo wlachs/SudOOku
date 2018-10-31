@@ -7,6 +7,10 @@
 
 #include <exception>
 
+/**
+ * Exception class
+ * Should be thrown when the Solver::solver(...) function gets called before any rules are added
+ */
 class NoStrategiesException : public std::exception {
 public:
     const char *what() const noexcept override;

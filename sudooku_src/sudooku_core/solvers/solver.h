@@ -8,6 +8,10 @@
 #include <sudooku_core/matrix/matrix.h>
 #include <sudooku_core/strategies/solvingStrategy.h>
 
+/**
+ * Class for solving the puzzle
+ * It is possible to register several SolvingStrategies thus making the class much more flexible to future changes
+ */
 class Solver {
 private:
     Matrix initialMatrix;

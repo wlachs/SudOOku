@@ -9,6 +9,10 @@
 #include <sudooku_controller/handlers/output_handlers/outputHandler.h>
 #include <sudooku_core/solvers/solver.h>
 
+/**
+ * Controller class to implement MVC architecture.
+ * Operates with Model (Core) functions and forwards the results to the View
+ */
 class SudookuController {
 private:
     InputHandler *inputHandler = nullptr;

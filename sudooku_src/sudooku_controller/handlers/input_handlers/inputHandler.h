@@ -9,6 +9,9 @@
 #include <sudooku_core/strategies/solvingStrategy.h>
 #include <vector>
 
+/**
+ * Abstract class interface responsible for handling the input of the application
+ */
 class InputHandler {
 public:
     InputHandler() = default;

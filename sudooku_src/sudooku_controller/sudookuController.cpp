@@ -17,24 +17,23 @@ SudookuController::SudookuController(InputHandler *inputHandler_, OutputHandler 
  * Should first receive input from any input handler
  * Then process the given input using a solver core function
  * Finally as the run terminates, notify the output handler
- *
  */
 void SudookuController::run() {
-    // Get input from the input handler and pass it to the solver
+    /* Get input from the input handler and pass it to the solver */
     initializeSolver();
 
-    // Execute the solver function
+    /* Execute the solver function */
     solver->solve();
 
-    // Retrieve solutions
+    /* Retrieve solutions */
     auto const &solutions = solver->getSolutions();
 
-    // Send solutions to output handler
+    /* Send solutions to output handler */
     for (auto const &solution : solutions) {
         outputHandler->notifyEvent(SudookuEvent::SOLUTION, &solution);
     }
 
-    // Notify output handler of the results
+    /* Notify output handler of the results */
     outputHandler->notifyEvent(SudookuEvent::RUN_END, nullptr);
 }
 
@@ -43,17 +42,17 @@ void SudookuController::run() {
  * Set the matching solver rules
  */
 void SudookuController::initializeSolver() {
-    // Get the initial matrix
+    /* Get the initial matrix */
     Matrix const &inputMatrix = inputHandler->readInput();
 
-    // Get solver rules
+    /* Get solver rules */
     rules = inputHandler->readRules();
 
-    // Initialize solver
+    /* Initialize solver */
     solver->setInitialMatrix(inputMatrix);
     solver->setRules(rules);
 
-    // Notify output handler
+    /* Notify output handler */
     outputHandler->notifyEvent(SudookuEvent::RUN_START, &inputMatrix);
 }
 

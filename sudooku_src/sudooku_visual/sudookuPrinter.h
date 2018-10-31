@@ -7,6 +7,9 @@
 
 #include <sudooku_core/matrix/matrix.h>
 
+/**
+ * Abstract class for visualizing Sudoku puzzles
+ */
 class SudookuPrinter {
 public:
     virtual ~SudookuPrinter() = default;
