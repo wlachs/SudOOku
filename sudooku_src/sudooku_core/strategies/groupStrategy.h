@@ -7,6 +7,9 @@
 
 #include "solvingStrategy.h"
 
+/**
+ * A SolvingStrategy to ensure there is exactly one instance of every possible value in each group of the Matrix
+ */
 class GroupStrategy : public SolvingStrategy {
 private:
     const Matrix *constMatrix;
