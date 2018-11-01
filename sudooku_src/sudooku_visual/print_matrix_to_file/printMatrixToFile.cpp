@@ -26,10 +26,10 @@ void PrintMatrixToFile::print(Matrix const &matrix) {
 
             if (possibleValues.size() == 1) {
                 /* If the Field has a fixed value, print it */
-                solutionsFile << possibleValues[0] << " ";
+                solutionsFile << possibleValues[0] << ";";
             } else {
                 /* Otherwise, leave it blank */
-                solutionsFile << "  ";
+                solutionsFile << ";";
             }
         }
 
