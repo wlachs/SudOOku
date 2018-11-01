@@ -12,7 +12,6 @@
  * @param matrix
  */
 void Solver::setInitialMatrix(Matrix const &matrix) {
-    /* TODO: clear the vector of solutions too */
     initialMatrix = matrix;
     dimension = matrix.getDimension();
 
@@ -42,7 +41,7 @@ void Solver::addRule(SolvingStrategy *solvingStrategy) {
  * Should throw exception if no rules are set
  */
 void Solver::solve() {
-    /* TODO: check whether an inputmatrix is given, if not: throw an exception */
+    /* TODO: check whether an input Matrix is given, if not: throw an exception */
     /* Check rules, throw exception if it's not specified */
     if (strategies.empty()) {
         throw NoStrategiesException{};
