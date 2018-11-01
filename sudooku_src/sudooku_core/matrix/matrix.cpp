@@ -27,12 +27,11 @@ Matrix::Matrix(Matrix const &matrix) {
 Matrix::Matrix(Matrix &&matrix) noexcept {
     /* Set class variables */
     dimension = matrix.dimension;
-    fields = matrix.fields;
+    fields = std::move(matrix.fields);
     forkHelper = matrix.forkHelper;
 
     /* Set rvalue Matrix variables to default */
     matrix.dimension = 0;
-    matrix.fields = {};
     matrix.forkHelper = nullptr;
 }
 
