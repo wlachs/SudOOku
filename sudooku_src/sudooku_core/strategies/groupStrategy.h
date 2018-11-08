@@ -15,10 +15,9 @@ private:
     const Matrix *constMatrix{};
     Matrix *matrix{};
     unsigned short int dimension{};
+    unsigned short int groupDimension{};
 
-    std::vector<Matrix> separateToGroups();
-
-    bool singular(Matrix const &) const;
+    bool singular(std::vector<std::pair<unsigned short int, unsigned short int>> const &) const;
 
     std::vector<std::vector<std::pair<unsigned short int, unsigned short int>>> getGroupCoordinates() const;
 

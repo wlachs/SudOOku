@@ -9,6 +9,7 @@ target_link_libraries(
         core
         gmock_main
         input_handler
+        visual
 )
 
 add_test(

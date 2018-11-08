@@ -12,6 +12,7 @@ target_link_libraries(
         strategies
         gmock_main
         input_handler
+        visual
 )
 
 add_test(

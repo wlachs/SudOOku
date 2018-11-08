@@ -14,60 +14,40 @@
  * @param fileName
  */
 FileInputHandler::FileInputHandler(std::vector<bool> const &flags_, std::string const &fileName) : flags(flags_) {
+    /* Open input */
     inputFile.open(fileName);
+
+    /* Allocate Matrix reader object */
+    readMatrixFromFile = new ReadMatrixFromFile{inputFile};
+
+    /* Read puzzles */
+    inputMatrices = readMatrixFromFile->readAll();
 }
 
 /**
  * Close input file
  */
 FileInputHandler::~FileInputHandler() {
+    /* Deallocate Matrix reader object */
+    delete readMatrixFromFile;
+
+    /* Close input */
     inputFile.close();
 }
 
 /**
- * Read unsolved matrix from input and return a Matrix object
+ * Return the next unsolved puzzle from the input
  * @return parsed Matrix object
  */
 Matrix FileInputHandler::readInput() {
-    if (inputFile.is_open()) {
-        std::map<std::pair<unsigned short int, unsigned short int>, Field> inputMap;
-        std::string line;
-        unsigned short int rowIndex = 1;
+    /* Store temporarily the next input */
+    Matrix temp = *std::begin(inputMatrices);
 
-        /* Read input file line-by-line */
-        while (getline(inputFile, line)) {
-            std::istringstream iss{line};
-            std::string segment;
-            std::vector<std::string> values;
+    /* Remove input from unsolved vector */
+    inputMatrices.erase(std::begin(inputMatrices));
 
-            /* Split the line read by the predefined separator character.
-             * Initially it's a ';' character */
-            while (std::getline(iss, segment, SEPARATOR)) {
-                values.push_back(segment);
-            }
-
-            /* The separators must be present even if there aren't any numbers in the file.
-             * This means the dimension of the Matrix must be equal to the number of
-             * separators in one row (or column) */
-            dimension = static_cast<unsigned short int>(values.size());
-
-            /* We can add the fixed values to the Matrix object.
-             * If a value isn't fixed, we will handle it later */
-            for (unsigned short int columnIndex = 1; columnIndex <= dimension; ++columnIndex) {
-                if (!values[columnIndex - 1].empty()) {
-                    inputMap.insert({{rowIndex, columnIndex},
-                                     Field{static_cast<unsigned short int>(std::stoi(values[columnIndex - 1]))}});
-                }
-            }
-
-            ++rowIndex;
-        }
-
-        /* Initialize return value */
-        matrix = Matrix{dimension, inputMap};
-    }
-
-    return matrix;
+    /* Return Matrix */
+    return temp;
 }
 
 /**
@@ -88,4 +68,12 @@ std::vector<SolvingStrategy *> FileInputHandler::readRules() {
     }
 
     return rules;
+}
+
+/**
+ * Check whether there are any unsolved inputs available
+ * @return
+ */
+bool FileInputHandler::hasInput() const {
+    return !inputMatrices.empty();
 }

@@ -54,9 +54,14 @@ TEST_F(ControllerTests, input_called_only_once_test) {
     EXPECT_CALL(mockInputHandler, readRules())
             .WillOnce(Return(rules));
 
+    /* Controller will check whether there are any puzzles to solve */
+    EXPECT_CALL(mockInputHandler, hasInput())
+            .WillOnce(Return(true))
+            .WillOnce(Return(false));
+
     /* The input should also only be read once since there is only one Matrix puzzle being solved */
     EXPECT_CALL(mockInputHandler, readInput())
-            .Times(1);
+            .WillOnce(Return(Matrix{1, {{{1, 1}, Field{1}}}}));
 
     /* Execute method */
     sudookuController->run();
@@ -70,6 +75,15 @@ TEST_F(ControllerTests, output_handler_start_test) {
     /* The InputHandler should be called once again for the rules */
     EXPECT_CALL(mockInputHandler, readRules())
             .WillOnce(Return(rules));
+
+    /* Controller will check whether there are any puzzles to solve */
+    EXPECT_CALL(mockInputHandler, hasInput())
+            .WillOnce(Return(true))
+            .WillOnce(Return(false));
+
+    /* The input should also only be read once since there is only one Matrix puzzle being solved */
+    EXPECT_CALL(mockInputHandler, readInput())
+            .WillOnce(Return(Matrix{1, {{{1, 1}, Field{1}}}}));
 
     /* The OutputHandler can be called with any kind of parameters */
     EXPECT_CALL(mockOutputHandler, notifyEvent(testing::_, testing::_))
@@ -91,6 +105,15 @@ TEST_F(ControllerTests, output_handler_solution_test) {
     EXPECT_CALL(mockInputHandler, readRules())
             .WillOnce(Return(rules));
 
+    /* Controller will check whether there are any puzzles to solve */
+    EXPECT_CALL(mockInputHandler, hasInput())
+            .WillOnce(Return(true))
+            .WillOnce(Return(false));
+
+    /* The input should also only be read once since there is only one Matrix puzzle being solved */
+    EXPECT_CALL(mockInputHandler, readInput())
+            .WillOnce(Return(Matrix{1, {{{1, 1}, Field{1}}}}));
+
     /* The OutputHandler can be called with any kind of parameters */
     EXPECT_CALL(mockOutputHandler, notifyEvent(testing::_, testing::_))
             .Times(AtLeast(0));
@@ -111,6 +134,15 @@ TEST_F(ControllerTests, output_handler_end_test) {
     /* The InputHandler should return the rules for solving the puzzle */
     EXPECT_CALL(mockInputHandler, readRules())
             .WillOnce(Return(rules));
+
+    /* Controller will check whether there are any puzzles to solve */
+    EXPECT_CALL(mockInputHandler, hasInput())
+            .WillOnce(Return(true))
+            .WillOnce(Return(false));
+
+    /* The input should also only be read once since there is only one Matrix puzzle being solved */
+    EXPECT_CALL(mockInputHandler, readInput())
+            .WillOnce(Return(Matrix{1, {{{1, 1}, Field{1}}}}));
 
     /* The OutputHandler can be called with any kind of parameters */
     EXPECT_CALL(mockOutputHandler, notifyEvent(testing::_, testing::_))

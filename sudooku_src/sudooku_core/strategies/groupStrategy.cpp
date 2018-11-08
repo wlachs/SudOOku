@@ -7,84 +7,33 @@
 #include <algorithm>
 
 /**
- * Separates the input Matrix into sqrt(dimension) sized groups
- * There are altogether 'dimension' number of groups each containing 'dimension' different values
- * @return
- */
-std::vector<Matrix> GroupStrategy::separateToGroups() {
-    /* First calculate group size */
-    auto groupDimension = sqrt(dimension);
-
-    /* Initialize result vector of small Matrices */
-    std::vector<Matrix> result = {};
-
-    /* Iterate through every group of the Matrix */
-    for (unsigned short int horizontalGroups = 0; horizontalGroups < groupDimension; ++horizontalGroups) {
-        for (unsigned short int verticalGroups = 0; verticalGroups < groupDimension; ++verticalGroups) {
-            /* Initialize input map for group Matrix */
-            std::map<std::pair<unsigned short int, unsigned short int>, Field> group = {};
-
-            /* Add each element of the group to the input map
-             * Pay attention that the coordinates in the input Matrix and the group Matrix are different! */
-            for (unsigned short int x = 1; x <= groupDimension; ++x) {
-                for (unsigned short int y = 1; y <= groupDimension; ++y) {
-                    /* Calculate group coordinates from original coordinates */
-                    std::pair<unsigned short int, unsigned short int> coordinates =
-                            {horizontalGroups * groupDimension + x, verticalGroups * groupDimension + y};
-                    auto possibleValues = (*constMatrix)[coordinates].getPossibleValues();
-
-                    /* Only add fixed values to the group Matrix
-                     * The other fields will be populated by the Matrix constructor anyway */
-                    /* TODO: check whether adding every value would be more efficient */
-                    if (possibleValues.size() == 1) {
-                        group.insert({{x, y}, Field{possibleValues[0]}});
-                    }
-                }
-            }
-
-            /* Construct group Matrix from the selected values */
-            Matrix temp{static_cast<unsigned short int>(groupDimension), group};
-
-            /* Add group Matrix to vector of groups */
-            result.push_back(temp);
-        }
-    }
-
-    return result;
-}
-
-/**
  * Check whether Matrix is singluar
  * Each value in the Matrix should be present maximum once
  * Note that this only applies to distributed groups, doesn't apply for the whole puzzle
  * @param matrix_
  * @return
  */
-bool GroupStrategy::singular(Matrix const &matrix_) const {
+bool
+GroupStrategy::singular(std::vector<std::pair<unsigned short int, unsigned short int>> const &groupCoordinates) const {
     /* Initialize vector of visited elements */
     std::vector<unsigned short int> elements = {};
 
-    /* Calculate group dimension */
-    /* TODO: this value could be stored as a class variable thus saving numerous function calls */
-    auto group_dimension = matrix_.getDimension();
+    /* Iterate through Matrix coordinates */
+    for (auto const &coordinate : groupCoordinates) {
+        /* Get possible values */
+        auto const &list = (*constMatrix)[coordinate].getPossibleValues();
 
-    /* Iterate through Matrix values */
-    for (unsigned short int x = 1; x <= group_dimension; ++x) {
-        for (unsigned short int y = 1; y <= group_dimension; ++y) {
-            auto list = matrix_[{x, y}].getPossibleValues();
+        /* If the Field value is fixed, check whether we already visited it once */
+        if (list.size() == 1) {
+            auto result = std::find(std::begin(elements), std::end(elements), list[0]);
 
-            /* If the Field value is fixed, check whether we already visited it once */
-            if (list.size() == 1) {
-                auto result = std::find(std::begin(elements), std::end(elements), list[0]);
-
-                /* If yes, the Matrix isn't singular */
-                if (result != std::end(elements)) {
-                    return false;
-                }
-
-                /* Otherwise add it to the visited values vector */
-                elements.push_back(list[0]);
+            /* If yes, the Matrix isn't singular */
+            if (result != std::end(elements)) {
+                return false;
             }
+
+            /* Otherwise add it to the visited values vector */
+            elements.push_back(list[0]);
         }
     }
 
@@ -101,13 +50,13 @@ bool GroupStrategy::validate(Matrix const &m) {
     /* Save Matrix const reference and dimension as class variables */
     constMatrix = &m;
     dimension = constMatrix->getDimension();
+    groupDimension = static_cast<unsigned short>(sqrt(dimension));
 
-    /* Execute group separation */
-    /* TODO: getting the group coordinates with the getGroupCoordinates(...) function could also work */
-    auto groups = separateToGroups();
+    /* Get group coordinates */
+    auto groups = getGroupCoordinates();
 
     /* Check whether every group is valid */
-    for (Matrix const &group : groups) {
+    for (auto const &group : groups) {
         if (!singular(group)) {
             return false;
         }
@@ -126,6 +75,7 @@ bool GroupStrategy::simplify(Matrix &m) {
     /* Save Matrix reference and dimension as class variables */
     matrix = &m;
     dimension = matrix->getDimension();
+    groupDimension = static_cast<unsigned short>(sqrt(dimension));
 
     /* Store whether the Matrix has been successfully simplified */
     bool simplified = false;
@@ -250,9 +200,6 @@ bool GroupStrategy::removeFromGroup(std::vector<std::pair<unsigned short int, un
  * @return
  */
 std::vector<std::vector<std::pair<unsigned short int, unsigned short int>>> GroupStrategy::getGroupCoordinates() const {
-    /* Calculate group dimension from Matrix dimension */
-    auto groupDimension = sqrt(dimension);
-
     /* Initialize result vector */
     std::vector<std::vector<std::pair<unsigned short int, unsigned short int>>> result = {};
 
