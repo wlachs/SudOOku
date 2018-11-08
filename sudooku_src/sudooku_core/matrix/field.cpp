@@ -82,8 +82,6 @@ void Field::removeValue() {
  * @return
  */
 bool Field::removeValue(unsigned short const int value) {
-    /* TODO: contains function can be reused here */
-
     /* Try to find value in the vector */
     auto it = std::find(std::begin(possibleValues), std::end(possibleValues), value);
 
