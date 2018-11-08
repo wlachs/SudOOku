@@ -14,13 +14,33 @@ SudookuController::SudookuController(InputHandler *inputHandler_, OutputHandler 
         : inputHandler(inputHandler_), outputHandler(outputHandler_), solver(solver_) {}
 
 /**
- * Should first receive input from any input handler
- * Then process the given input using a solver core function
- * Finally as the run terminates, notify the output handler
+ * Initialize solver and execute until all puzzles from the input are solved
  */
 void SudookuController::run() {
     /* Get input from the input handler and pass it to the solver */
     initializeSolver();
+
+    /* Notify output handler */
+    outputHandler->notifyEvent(SudookuEvent::RUN_START, nullptr);
+
+    /* Run for each input received */
+    while (inputHandler->hasInput()) {
+        runOne();
+    }
+
+    /* Notify output handler of the results */
+    outputHandler->notifyEvent(SudookuEvent::RUN_END, nullptr);
+}
+
+/**
+ * Solve next puzzle from the input
+ */
+void SudookuController::runOne() {
+    /* Get next puzzle */
+    Matrix input = inputHandler->readInput();
+
+    /* Set Solver initial Matrix */
+    solver->setInitialMatrix(input);
 
     /* Execute the solver function */
     solver->solve();
@@ -32,28 +52,17 @@ void SudookuController::run() {
     for (auto const &solution : solutions) {
         outputHandler->notifyEvent(SudookuEvent::SOLUTION, &solution);
     }
-
-    /* Notify output handler of the results */
-    outputHandler->notifyEvent(SudookuEvent::RUN_END, nullptr);
 }
 
 /**
- * Get an input matrix from the input handler
  * Set the matching solver rules
  */
 void SudookuController::initializeSolver() {
-    /* Get the initial matrix */
-    Matrix const &inputMatrix = inputHandler->readInput();
-
     /* Get solver rules */
     rules = inputHandler->readRules();
 
     /* Initialize solver */
-    solver->setInitialMatrix(inputMatrix);
     solver->setRules(rules);
-
-    /* Notify output handler */
-    outputHandler->notifyEvent(SudookuEvent::RUN_START, &inputMatrix);
 }
 
 /**

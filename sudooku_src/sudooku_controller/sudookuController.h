@@ -22,6 +22,8 @@ private:
 
     void initializeSolver();
 
+    void runOne();
+
 public:
     SudookuController(InputHandler *, OutputHandler *, Solver *);
 
