@@ -18,6 +18,8 @@ public:
 
     virtual ~InputHandler() = default;
 
+    virtual bool hasInput() const = 0;
+
     virtual Matrix readInput() = 0;
 
     virtual std::vector<SolvingStrategy *> readRules() = 0;
