@@ -4,4 +4,6 @@ add_library(
         noStrategiesException.h
         noMatrixException.cpp
         noMatrixException.h
+        fieldDoesntContainValueException.cpp
+        fieldDoesntContainValueException.h
 )
