@@ -10,6 +10,7 @@
 #include <sudooku_core/strategies/diagonalStrategy.h>
 #include <sudooku_core/exceptions/noStrategiesException.h>
 #include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_core/exceptions/noMatrixException.h>
 
 /**
  * Solver test fixture class
@@ -147,12 +148,14 @@ TEST_F(SolverTests, diagonal_test) {
 /**
  * Test case to check what happens when a puzzle is solved without strategies
  */
-TEST_F(SolverTests, solve_empty_test) {
+TEST_F(SolverTests, solve_empty_strategies_test) {
     /* Initialize Solver */
     Solver solver{};
 
-    /* Try running the solver without any strategies specified
-     * Note that there is also no Matrix specified but that isn't necessarily a problem */
+    /* Add initial Matrix to avoid getting different type of exception */
+    solver.setInitialMatrix(Matrix{1, {{{1, 1}, Field{1}}}});
+
+    /* Try running the solver without any strategies specified */
     try {
         /* Execute solving method */
         solver.solve();
@@ -166,5 +169,29 @@ TEST_F(SolverTests, solve_empty_test) {
         /* In case another type of exception is thrown, the test should fail */
     catch (...) {
         FAIL() << "Expected NoStrategiesException";
+    }
+}
+
+/**
+ * Test case to check what happens when a puzzle is solved without an initial Matrix
+ */
+TEST_F(SolverTests, solve_empty_matrix_test) {
+    /* Initialize Solver */
+    Solver solver{};
+
+    /* Try running the solver without an initial Matrix specified */
+    try {
+        /* Execute solving method */
+        solver.solve();
+    }
+
+        /* A specific type of exception should be thrown */
+    catch (NoMatrixException &e) {
+        EXPECT_EQ(std::string{"No initial Matrix provided!"}, e.what());
+    }
+
+        /* In case another type of exception is thrown, the test should fail */
+    catch (...) {
+        FAIL() << "Expected NoMatrixException";
     }
 }
