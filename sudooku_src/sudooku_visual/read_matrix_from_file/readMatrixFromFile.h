@@ -8,7 +8,7 @@
 #include <fstream>
 #include <sudooku_visual/sudookuReader.h>
 
-class ReadMatrixFromFile : SudookuReader {
+class ReadMatrixFromFile : public SudookuReader {
 private:
     const char SEPARATOR = ';';
     unsigned short int rowIndex = 1;
