@@ -49,12 +49,14 @@ TEST_F(FieldTests, fixvalue_noarg_test) {
     /* Execute method */
     f1.fixValue();
 
-    /* TODO: getPossibleValues() is called twice though it would be enough once */
+    /* Retrieve possible Field values */
+    auto const &possibleValues = f1.getPossibleValues();
+
     /* The length of the vector should equal 1 */
-    ASSERT_EQ(1, f1.getPossibleValues().size());
+    ASSERT_EQ(1, possibleValues.size());
 
     /* The value should be the first value of the vector defined in the SetUp() function */
-    ASSERT_EQ(1, f1.getPossibleValues()[0]);
+    ASSERT_EQ(1, possibleValues[0]);
 }
 
 /**
@@ -64,12 +66,14 @@ TEST_F(FieldTests, fixvalue_witharg_test) {
     /* Execute method */
     f1.fixValue(3);
 
-    /* TODO: getPossibleValues() is called twice though it would be enough once */
-    /* The length of the vector should equal 1 */
-    ASSERT_EQ(1, f1.getPossibleValues().size());
+    /* Retrieve possible Field values */
+    auto const &possibleValues = f1.getPossibleValues();
 
-    /* The value should be the value passed */
-    ASSERT_EQ(3, f1.getPossibleValues()[0]);
+    /* The length of the vector should equal 1 */
+    ASSERT_EQ(1, possibleValues.size());
+
+    /* The value should equal the value passed */
+    ASSERT_EQ(3, possibleValues[0]);
 }
 
 /**
@@ -165,5 +169,5 @@ TEST_F(FieldTests, contains_test) {
         EXPECT_TRUE(f1.contains(i));
     }
 
-    /* TODO: maybe a test with a false result would be nice too */
+    EXPECT_FALSE(f1.contains(-1));
 }

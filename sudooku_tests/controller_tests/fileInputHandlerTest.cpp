@@ -18,7 +18,7 @@ protected:
      */
     void SetUp() override {
         /* Initialize FileInputHandler object */
-        inputHandler = new FileInputHandler{{false}, "test1.mat"};
+        inputHandler = new FileInputHandler{{false}, "small1.mat"};
     }
 
     /**
@@ -35,10 +35,15 @@ protected:
  */
 TEST_F(FileInputHandlerTests, matrix_read_test) {
     /* Reading input file */
-    auto matrix = inputHandler->readInput();
+    auto m1 = inputHandler->readInput();
 
-    /* Check whether the dimension of the read Matrix is correct */
-    ASSERT_EQ(9, matrix.getDimension());
+    /* Construct matching local Matrix */
+    Matrix m2{4, {
+            {{1, 1}, Field{1}},
+            {{2, 1}, Field{2}},
+            {{3, 1}, Field{3}},
+    }};
 
-    /* TODO: probably not just the dimension but some values should also be checked */
+    /* Compare the two Matrices */
+    ASSERT_EQ(m1, m2);
 }
