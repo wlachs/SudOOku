@@ -58,6 +58,9 @@ TEST_F(FileOutputHandlerTests, matrix_write_invalid_test) {
     /* Try sending a solution notification with a nullpointer */
     try {
         outputHandler->notifyEvent(SudookuEvent::SOLUTION, nullptr);
+
+        /* If the execution reaches this point, the test failed */
+        FAIL() << "An exception of type NoMatrixProvidedException should have been thrown!";
     }
 
         /* A specific exception should be thrown in this case */
@@ -78,6 +81,9 @@ TEST_F(FileOutputHandlerTests, invalid_event_test) {
     /* Try sending a notification with the event type of '-1' */
     try {
         outputHandler->notifyEvent(static_cast<SudookuEvent>(-1), nullptr);
+
+        /* If the execution reaches this point, the test failed */
+        FAIL() << "An exception of type WrongEventTypeException should have been thrown!";
     }
 
         /* A specific exception should be thrown in this case */

@@ -5,6 +5,7 @@
 #include "field.h"
 #include "matrix.h"
 #include <algorithm>
+#include <exceptions/fieldDoesntContainValueException.h>
 
 /**
  * Initialize Field with a set of possible values
@@ -51,7 +52,10 @@ void Field::fixValue() {
  * @param value
  */
 void Field::fixValue(unsigned short const int value) {
-    /* TODO: Check if the value passed as a parameter is a member of possibleValues. If not: throw an exception */
+    /* Check if the value passed as a parameter is a member of possibleValues. If not: throw an exception */
+    if (!contains(value)) {
+        throw FieldDoesntContainValueException{};
+    }
 
     /* Remove all elements of the vector */
     possibleValues.clear();
@@ -78,8 +82,6 @@ void Field::removeValue() {
  * @return
  */
 bool Field::removeValue(unsigned short const int value) {
-    /* TODO: contains function can be reused here */
-
     /* Try to find value in the vector */
     auto it = std::find(std::begin(possibleValues), std::end(possibleValues), value);
 

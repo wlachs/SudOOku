@@ -159,6 +159,9 @@ TEST_F(SolverTests, solve_empty_strategies_test) {
     try {
         /* Execute solving method */
         solver.solve();
+
+        /* If the execution reaches this point, the test failed */
+        FAIL() << "NoStrategiesException should have been thrown";
     }
 
         /* A specific type of exception should be thrown */
@@ -183,6 +186,9 @@ TEST_F(SolverTests, solve_empty_matrix_test) {
     try {
         /* Execute solving method */
         solver.solve();
+
+        /* If the execution reaches this point, the test failed */
+        FAIL() << "NoMatrixException should have been thrown";
     }
 
         /* A specific type of exception should be thrown */
