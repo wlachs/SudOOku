@@ -5,6 +5,7 @@
 #include <gtest/gtest.h>
 #include <sudooku_core/matrix/field.h>
 #include <vector>
+#include <sudooku_core/exceptions/fieldDoesntContainValueException.h>
 
 /**
  * Field test fixture class
@@ -69,6 +70,29 @@ TEST_F(FieldTests, fixvalue_witharg_test) {
 
     /* The value should be the value passed */
     ASSERT_EQ(3, f1.getPossibleValues()[0]);
+}
+
+/**
+ * Test case for the fixValue(...) method, which should throw an exception when called with an incorrent value
+ */
+TEST_F(FieldTests, fixvalue_witharg_invalid_test) {
+    /* Try executing method */
+    try {
+        f1.fixValue(999);
+
+        /* If the execution reaches this point, the test failed */
+        FAIL() << "An exception of type FieldDoesntContainValueException should have been thrown!";
+    }
+
+        /* Should throw exception type FieldDoesntContainValueException */
+    catch (FieldDoesntContainValueException &e) {
+        EXPECT_EQ(std::string{"Field doesn't contain passed value!"}, e.what());
+    }
+
+        /* Should fail otherwise */
+    catch (...) {
+        FAIL() << "FieldDoesntContainValueException expected!";
+    }
 }
 
 /**
