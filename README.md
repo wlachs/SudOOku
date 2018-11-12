@@ -31,3 +31,4 @@ Object-oriented Sudoku solver ~~& generator~~
     - ```FileInputHandler```
     - ```FileOutputHandler```
     - ```ReadMatrixFromFile```
+    - ```PrintMatrixToFile```
