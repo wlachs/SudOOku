@@ -12,8 +12,14 @@ enum SudookuEvent {
     /* Should be called when the execution is started */
             RUN_START,
 
+    /* Should be called when the execution of a specific puzzle is started */
+            PUZZLE_START,
+
     /* Should be called when a solution is found */
             SOLUTION,
+
+    /* Should be called when the execution of a specific puzzle is over */
+            PUZZLE_END,
 
     /* Should be called when the execution is finished */
             RUN_END
