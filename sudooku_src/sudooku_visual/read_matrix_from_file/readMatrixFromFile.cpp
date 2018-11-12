@@ -31,6 +31,12 @@ void ReadMatrixFromFile::readPuzzles() {
 
         /* Read input file line-by-line */
         while (getline(inputFile, line)) {
+            /* If there were no useful values read, loop */
+            if (isWhiteSpace(line)) {
+                continue;
+            }
+
+            /* Initialize local variables */
             std::istringstream iss{line};
             std::string segment;
             std::vector<std::string> values;
@@ -39,11 +45,6 @@ void ReadMatrixFromFile::readPuzzles() {
              * Initially it's a ';' character */
             while (std::getline(iss, segment, SEPARATOR)) {
                 values.push_back(segment);
-            }
-
-            /* If there were no values read, loop */
-            if (values.empty()) {
-                continue;
             }
 
             /* The separators must be present even if there aren't any numbers in the file.
@@ -72,6 +73,22 @@ void ReadMatrixFromFile::readPuzzles() {
             }
         }
     }
+}
+
+/**
+ * Decide whether a line being read is relevant or not
+ * @param line
+ * @return
+ */
+bool ReadMatrixFromFile::isWhiteSpace(std::string const &line) const {
+    /* Empty string is always whitespace */
+    if (line.empty()) {
+        return true;
+    }
+
+    /* Otherwise search for leading comment char in string */
+    return line[0] == COMMENT;
+
 }
 
 /**
