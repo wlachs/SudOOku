@@ -67,6 +67,9 @@ void ReadMatrixFromFile::readPuzzles() {
 
                 /* Reset row counter */
                 rowIndex = 1;
+
+                /* Clear input map */
+                inputMap.clear();
             } else {
                 /* Otherwise, increment row index */
                 ++rowIndex;
