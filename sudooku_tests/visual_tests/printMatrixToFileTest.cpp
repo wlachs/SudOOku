@@ -57,6 +57,7 @@ protected:
     const std::string FILE_NAME = "solution2.mat";
     std::ofstream outputFile;
     SudookuPrinter *printMatrixToFile;
+    Matrix matrix;
 
     /**
      * Setup method running before the execution of each test case
@@ -67,6 +68,9 @@ protected:
 
         /* Initialize PrintMatrixToFile object */
         printMatrixToFile = new PrintMatrixToFile{outputFile};
+
+        /* Initialize sample Matrix object */
+        matrix = Matrix{4, {{{1, 1}, Field{1}}}};
     }
 
     /**
@@ -85,9 +89,6 @@ protected:
  * Test case to check whether the output commnet format of a single matrix is correct
  */
 TEST_F(PrintMatrixToFileTests, print_single_comment_test) {
-    /* Initialize sample Matrix object */
-    Matrix matrix{4, {{{1, 1}, Field{1}}}};
-
     /* Print solution header */
     printMatrixToFile->printStart(1);
 
@@ -108,9 +109,6 @@ TEST_F(PrintMatrixToFileTests, print_single_comment_test) {
  * Test case to check whether the output comment format of multiple matrices are correct
  */
 TEST_F(PrintMatrixToFileTests, print_multiple_comment_test) {
-    /* Initialize sample Matrix object */
-    Matrix matrix{4, {{{1, 1}, Field{1}}}};
-
     for (unsigned int i = 1; i <= 2; ++i) {
         /* Print solution header */
         printMatrixToFile->printStart(i);
@@ -133,4 +131,40 @@ TEST_F(PrintMatrixToFileTests, print_multiple_comment_test) {
 
     /* Check trailing line comment */
     EXPECT_EQ(true, lineEquals(FILE_NAME, 15, "#########"));
+}
+
+/**
+ * Check whether the output format of a single matrix is correct
+ */
+TEST_F(PrintMatrixToFileTests, print_single_test) {
+    /* Print Matrix */
+    printMatrixToFile->print(matrix);
+
+    /* Check every line */
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 1, "1;;;;"));
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 2, ";;;;"));
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 3, ";;;;"));
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 4, ";;;;"));
+}
+
+/**
+ * Check whether the output format of multiple matrices are correct
+ */
+TEST_F(PrintMatrixToFileTests, print_multiple_test) {
+    /* Print Matrix */
+    printMatrixToFile->print(matrix);
+
+    /* Print Matrix again */
+    printMatrixToFile->print(matrix);
+
+    /* Check every line */
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 1, "1;;;;"));
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 2, ";;;;"));
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 3, ";;;;"));
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 4, ";;;;"));
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 5, ""));
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 6, "1;;;;"));
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 7, ";;;;"));
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 8, ";;;;"));
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 9, ";;;;"));
 }
