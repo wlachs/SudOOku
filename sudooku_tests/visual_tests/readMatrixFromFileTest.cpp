@@ -72,3 +72,38 @@ TEST_F(ReadMatrixFromFileTests, read_multiple_test) {
     /* Expect input to have exactly two Matrices */
     ASSERT_EQ(2, vector.size());
 }
+
+/**
+ * Test case for reading multiple Matrices from a single commented input
+ */
+TEST_F(ReadMatrixFromFileTests, read_commented_puzzles_test) {
+    /* Initialize input file */
+    inputFile.open("small6.met");
+
+    /* Initialize ReadMatrixFromFile object */
+    ReadMatrixFromFile readMatrixFromFile{inputFile};
+
+    /* Read all Matrices from input */
+    auto const &vector = readMatrixFromFile.readAll();
+
+    /* Expect input to have exactly two Matrices */
+    ASSERT_EQ(2, vector.size());
+
+    /* The two Matrices read must equal to the Matrices in the small5.mat file */
+    /* Initialize multiple input file */
+    std::ifstream inputFile_;
+    inputFile_.open("small5.mat");
+
+    /* Initialize ReadMatrixFromFile object */
+    ReadMatrixFromFile readMatrixFromFile_{inputFile_};
+
+    /* Read all Matrices from input */
+    auto const &vector_ = readMatrixFromFile_.readAll();
+
+    /* Expect input to have exactly two Matrices */
+    ASSERT_EQ(2, vector_.size());
+
+    /* Compare the two Matrices */
+    EXPECT_EQ(vector[0], vector_[0]);
+    EXPECT_EQ(vector[1], vector_[1]);
+}
