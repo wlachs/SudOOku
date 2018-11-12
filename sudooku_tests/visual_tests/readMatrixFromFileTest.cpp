@@ -11,32 +11,14 @@
  */
 class ReadMatrixFromFileTests : public ::testing::Test {
 protected:
-    std::ifstream inputFile_1;
-    std::ifstream inputFile_2;
-    std::ifstream inputFile_3;
-
-    /**
-     * Setup method running before the execution of each test case
-     */
-    void SetUp() override {
-        /* Initialize single input file */
-        inputFile_1.open("small1.mat");
-
-        /* Initialize multiple input file */
-        inputFile_2.open("small5.mat");
-
-        /* Initialize multiple input file */
-        inputFile_3.open(".mat");
-    }
+    std::ifstream inputFile;
 
     /**
      * Teardown method running after the execution of each test case
      */
     void TearDown() override {
         /* Close input files */
-        inputFile_1.close();
-        inputFile_2.close();
-        inputFile_3.close();
+        inputFile.close();
     }
 };
 
@@ -44,8 +26,11 @@ protected:
  * Test case for reading an invalid input file
  */
 TEST_F(ReadMatrixFromFileTests, read_invalid_test) {
+    /* Initialize input file */
+    inputFile.open(".mat");
+
     /* Initialize ReadMatrixFromFile object */
-    ReadMatrixFromFile readMatrixFromFile{inputFile_3};
+    ReadMatrixFromFile readMatrixFromFile{inputFile};
 
     /* Read all Matrices from input */
     auto const &vector = readMatrixFromFile.readAll();
@@ -58,26 +43,93 @@ TEST_F(ReadMatrixFromFileTests, read_invalid_test) {
  * Test case for reading one Matrix from a single input
  */
 TEST_F(ReadMatrixFromFileTests, read_single_test) {
+    /* Initialize single input file */
+    inputFile.open("small1.mat");
+
     /* Initialize ReadMatrixFromFile object */
-    ReadMatrixFromFile readMatrixFromFile{inputFile_1};
+    ReadMatrixFromFile readMatrixFromFile{inputFile};
 
     /* Read all Matrices from input */
     auto const &vector = readMatrixFromFile.readAll();
 
     /* Expect input to have exactly one Matrix */
     ASSERT_EQ(1, vector.size());
+
+    /* Locally initialize Matrix */
+    Matrix m1{4, {
+            {{1, 1}, Field{1}},
+            {{2, 1}, Field{2}},
+            {{3, 1}, Field{3}}
+    }};
+
+    /* Check whether the Matrices are correct */
+    EXPECT_EQ(m1, vector[0]);
 }
 
 /**
  * Test case for reading multiple Matrices from a single input
  */
 TEST_F(ReadMatrixFromFileTests, read_multiple_test) {
+    /* Initialize multiple input file */
+    inputFile.open("small5.mat");
+
     /* Initialize ReadMatrixFromFile object */
-    ReadMatrixFromFile readMatrixFromFile{inputFile_2};
+    ReadMatrixFromFile readMatrixFromFile{inputFile};
 
     /* Read all Matrices from input */
     auto const &vector = readMatrixFromFile.readAll();
 
-    /* Expect input to have exactly one Matrix */
+    /* Expect input to have exactly two Matrices */
     ASSERT_EQ(2, vector.size());
+
+    /* Locally initialize Matrices */
+    Matrix m1{4, {
+            {{1, 1}, Field{1}},
+            {{2, 1}, Field{2}},
+            {{3, 1}, Field{3}}
+    }};
+    Matrix m2{4, {
+            {{1, 1}, Field{1}},
+            {{1, 2}, Field{2}},
+            {{1, 3}, Field{3}}
+    }};
+
+    /* Check whether the Matrices are correct */
+    EXPECT_EQ(m1, vector[0]);
+    EXPECT_EQ(m2, vector[1]);
+}
+
+/**
+ * Test case for reading multiple Matrices from a single commented input
+ */
+TEST_F(ReadMatrixFromFileTests, read_commented_puzzles_test) {
+    /* Initialize input file */
+    inputFile.open("small6.mat");
+
+    /* Initialize ReadMatrixFromFile object */
+    ReadMatrixFromFile readMatrixFromFile{inputFile};
+
+    /* Read all Matrices from input */
+    auto const &vector = readMatrixFromFile.readAll();
+
+    /* Expect input to have exactly two Matrices */
+    ASSERT_EQ(2, vector.size());
+
+    /* The two Matrices read must equal to the Matrices in the small5.mat file */
+    /* Initialize multiple input file */
+    std::ifstream inputFile_;
+    inputFile_.open("small5.mat");
+
+    /* Initialize ReadMatrixFromFile object */
+    ReadMatrixFromFile readMatrixFromFile_{inputFile_};
+
+    /* Read all Matrices from input */
+    auto const &vector_ = readMatrixFromFile_.readAll();
+
+    /* Expect input to have exactly two Matrices */
+    ASSERT_EQ(2, vector_.size());
+
+    /* Compare the two Matrices */
+    EXPECT_EQ(vector[0], vector_[0]);
+    EXPECT_EQ(vector[1], vector_[1]);
 }

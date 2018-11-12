@@ -39,6 +39,9 @@ void SudookuController::runOne() {
     /* Get next puzzle */
     Matrix input = inputHandler->readInput();
 
+    /* Notify output handler of new puzzle */
+    outputHandler->notifyEvent(SudookuEvent::PUZZLE_START, &input);
+
     /* Set Solver initial Matrix */
     solver->setInitialMatrix(input);
 
@@ -52,6 +55,9 @@ void SudookuController::runOne() {
     for (auto const &solution : solutions) {
         outputHandler->notifyEvent(SudookuEvent::SOLUTION, &solution);
     }
+
+    /* Notify output handler of the end of puzzle execution */
+    outputHandler->notifyEvent(SudookuEvent::PUZZLE_END, nullptr);
 }
 
 /**
@@ -69,7 +75,7 @@ void SudookuController::initializeSolver() {
  * Delete manually allocated solving strategies
  */
 SudookuController::~SudookuController() {
-    for (auto &rule : rules) {
+    for (auto *rule : rules) {
         delete rule;
         rule = nullptr;
     }

@@ -14,6 +14,10 @@ class SudookuPrinter {
 public:
     virtual ~SudookuPrinter() = default;
 
+    virtual void printStart(unsigned int) = 0;
+
+    virtual void printEnd() = 0;
+
     virtual void print(Matrix const &) = 0;
 };
 

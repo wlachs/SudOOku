@@ -10,12 +10,15 @@
 
 class ReadMatrixFromFile : public SudookuReader {
 private:
+    const char COMMENT = '#';
     const char SEPARATOR = ';';
     unsigned short int rowIndex = 1;
     std::ifstream &inputFile;
     std::vector<Matrix> inputs;
 
     void readPuzzles();
+
+    bool isWhiteSpace(std::string const &) const;
 
 public:
     explicit ReadMatrixFromFile(std::ifstream &);

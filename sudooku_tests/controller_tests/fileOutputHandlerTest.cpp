@@ -44,8 +44,14 @@ TEST_F(FileOutputHandlerTests, matrix_write_test) {
     /* Notify OutputHandler of execution start */
     outputHandler->notifyEvent(SudookuEvent::RUN_START, nullptr);
 
+    /* Notify OutputHandler of puzzle start */
+    outputHandler->notifyEvent(SudookuEvent::PUZZLE_START, &matrix1);
+
     /* Notify OutputHandler of solution found */
     outputHandler->notifyEvent(SudookuEvent::SOLUTION, &matrix1);
+
+    /* Notify OutputHandler of puzzle end */
+    outputHandler->notifyEvent(SudookuEvent::PUZZLE_END, nullptr);
 
     /* Notify OutputHandler of execution end */
     outputHandler->notifyEvent(SudookuEvent::RUN_END, nullptr);

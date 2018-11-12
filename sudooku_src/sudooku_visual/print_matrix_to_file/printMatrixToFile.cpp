@@ -11,6 +11,15 @@
 PrintMatrixToFile::PrintMatrixToFile(std::ofstream &solutionsFile_) : solutionsFile(solutionsFile_) {}
 
 /**
+ * Print puzzle id header to output file
+ * @param puzzleId
+ */
+void PrintMatrixToFile::printStart(unsigned const int puzzleId) {
+    /* Print comment with puzzle id */
+    solutionsFile << "## Solutions for puzzle " << puzzleId << std::endl;
+}
+
+/**
  * Prints the Matrix to the specified file
  * @param matrix
  */
@@ -39,4 +48,12 @@ void PrintMatrixToFile::print(Matrix const &matrix) {
 
     /* Empty line after each solution */
     solutionsFile << std::endl;
+}
+
+/**
+ * Print trailing separator comment to output file
+ */
+void PrintMatrixToFile::printEnd() {
+    /* Print separator comment */
+    solutionsFile << "#########\n\n";
 }
