@@ -79,9 +79,6 @@ protected:
     void TearDown() override {
         /* Delete SudookuReader object */
         delete printMatrixToFile;
-
-        /* Close output file */
-        outputFile.close();
     }
 };
 
@@ -97,6 +94,9 @@ TEST_F(PrintMatrixToFileTests, print_single_comment_test) {
 
     /* Print trailing comment */
     printMatrixToFile->printEnd();
+
+    /* Close output file */
+    outputFile.close();
 
     /* Check header line comment */
     EXPECT_EQ(true, lineEquals(FILE_NAME, 1, "## Solutions for puzzle 1"));
@@ -120,6 +120,9 @@ TEST_F(PrintMatrixToFileTests, print_multiple_comment_test) {
         printMatrixToFile->printEnd();
     }
 
+    /* Close output file */
+    outputFile.close();
+
     /* Check header line comment */
     EXPECT_EQ(true, lineEquals(FILE_NAME, 1, "## Solutions for puzzle 1"));
 
@@ -140,6 +143,9 @@ TEST_F(PrintMatrixToFileTests, print_single_test) {
     /* Print Matrix */
     printMatrixToFile->print(matrix);
 
+    /* Close output file */
+    outputFile.close();
+
     /* Check every line */
     EXPECT_EQ(true, lineEquals(FILE_NAME, 1, "1;;;;"));
     EXPECT_EQ(true, lineEquals(FILE_NAME, 2, ";;;;"));
@@ -156,6 +162,9 @@ TEST_F(PrintMatrixToFileTests, print_multiple_test) {
 
     /* Print Matrix again */
     printMatrixToFile->print(matrix);
+
+    /* Close output file */
+    outputFile.close();
 
     /* Check every line */
     EXPECT_EQ(true, lineEquals(FILE_NAME, 1, "1;;;;"));
