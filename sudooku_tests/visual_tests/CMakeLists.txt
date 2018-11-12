@@ -2,6 +2,7 @@ add_executable(
         visual_tests
         ../main.cpp
         readMatrixFromFileTest.cpp
+        printMatrixToFileTest.cpp
 )
 
 target_link_libraries(
