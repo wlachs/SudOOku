@@ -18,6 +18,7 @@ private:
     std::string solutionsFileName{};
     std::ofstream solutionsFile{};
     PrintMatrixToFile *printMatrixToFile;
+    unsigned int puzzleId{};
 
 public:
     explicit FileOutputHandler(std::string const &);
