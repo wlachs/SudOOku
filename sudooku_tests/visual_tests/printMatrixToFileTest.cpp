@@ -82,9 +82,9 @@ protected:
 };
 
 /**
- * Test case to check whether the output format of a single matrix is correct
+ * Test case to check whether the output commnet format of a single matrix is correct
  */
-TEST_F(PrintMatrixToFileTests, print_single_test) {
+TEST_F(PrintMatrixToFileTests, print_single_comment_test) {
     /* Initialize sample Matrix object */
     Matrix matrix{4, {{{1, 1}, Field{1}}}};
 
@@ -102,4 +102,35 @@ TEST_F(PrintMatrixToFileTests, print_single_test) {
 
     /* Check trailing line comment */
     EXPECT_EQ(true, lineEquals(FILE_NAME, 7, "#########"));
+}
+
+/**
+ * Test case to check whether the output comment format of multiple matrices are correct
+ */
+TEST_F(PrintMatrixToFileTests, print_multiple_comment_test) {
+    /* Initialize sample Matrix object */
+    Matrix matrix{4, {{{1, 1}, Field{1}}}};
+
+    for (unsigned int i = 1; i <= 2; ++i) {
+        /* Print solution header */
+        printMatrixToFile->printStart(i);
+
+        /* Print Matrix */
+        printMatrixToFile->print(matrix);
+
+        /* Print trailing comment */
+        printMatrixToFile->printEnd();
+    }
+
+    /* Check header line comment */
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 1, "## Solutions for puzzle 1"));
+
+    /* Check trailing line comment */
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 7, "#########"));
+
+    /* Check header line comment */
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 9, "## Solutions for puzzle 2"));
+
+    /* Check trailing line comment */
+    EXPECT_EQ(true, lineEquals(FILE_NAME, 15, "#########"));
 }
