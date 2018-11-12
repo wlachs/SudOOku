@@ -54,6 +54,16 @@ TEST_F(ReadMatrixFromFileTests, read_single_test) {
 
     /* Expect input to have exactly one Matrix */
     ASSERT_EQ(1, vector.size());
+
+    /* Locally initialize Matrix */
+    Matrix m1{4, {
+            {{1, 1}, Field{1}},
+            {{2, 1}, Field{2}},
+            {{3, 1}, Field{3}}
+    }};
+
+    /* Check whether the Matrices are correct */
+    EXPECT_EQ(m1, vector[0]);
 }
 
 /**
@@ -71,6 +81,22 @@ TEST_F(ReadMatrixFromFileTests, read_multiple_test) {
 
     /* Expect input to have exactly two Matrices */
     ASSERT_EQ(2, vector.size());
+
+    /* Locally initialize Matrices */
+    Matrix m1{4, {
+            {{1, 1}, Field{1}},
+            {{2, 1}, Field{2}},
+            {{3, 1}, Field{3}}
+    }};
+    Matrix m2{4, {
+            {{1, 1}, Field{1}},
+            {{1, 2}, Field{2}},
+            {{1, 3}, Field{3}}
+    }};
+
+    /* Check whether the Matrices are correct */
+    EXPECT_EQ(m1, vector[0]);
+    EXPECT_EQ(m2, vector[1]);
 }
 
 /**
