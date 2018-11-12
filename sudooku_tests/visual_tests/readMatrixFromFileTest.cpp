@@ -78,7 +78,7 @@ TEST_F(ReadMatrixFromFileTests, read_multiple_test) {
  */
 TEST_F(ReadMatrixFromFileTests, read_commented_puzzles_test) {
     /* Initialize input file */
-    inputFile.open("small6.met");
+    inputFile.open("small6.mat");
 
     /* Initialize ReadMatrixFromFile object */
     ReadMatrixFromFile readMatrixFromFile{inputFile};
