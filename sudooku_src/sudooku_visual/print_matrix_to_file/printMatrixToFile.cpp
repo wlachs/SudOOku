@@ -15,7 +15,8 @@ PrintMatrixToFile::PrintMatrixToFile(std::ofstream &solutionsFile_) : solutionsF
  * @param puzzleId
  */
 void PrintMatrixToFile::printStart(unsigned const int puzzleId) {
-
+    /* Print comment with puzzle id */
+    solutionsFile << "## Solutions for puzzle " << puzzleId << std::endl;
 }
 
 /**
@@ -53,5 +54,6 @@ void PrintMatrixToFile::print(Matrix const &matrix) {
  * Print trailing separator comment to output file
  */
 void PrintMatrixToFile::printEnd() {
-
+    /* Print separator comment */
+    solutionsFile << "#########\n\n";
 }
