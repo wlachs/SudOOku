@@ -11,32 +11,14 @@
  */
 class ReadMatrixFromFileTests : public ::testing::Test {
 protected:
-    std::ifstream inputFile_1;
-    std::ifstream inputFile_2;
-    std::ifstream inputFile_3;
-
-    /**
-     * Setup method running before the execution of each test case
-     */
-    void SetUp() override {
-        /* Initialize single input file */
-        inputFile_1.open("small1.mat");
-
-        /* Initialize multiple input file */
-        inputFile_2.open("small5.mat");
-
-        /* Initialize multiple input file */
-        inputFile_3.open(".mat");
-    }
+    std::ifstream inputFile;
 
     /**
      * Teardown method running after the execution of each test case
      */
     void TearDown() override {
         /* Close input files */
-        inputFile_1.close();
-        inputFile_2.close();
-        inputFile_3.close();
+        inputFile.close();
     }
 };
 
@@ -44,8 +26,11 @@ protected:
  * Test case for reading an invalid input file
  */
 TEST_F(ReadMatrixFromFileTests, read_invalid_test) {
+    /* Initialize input file */
+    inputFile.open(".mat");
+
     /* Initialize ReadMatrixFromFile object */
-    ReadMatrixFromFile readMatrixFromFile{inputFile_3};
+    ReadMatrixFromFile readMatrixFromFile{inputFile};
 
     /* Read all Matrices from input */
     auto const &vector = readMatrixFromFile.readAll();
@@ -58,8 +43,11 @@ TEST_F(ReadMatrixFromFileTests, read_invalid_test) {
  * Test case for reading one Matrix from a single input
  */
 TEST_F(ReadMatrixFromFileTests, read_single_test) {
+    /* Initialize single input file */
+    inputFile.open("small1.mat");
+
     /* Initialize ReadMatrixFromFile object */
-    ReadMatrixFromFile readMatrixFromFile{inputFile_1};
+    ReadMatrixFromFile readMatrixFromFile{inputFile};
 
     /* Read all Matrices from input */
     auto const &vector = readMatrixFromFile.readAll();
@@ -72,8 +60,11 @@ TEST_F(ReadMatrixFromFileTests, read_single_test) {
  * Test case for reading multiple Matrices from a single input
  */
 TEST_F(ReadMatrixFromFileTests, read_multiple_test) {
+    /* Initialize multiple input file */
+    inputFile.open("small5.mat");
+
     /* Initialize ReadMatrixFromFile object */
-    ReadMatrixFromFile readMatrixFromFile{inputFile_2};
+    ReadMatrixFromFile readMatrixFromFile{inputFile};
 
     /* Read all Matrices from input */
     auto const &vector = readMatrixFromFile.readAll();
