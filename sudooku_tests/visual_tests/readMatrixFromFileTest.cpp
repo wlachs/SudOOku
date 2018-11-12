@@ -69,6 +69,6 @@ TEST_F(ReadMatrixFromFileTests, read_multiple_test) {
     /* Read all Matrices from input */
     auto const &vector = readMatrixFromFile.readAll();
 
-    /* Expect input to have exactly one Matrix */
+    /* Expect input to have exactly two Matrices */
     ASSERT_EQ(2, vector.size());
 }
