@@ -19,6 +19,10 @@ private:
 public:
     explicit PrintMatrixToFile(std::ofstream &);
 
+    void printStart(unsigned int) override;
+
+    void printEnd() override;
+
     void print(Matrix const &) override;
 
     ~PrintMatrixToFile() override = default;
