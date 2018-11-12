@@ -75,7 +75,7 @@ void SudookuController::initializeSolver() {
  * Delete manually allocated solving strategies
  */
 SudookuController::~SudookuController() {
-    for (auto &rule : rules) {
+    for (auto *rule : rules) {
         delete rule;
         rule = nullptr;
     }
