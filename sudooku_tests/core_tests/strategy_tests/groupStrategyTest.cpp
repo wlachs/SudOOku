@@ -58,7 +58,7 @@ TEST_F(GroupStrategyTests, simplify_trivial) {
     groupStrategy.simplify(m1);
 
     /* Retrieve possible values */
-    auto &values = m1[{2, 2}].getPossibleValues();
+    auto const &values = m1[{2, 2}].getPossibleValues();
 
     /* The simplified vector should have a length of 1 */
     ASSERT_EQ(1, values.size());
@@ -75,7 +75,7 @@ TEST_F(GroupStrategyTests, simplify_advanced) {
     groupStrategy.simplify(m1);
 
     /* Retrieve possible values */
-    auto &values = m1[{2, 4}].getPossibleValues();
+    auto const &values = m1[{2, 4}].getPossibleValues();
 
     /* The simplified vector should have a length of 1 */
     ASSERT_EQ(1, values.size());
