@@ -37,11 +37,11 @@ bool ColumnStrategy::isColumnValid() {
 
     /* Iterate over each row */
     for (row = 1; row <= dimension; ++row) {
-        auto possibleValues = (*constMatrix)[{row, column}].getPossibleValues();
+        auto const &possibleValues = (*constMatrix)[{row, column}].getPossibleValues();
 
         /* Add single values to vector */
         if (possibleValues.size() == 1) {
-            auto result = std::find(std::begin(fixValues), std::end(fixValues), possibleValues[0]);
+            auto const result = std::find(std::begin(fixValues), std::end(fixValues), possibleValues[0]);
 
             /* Check whether the value has already been seen */
             if (result != std::end(fixValues)) {
@@ -92,7 +92,7 @@ bool ColumnStrategy::simplifyColumn() {
 
     /* Go over each row and execute optimization */
     for (row = 1; row <= dimension; ++row) {
-        auto possibleValues = (*matrix)[{row, column}].getPossibleValues();
+        auto const &possibleValues = (*matrix)[{row, column}].getPossibleValues();
 
         if (possibleValues.size() == 1) {
             /* If there is only one value on the coordinate, choose singular optimization */
@@ -157,7 +157,7 @@ bool ColumnStrategy::recursiveRemove(unsigned short const int row_,
  */
 bool ColumnStrategy::optimizeUnique(std::vector<unsigned short int> const &values) {
     /* Check unique criteria for each value in the column */
-    for (auto value : values) {
+    for (auto const value : values) {
         if (isUniqueInColumn(value)) {
             /* If it is unique, fix it */
             (*matrix)[{row, column}].fixValue(value);

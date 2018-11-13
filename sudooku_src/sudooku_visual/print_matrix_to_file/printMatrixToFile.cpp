@@ -31,7 +31,7 @@ void PrintMatrixToFile::print(Matrix const &matrix) {
     for (unsigned short int x = 1; x <= dimension; ++x) {
         for (unsigned short int y = 1; y <= dimension; ++y) {
             /* Retrieve possible values of the Field */
-            auto possibleValues = matrix[{x, y}].getPossibleValues();
+            auto const &possibleValues = matrix[{x, y}].getPossibleValues();
 
             if (possibleValues.size() == 1) {
                 /* If the Field has a fixed value, print it */

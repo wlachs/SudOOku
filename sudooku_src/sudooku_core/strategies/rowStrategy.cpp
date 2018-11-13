@@ -37,11 +37,11 @@ bool RowStrategy::isRowValid() {
 
     /* Iterate through every column */
     for (column = 1; column <= dimension; ++column) {
-        auto possibleValues = (*constMatrix)[{row, column}].getPossibleValues();
+        auto const &possibleValues = (*constMatrix)[{row, column}].getPossibleValues();
 
         /* Add single values to vector */
         if (possibleValues.size() == 1) {
-            auto result = std::find(std::begin(fixValues), std::end(fixValues), possibleValues[0]);
+            auto const result = std::find(std::begin(fixValues), std::end(fixValues), possibleValues[0]);
 
             /* Check whether the value has already been seen */
             if (result != std::end(fixValues)) {
@@ -156,7 +156,7 @@ bool RowStrategy::recursiveRemove(unsigned short const int column_,
  */
 bool RowStrategy::optimizeUnique(std::vector<unsigned short int> const &values) const {
     /* Check unique criteria for each value in the row */
-    for (auto value : values) {
+    for (auto const value : values) {
         if (isUniqueInRow(value)) {
             /* If it is unique, fix it */
             (*matrix)[{row, column}].fixValue(value);

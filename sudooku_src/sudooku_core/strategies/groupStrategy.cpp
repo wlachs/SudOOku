@@ -25,7 +25,7 @@ GroupStrategy::singular(std::vector<std::pair<unsigned short int, unsigned short
 
         /* If the Field value is fixed, check whether we already visited it once */
         if (list.size() == 1) {
-            auto result = std::find(std::begin(elements), std::end(elements), list[0]);
+            auto const result = std::find(std::begin(elements), std::end(elements), list[0]);
 
             /* If yes, the Matrix isn't singular */
             if (result != std::end(elements)) {
@@ -53,7 +53,7 @@ bool GroupStrategy::validate(Matrix const &m) {
     groupDimension = static_cast<unsigned short>(sqrt(dimension));
 
     /* Get group coordinates */
-    auto groups = getGroupCoordinates();
+    auto const &groups = getGroupCoordinates();
 
     /* Check whether every group is valid */
     for (auto const &group : groups) {
@@ -81,7 +81,7 @@ bool GroupStrategy::simplify(Matrix &m) {
     bool simplified = false;
 
     /* Get vector of vectors for each coordinate in the groups */
-    auto groupCoordinates = getGroupCoordinates();
+    auto const groupCoordinates = getGroupCoordinates();
 
     /* Try to simplify each group */
     for (auto const &group : groupCoordinates) {
@@ -107,7 +107,7 @@ bool GroupStrategy::simplifyGroup(std::vector<std::pair<unsigned short int, unsi
     /* Check each group separately */
     for (auto const &coordinate : group) {
         /* Store group values */
-        auto &values = (*matrix)[coordinate].getPossibleValues();
+        auto const &values = (*matrix)[coordinate].getPossibleValues();
 
         if (values.size() == 1) {
             /* If there is only one possible value in the Field, remove it from all other positions in the group */
@@ -133,7 +133,7 @@ bool GroupStrategy::optimizeUnique(std::vector<std::pair<unsigned short int, uns
                                    std::pair<unsigned short int, unsigned short int> const &coordinate,
                                    std::vector<unsigned short int> const &values) const {
     /* Iterate over each value in the vector of values */
-    for (auto &value : values) {
+    for (auto const &value : values) {
         /* If a unique value is found, fix it */
         if (isUniqueInGroup(group, value)) {
             (*matrix)[coordinate].fixValue(value);
