@@ -41,13 +41,13 @@ protected:
  */
 TEST_F(ForkHelperTests, fork_test) {
     /* Execute function */
-    auto m2 = forkHelper->fork();
+    auto const m2 = forkHelper->fork();
 
     /* Retrieve possible values of the initial Matrix */
-    auto &val1 = m1[{4, 4}].getPossibleValues();
+    auto const &val1 = m1[{4, 4}].getPossibleValues();
 
     /* Retrieve possible values of the new Matrix */
-    auto &val2 = m2[{4, 4}].getPossibleValues();
+    auto const &val2 = m2[{4, 4}].getPossibleValues();
 
     /* The vector length of the initial Matrix should be equal to 1
      * It was 3 initially but the first one got fixed by the ForkHelper */
