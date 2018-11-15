@@ -24,33 +24,41 @@ protected:
 
 /**
  * Test case for reading an invalid input file
+ * Version 2
  */
-TEST_F(ReadMatrixFromFileTests, read_invalid_test) {
+TEST_F(ReadMatrixFromFileTests, read_invalid_test_v2) {
     /* Initialize input file */
     inputFile.open(".mat");
 
     /* Initialize ReadMatrixFromFile object */
     ReadMatrixFromFile readMatrixFromFile{inputFile};
 
-    /* Read all Matrices from input */
-    auto const &vector = readMatrixFromFile.readAll();
-
-    /* Expect input to have no Matrix */
-    ASSERT_EQ(0, vector.size());
+    /* Expect the hasInput function to return false as there is no valid input */
+    ASSERT_EQ(false, readMatrixFromFile.hasInput());
 }
 
 /**
  * Test case for reading one Matrix from a single input
+ * Version 2
  */
-TEST_F(ReadMatrixFromFileTests, read_single_test) {
+TEST_F(ReadMatrixFromFileTests, read_single_test_v2) {
     /* Initialize single input file */
     inputFile.open("small1.mat");
 
     /* Initialize ReadMatrixFromFile object */
     ReadMatrixFromFile readMatrixFromFile{inputFile};
 
+    /* Initialize input Matrix vector */
+    std::vector<Matrix> vector{};
+
     /* Read all Matrices from input */
-    auto const &vector = readMatrixFromFile.readAll();
+    while (readMatrixFromFile.hasInput()) {
+        /* Read input */
+        Matrix inputMatrix = readMatrixFromFile.readOne();
+
+        /* Add Matrix read to vector */
+        vector.push_back(inputMatrix);
+    }
 
     /* Expect input to have exactly one Matrix */
     ASSERT_EQ(1, vector.size());
@@ -68,16 +76,26 @@ TEST_F(ReadMatrixFromFileTests, read_single_test) {
 
 /**
  * Test case for reading multiple Matrices from a single input
+ * Version 2
  */
-TEST_F(ReadMatrixFromFileTests, read_multiple_test) {
+TEST_F(ReadMatrixFromFileTests, read_multiple_test_v2) {
     /* Initialize multiple input file */
     inputFile.open("small5.mat");
 
     /* Initialize ReadMatrixFromFile object */
     ReadMatrixFromFile readMatrixFromFile{inputFile};
 
+    /* Initialize input Matrix vector */
+    std::vector<Matrix> vector{};
+
     /* Read all Matrices from input */
-    auto const &vector = readMatrixFromFile.readAll();
+    while (readMatrixFromFile.hasInput()) {
+        /* Read input */
+        Matrix inputMatrix = readMatrixFromFile.readOne();
+
+        /* Add Matrix read to vector */
+        vector.push_back(inputMatrix);
+    }
 
     /* Expect input to have exactly two Matrices */
     ASSERT_EQ(2, vector.size());
@@ -101,16 +119,26 @@ TEST_F(ReadMatrixFromFileTests, read_multiple_test) {
 
 /**
  * Test case for reading multiple Matrices from a single commented input
+ * Version 2
  */
-TEST_F(ReadMatrixFromFileTests, read_commented_puzzles_test) {
+TEST_F(ReadMatrixFromFileTests, read_commented_puzzles_test_v2) {
     /* Initialize input file */
     inputFile.open("small6.mat");
 
     /* Initialize ReadMatrixFromFile object */
     ReadMatrixFromFile readMatrixFromFile{inputFile};
 
+    /* Initialize input Matrix vector */
+    std::vector<Matrix> vector{};
+
     /* Read all Matrices from input */
-    auto const &vector = readMatrixFromFile.readAll();
+    while (readMatrixFromFile.hasInput()) {
+        /* Read input */
+        Matrix inputMatrix = readMatrixFromFile.readOne();
+
+        /* Add Matrix read to vector */
+        vector.push_back(inputMatrix);
+    }
 
     /* Expect input to have exactly two Matrices */
     ASSERT_EQ(2, vector.size());
@@ -123,8 +151,17 @@ TEST_F(ReadMatrixFromFileTests, read_commented_puzzles_test) {
     /* Initialize ReadMatrixFromFile object */
     ReadMatrixFromFile readMatrixFromFile_{inputFile_};
 
+    /* Initialize input Matrix vector */
+    std::vector<Matrix> vector_{};
+
     /* Read all Matrices from input */
-    auto const &vector_ = readMatrixFromFile_.readAll();
+    while (readMatrixFromFile_.hasInput()) {
+        /* Read input */
+        Matrix inputMatrix_ = readMatrixFromFile_.readOne();
+
+        /* Add Matrix read to vector */
+        vector_.push_back(inputMatrix_);
+    }
 
     /* Expect input to have exactly two Matrices */
     ASSERT_EQ(2, vector_.size());
