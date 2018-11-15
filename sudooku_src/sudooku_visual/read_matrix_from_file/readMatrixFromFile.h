@@ -17,8 +17,6 @@ private:
     std::vector<Matrix> inputs;
     Matrix input{0, {}};
 
-    void readPuzzles();
-
     void readPuzzle();
 
     bool isWhiteSpace(std::string const &) const;
@@ -29,8 +27,6 @@ public:
     explicit ReadMatrixFromFile(std::ifstream &);
 
     ~ReadMatrixFromFile() override = default;
-
-    std::vector<Matrix> readAll() override;
 
     bool hasInput() override;
 

@@ -14,8 +14,6 @@ class SudookuReader {
 public:
     virtual ~SudookuReader() = default;
 
-    virtual std::vector<Matrix> readAll() = 0;
-
     virtual bool hasInput() = 0;
 
     virtual Matrix readOne() = 0;
