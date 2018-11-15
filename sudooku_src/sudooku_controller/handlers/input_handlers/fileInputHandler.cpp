@@ -19,9 +19,6 @@ FileInputHandler::FileInputHandler(std::vector<bool> const &flags_, std::string 
 
     /* Allocate Matrix reader object */
     readMatrixFromFile = new ReadMatrixFromFile{inputFile};
-
-    /* Read puzzles */
-    inputMatrices = readMatrixFromFile->readAll();
 }
 
 /**
@@ -40,14 +37,8 @@ FileInputHandler::~FileInputHandler() {
  * @return parsed Matrix object
  */
 Matrix FileInputHandler::readInput() {
-    /* Store temporarily the next input */
-    Matrix temp = *std::begin(inputMatrices);
-
-    /* Remove input from unsolved vector */
-    inputMatrices.erase(std::begin(inputMatrices));
-
-    /* Return Matrix */
-    return temp;
+    /* Read one input */
+    return readMatrixFromFile->readOne();
 }
 
 /**
@@ -75,5 +66,6 @@ std::vector<SolvingStrategy *> FileInputHandler::readRules() {
  * @return
  */
 bool FileInputHandler::hasInput() const {
-    return !inputMatrices.empty();
+    /* Call the matching function */
+    return readMatrixFromFile->hasInput();
 }
