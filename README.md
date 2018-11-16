@@ -125,7 +125,7 @@ To specify the solving strategies, use the following flags: ```-r```, ```-c```, 
  - a value can appear once in a column
 ##### Group: ```-g```
  - a value can appear once in a group
-##### Row: ```-d```
+##### Diagonal: ```-d```
  - a value can appear once in a diagonal of the Matrix
 
 Example:
