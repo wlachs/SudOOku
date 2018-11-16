@@ -9,7 +9,6 @@ Object-oriented Sudoku solver ~~& generator~~
 
 ## Planned features
 - on-demand puzzle reader (ReadMatrixFromFile refactoring)
-- specify output file name as a command line parameter
 
 ## Solver
 - implemented
