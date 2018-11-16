@@ -7,9 +7,6 @@
 Object-oriented Sudoku solver ~~& generator~~
 #### Version: 1.2
 
-## Planned features
-- specify output file name as a command line parameter
-
 ## Solver
 - implemented
 - *verification rules* defined in the strategies
