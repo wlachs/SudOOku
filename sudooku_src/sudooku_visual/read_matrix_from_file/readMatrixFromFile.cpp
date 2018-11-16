@@ -11,14 +11,14 @@
  * @param inputFile_
  */
 ReadMatrixFromFile::ReadMatrixFromFile(std::ifstream &inputFile_) : inputFile(inputFile_) {
-    /* Read all inputs from file */
-    readPuzzles();
+    /* Prefetch one input */
+    readPuzzle();
 }
 
 /**
  * Read the next puzzle from input
  */
-void ReadMatrixFromFile::readPuzzles() {
+void ReadMatrixFromFile::readPuzzle() {
     if (inputFile.is_open()) {
         /* Init temporary variable for constructing a Matrix */
         std::map<std::pair<unsigned short int, unsigned short int>, Field> inputMap;
@@ -30,7 +30,7 @@ void ReadMatrixFromFile::readPuzzles() {
         unsigned short int dimension{};
 
         /* Read input file line-by-line */
-        while (getline(inputFile, line)) {
+        while (getline(inputFile, line) && !isInputMatrixValid()) {
             /* If there were no useful values read, loop */
             if (isWhiteSpace(line)) {
                 continue;
@@ -63,7 +63,7 @@ void ReadMatrixFromFile::readPuzzles() {
 
             if (rowIndex == dimension) {
                 /* Initialize puzzle in vector */
-                inputs.emplace_back(Matrix{dimension, inputMap});
+                input = Matrix{dimension, inputMap};
 
                 /* Reset row counter */
                 rowIndex = 1;
@@ -95,9 +95,35 @@ bool ReadMatrixFromFile::isWhiteSpace(std::string const &line) const {
 }
 
 /**
- * Read every input from file and return a puzzle vector
+ * Checks whether there are any unsolved puzzles to be read from the input file
+ */
+bool ReadMatrixFromFile::hasInput() {
+    /* If there is no valid input, the dimension will equal 0 */
+    return input.getDimension() != 0;
+}
+
+/**
+ * Returns one unsolved Matrix from the input
+ * If called when there are no more inputs available, an exception is thrown of type NoInputMatrixException
  * @return
  */
-std::vector<Matrix> ReadMatrixFromFile::readAll() {
-    return inputs;
+Matrix ReadMatrixFromFile::readOne() {
+    /* Save return value */
+    Matrix returnValue = std::move(input);
+
+    /* Read next Matrix from the input */
+    readPuzzle();
+
+    /* Return Matrix */
+    return returnValue;
+}
+
+/**
+ * Checks whether the input Matrix is valid
+ * The matrix is valid if the dimension is greater than 0
+ * This function is basically identical to the hasInput function, just creating this for code readability
+ * @return
+ */
+bool ReadMatrixFromFile::isInputMatrixValid() {
+    return hasInput();
 }

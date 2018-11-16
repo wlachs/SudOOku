@@ -16,6 +16,12 @@
  * @return
  */
 int main(int argc, char *argv[]) {
+    /* Input file name variable */
+    const char *inputFileName = nullptr;
+
+    /* Output file name variable */
+    const char *outputFileName = "solutions.txt";
+
     /* Check whether the flag for DiagonalStrategy is set */
     bool diagonalStrategyFlag = false;
 
@@ -23,37 +29,45 @@ int main(int argc, char *argv[]) {
     int commandLineParameter;
 
     /* Parse command line parameters */
-    while ((commandLineParameter = getopt(argc, argv, "dp:")) != -1)
+    while ((commandLineParameter = getopt(argc, argv, "i:o:d")) != -1)
         switch (commandLineParameter) {
-            /* If the '-d' flag is set, use DiagonalStrategy */
-            case 'd':
-                diagonalStrategyFlag = true;
+            case 'i':
+                /* Handle -i flag */
+                if (optarg) {
+                    /* If there is a value provided, set input file value */
+                    inputFileName = optarg;
+                }
                 break;
 
-                /* In case of an unknown flag, notify user on the standard error output */
-            case '?':
-                if (optopt == 'p')
-                    fprintf(stderr, "Option -%c requires an argument.\n", optopt);
-                else if (isprint(optopt))
-                    fprintf(stderr, "Unknown option `-%c'.\n", optopt);
-                else
-                    fprintf(stderr,
-                            "Unknown option character `\\x%x'.\n",
-                            optopt);
-                return 1;
+            case 'o':
+                /* Handle -o flag */
+                if (optarg) {
+                    /* If there is a value provided, set output file value */
+                    outputFileName = optarg;
+                }
+                break;
+
+            case 'd':
+                /* If the '-d' flag is set, use DiagonalStrategy */
+                diagonalStrategyFlag = true;
+                break;
 
                 /* Otherwise, abort execution */
             default:
                 abort();
         }
 
+    /* If there is no input file name specified, terminate */
+    if (inputFileName == nullptr) {
+        return 2;
+    }
+
     /* Initialize classes for puzzle solving
      * The path of the input file is also passed as a command line parameter */
-    FileInputHandler fileInputHandler{{diagonalStrategyFlag}, argv[optind]};
+    FileInputHandler fileInputHandler{{diagonalStrategyFlag}, inputFileName};
 
     /* Specify output file name */
-    /* TODO: get output file name as a command line parameter */
-    FileOutputHandler fileOutputHandler{"solutions.txt"};
+    FileOutputHandler fileOutputHandler{outputFileName};
 
     /* Initialize solver */
     Solver solver{};
