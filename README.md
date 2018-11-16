@@ -5,7 +5,7 @@
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=wlchs_SudOOku&metric=alert_status)](https://sonarcloud.io/dashboard?id=wlchs_SudOOku)
 
 Object-oriented Sudoku solver ~~& generator~~
-#### Version: 1.2
+#### Version: 1.2.1
 
 ## Solver
 - implemented

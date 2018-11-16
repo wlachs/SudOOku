@@ -27,7 +27,7 @@ private:
 public:
     SudookuController(InputHandler *, OutputHandler *, Solver *);
 
-    ~SudookuController();
+    ~SudookuController() = default;
 
     void run();
 };

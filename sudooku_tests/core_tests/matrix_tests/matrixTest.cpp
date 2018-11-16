@@ -5,6 +5,9 @@
 #include <gtest/gtest.h>
 #include <sudooku_core/matrix/matrix.h>
 #include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_core/strategies/rowStrategy.h>
+#include <sudooku_core/strategies/columnStrategy.h>
+#include <sudooku_core/strategies/groupStrategy.h>
 
 /**
  * Matrix test fixture class
@@ -12,13 +15,25 @@
 class MatrixTests : public ::testing::Test {
 protected:
     Matrix m1;
+    std::vector<SolvingStrategy *> solvingStrategies = {new RowStrategy{}, new ColumnStrategy{}, new GroupStrategy{}};
 
     /**
      * Setup method running before the execution of each test case
      */
     void SetUp() override {
         /* Read input Matrix from file */
-        m1 = FileInputHandler{{false}, "small4.mat"}.readInput();
+        m1 = FileInputHandler{solvingStrategies, "small4.mat"}.readInput();
+    }
+
+    /**
+     * Teardown method running after the execution of each test case
+     */
+    void TearDown() override {
+        /* Deallocate SolvingStrategy pointers */
+        for (SolvingStrategy *solvingStrategy : solvingStrategies) {
+            /* Delete object */
+            delete solvingStrategy;
+        }
     }
 };
 
@@ -92,7 +107,7 @@ TEST_F(MatrixTests, fork_test) {
  */
 TEST_F(MatrixTests, equality_operator_true_check) {
     /* Read the initial Matrix again */
-    Matrix m11 = FileInputHandler{{false}, "small4.mat"}.readInput();
+    Matrix m11 = FileInputHandler{solvingStrategies, "small4.mat"}.readInput();
 
     /* Since the two sources are the same, the Matrixes should be equal too */
     EXPECT_EQ(m1, m11);
@@ -104,7 +119,7 @@ TEST_F(MatrixTests, equality_operator_true_check) {
  */
 TEST_F(MatrixTests, equality_operator_false_check) {
     /* Read another Matrix from file */
-    Matrix m2 = FileInputHandler{{false}, "small3.mat"}.readInput();
+    Matrix m2 = FileInputHandler{solvingStrategies, "small3.mat"}.readInput();
 
     /* Since the two read Matrices were different, the operator should return false */
     EXPECT_NE(m1, m2);
@@ -116,7 +131,7 @@ TEST_F(MatrixTests, equality_operator_false_check) {
  */
 TEST_F(MatrixTests, equality_operator_dimension_false_check) {
     /* Read another Matrix from file */
-    Matrix m2 = FileInputHandler{{false}, "small3.mat"}.readInput();
+    Matrix m2 = FileInputHandler{solvingStrategies, "small3.mat"}.readInput();
 
     /* Even the dimensions don't match, so the function should return false before starting to check each
      * value individually */

@@ -5,6 +5,9 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_core/strategies/rowStrategy.h>
+#include <sudooku_core/strategies/columnStrategy.h>
+#include <sudooku_core/strategies/groupStrategy.h>
 
 /**
  * FileInputHandler test fixture class
@@ -12,13 +15,14 @@
 class FileInputHandlerTests : public ::testing::Test {
 protected:
     InputHandler *inputHandler{};
+    std::vector<SolvingStrategy *> solvingStrategies = {new RowStrategy{}, new ColumnStrategy{}, new GroupStrategy{}};
 
     /**
      * Setup method running before the execution of each test case
      */
     void SetUp() override {
         /* Initialize FileInputHandler object */
-        inputHandler = new FileInputHandler{{false}, "small1.mat"};
+        inputHandler = new FileInputHandler{solvingStrategies, "small1.mat"};
     }
 
     /**
@@ -27,6 +31,12 @@ protected:
     void TearDown() override {
         /* Free InputHandler object to prevent memory leak */
         delete inputHandler;
+
+        /* Deallocate SolvingStrategy pointers */
+        for (SolvingStrategy *solvingStrategy : solvingStrategies) {
+            /* Delete object */
+            delete solvingStrategy;
+        }
     }
 };
 

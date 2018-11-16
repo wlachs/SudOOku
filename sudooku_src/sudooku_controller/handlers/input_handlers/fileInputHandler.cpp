@@ -13,7 +13,8 @@
  * Open input file with the given name
  * @param fileName
  */
-FileInputHandler::FileInputHandler(std::vector<bool> const &flags_, std::string const &fileName) : flags(flags_) {
+FileInputHandler::FileInputHandler(std::vector<SolvingStrategy *> const &rules_, std::string const &fileName) : rules(
+        rules_) {
     /* Open input */
     inputFile.open(fileName);
 
@@ -46,18 +47,8 @@ Matrix FileInputHandler::readInput() {
  * The pointers allocated must be freed by the caller
  * @return solving strategies
  */
-std::vector<SolvingStrategy *> FileInputHandler::readRules() {
-    /* Allocate SolvingStrategy pointers */
-    std::vector<SolvingStrategy *> rules = {
-            new RowStrategy{},
-            new ColumnStrategy{},
-            new GroupStrategy{}};
-
-    /* The allocation of DiagonalStrategy is optional */
-    if (flags[0]) {
-        rules.push_back(new DiagonalStrategy{});
-    }
-
+std::vector<SolvingStrategy *> const &FileInputHandler::readRules() {
+    /* Return SolvingStrategy * vector */
     return rules;
 }
 

@@ -17,7 +17,7 @@ public:
 
     MOCK_METHOD0(readInput, Matrix());
 
-    MOCK_METHOD0(readRules, std::vector<SolvingStrategy *>());
+    MOCK_METHOD0(readRules, std::vector<SolvingStrategy *>const &());
 };
 
 #endif //SUDOOKU_MOCKINPUTHANDLER_H

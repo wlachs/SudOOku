@@ -18,16 +18,16 @@ class FileInputHandler : public InputHandler {
 private:
     std::ifstream inputFile;
     ReadMatrixFromFile *readMatrixFromFile;
-    std::vector<bool> flags{};
+    std::vector<SolvingStrategy *> rules{};
 
 public:
-    explicit FileInputHandler(std::vector<bool> const &, std::string const &);
+    explicit FileInputHandler(std::vector<SolvingStrategy *> const &, std::string const &);
 
     ~FileInputHandler() override;
 
     Matrix readInput() override;
 
-    std::vector<SolvingStrategy *> readRules() override;
+    std::vector<SolvingStrategy *> const &readRules() override;
 
     bool hasInput() const override;
 };

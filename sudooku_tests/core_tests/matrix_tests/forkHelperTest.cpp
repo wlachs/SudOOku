@@ -4,6 +4,9 @@
 
 #include <gtest/gtest.h>
 #include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
+#include <sudooku_core/strategies/rowStrategy.h>
+#include <sudooku_core/strategies/columnStrategy.h>
+#include <sudooku_core/strategies/groupStrategy.h>
 
 /**
  * ForkHelper test fixture class
@@ -12,13 +15,14 @@ class ForkHelperTests : public ::testing::Test {
 protected:
     Matrix m1;
     ForkHelper *forkHelper{};
+    std::vector<SolvingStrategy *> solvingStrategies = {new RowStrategy{}, new ColumnStrategy{}, new GroupStrategy{}};
 
     /**
      * Setup method running before the execution of each test case
      */
     void SetUp() override {
         /* Read input Matrix from file */
-        m1 = FileInputHandler{{false}, "small4.mat"}.readInput();
+        m1 = FileInputHandler{solvingStrategies, "small4.mat"}.readInput();
 
         /* Remove one value so that the ForkHelper class chooses that value as the optimal forking Field */
         m1[{4, 4}].removeValue(4);
@@ -33,6 +37,12 @@ protected:
     void TearDown() override {
         /* Free ForkHelper object to prevent memory leak */
         delete forkHelper;
+
+        /* Deallocate SolvingStrategy pointers */
+        for (SolvingStrategy *solvingStrategy : solvingStrategies) {
+            /* Delete object */
+            delete solvingStrategy;
+        }
     }
 };
 

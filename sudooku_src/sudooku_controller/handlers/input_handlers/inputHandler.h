@@ -22,7 +22,7 @@ public:
 
     virtual Matrix readInput() = 0;
 
-    virtual std::vector<SolvingStrategy *> readRules() = 0;
+    virtual std::vector<SolvingStrategy *> const &readRules() = 0;
 };
 
 #endif //SUDOOKU_INPUTHANDLER_H

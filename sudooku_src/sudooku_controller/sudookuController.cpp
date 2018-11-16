@@ -70,13 +70,3 @@ void SudookuController::initializeSolver() {
     /* Initialize solver */
     solver->setRules(rules);
 }
-
-/**
- * Delete manually allocated solving strategies
- */
-SudookuController::~SudookuController() {
-    for (auto *rule : rules) {
-        delete rule;
-        rule = nullptr;
-    }
-}

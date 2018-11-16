@@ -2,7 +2,9 @@
 // Created by Borbély László on 2018. 10. 16..
 //
 
+#include <sudooku_core/strategies/rowStrategy.h>
 #include <sudooku_core/strategies/columnStrategy.h>
+#include <sudooku_core/strategies/groupStrategy.h>
 #include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 #include <sudooku_core/matrix/matrix.h>
 #include "gtest/gtest.h"
@@ -14,18 +16,30 @@ class ColumnStrategyTests : public ::testing::Test {
 protected:
     ColumnStrategy columnStrategy;
     Matrix m1;
+    std::vector<SolvingStrategy *> solvingStrategies = {new RowStrategy{}, new ColumnStrategy{}, new GroupStrategy{}};
 
     /**
      * Setup method running before the execution of each test case
      */
     void SetUp() override {
         /* Initialize input Matrix */
-        m1 = FileInputHandler{{false}, "small1.mat"}.readInput();
+        m1 = FileInputHandler{solvingStrategies, "small1.mat"}.readInput();
 
         /* Remove some values to test column strategy functionality */
         m1[{1, 2}].removeValue(4);
         m1[{2, 2}].removeValue(4);
         m1[{3, 2}].removeValue(4);
+    }
+
+    /**
+     * Teardown method running after the execution of each test case
+     */
+    void TearDown() override {
+        /* Deallocate SolvingStrategy pointers */
+        for (SolvingStrategy *solvingStrategy : solvingStrategies) {
+            /* Delete object */
+            delete solvingStrategy;
+        }
     }
 };
 
@@ -35,7 +49,7 @@ protected:
  */
 TEST_F(ColumnStrategyTests, validation_check_false) {
     /* Initialize input Matrix */
-    Matrix invalid = FileInputHandler{{false}, "invalid1.mat"}.readInput();
+    Matrix invalid = FileInputHandler{solvingStrategies, "invalid1.mat"}.readInput();
 
     /* Check validity
      * Should return false */
