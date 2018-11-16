@@ -2,6 +2,9 @@
 // Created by Borbély László on 2018. 10. 21..
 //
 
+#include <sudooku_core/strategies/rowStrategy.h>
+#include <sudooku_core/strategies/columnStrategy.h>
+#include <sudooku_core/strategies/groupStrategy.h>
 #include <sudooku_core/strategies/diagonalStrategy.h>
 #include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 #include "gtest/gtest.h"
@@ -11,18 +14,23 @@
  */
 class DiagonalStrategyTests : public ::testing::Test {
 protected:
-    SolvingStrategy *diagonalStrategy = nullptr;
+    DiagonalStrategy *diagonalStrategy = new DiagonalStrategy{};
     Matrix m1;
+    std::vector<SolvingStrategy *> solvingStrategies = {
+            new RowStrategy{},
+            new ColumnStrategy{},
+            new GroupStrategy{},
+    };
 
     /**
      * Setup method running before the execution of each test case
      */
     void SetUp() override {
-        /* Initialize DiagonalStrategy */
-        diagonalStrategy = new DiagonalStrategy{};
+        /* Add DiagonalStrategy * to vector */
+        solvingStrategies.push_back(diagonalStrategy);
 
         /* Initialize input Matrix */
-        m1 = FileInputHandler{{false}, "small4.mat"}.readInput();
+        m1 = FileInputHandler{solvingStrategies, "small4.mat"}.readInput();
 
         /* Remove some values to test diagonal strategy functionality */
         m1[{1, 1}].removeValue(4);
@@ -34,8 +42,11 @@ protected:
      * Teardown method running after the execution of each test case
      */
     void TearDown() override {
-        /* Free DiagonalStrategy object to prevent memory leak */
-        delete diagonalStrategy;
+        /* Deallocate SolvingStrategy pointers */
+        for (SolvingStrategy *solvingStrategy : solvingStrategies) {
+            /* Delete object */
+            delete solvingStrategy;
+        }
     }
 };
 
@@ -44,7 +55,7 @@ protected:
  */
 TEST_F(DiagonalStrategyTests, validation_check_false_1) {
     /* Initialize input Matrix */
-    Matrix invalid = FileInputHandler{{false}, "invalid4.mat"}.readInput();
+    Matrix invalid = FileInputHandler{solvingStrategies, "invalid4.mat"}.readInput();
 
     /* Check validity
      * Should return false */
@@ -56,7 +67,7 @@ TEST_F(DiagonalStrategyTests, validation_check_false_1) {
  */
 TEST_F(DiagonalStrategyTests, validation_check_false_2) {
     /* Initialize input Matrix */
-    Matrix invalid = FileInputHandler{{false}, "invalid5.mat"}.readInput();
+    Matrix invalid = FileInputHandler{solvingStrategies, "invalid5.mat"}.readInput();
 
     /* Check validity
      * Should return false */

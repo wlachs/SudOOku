@@ -20,6 +20,7 @@ protected:
     Solver s1;
     std::vector<SolvingStrategy *> rules;
 
+
     /**
      * Setup method running before the execution of each test case
      */
@@ -40,7 +41,7 @@ protected:
      */
     void TearDown() override {
         /* Since there is no controller to free the pointers, we have to do it on our own */
-        for (auto &p : rules) {
+        for (auto *p : rules) {
             delete p;
         }
     }
@@ -51,7 +52,7 @@ protected:
  */
 TEST_F(SolverTests, small_solvable_test) {
     /* Initialize puzzle */
-    Matrix matrix = FileInputHandler{{false}, "small1.mat"}.readInput();
+    Matrix matrix = FileInputHandler{rules, "small1.mat"}.readInput();
 
     /* Set it as the initial Matrix of the Solver */
     s1.setInitialMatrix(matrix);
@@ -71,7 +72,7 @@ TEST_F(SolverTests, small_solvable_test) {
  */
 TEST_F(SolverTests, small_not_solvable_test) {
     /* Initialize puzzle */
-    Matrix matrix = FileInputHandler{{false}, "invalid1.mat"}.readInput();
+    Matrix matrix = FileInputHandler{rules, "invalid1.mat"}.readInput();
 
     /* Set it as the initial Matrix of the Solver */
     s1.setInitialMatrix(matrix);
@@ -91,7 +92,7 @@ TEST_F(SolverTests, small_not_solvable_test) {
  */
 TEST_F(SolverTests, each_solution_is_unique_test) {
     /* Initialize puzzle */
-    Matrix matrix = FileInputHandler{{false}, "test3.mat"}.readInput();
+    Matrix matrix = FileInputHandler{rules, "test3.mat"}.readInput();
 
     /* Set it as the initial Matrix of the Solver */
     s1.setInitialMatrix(matrix);
@@ -130,7 +131,7 @@ TEST_F(SolverTests, diagonal_test) {
     s1.addRule(diagonalStrategy);
 
     /* Read input puzzle */
-    Matrix matrix = FileInputHandler{{false}, "test5.mat"}.readInput();
+    Matrix matrix = FileInputHandler{rules, "test5.mat"}.readInput();
 
     /* Set it as the initial Matrix of the Solver */
     s1.setInitialMatrix(matrix);

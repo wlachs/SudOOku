@@ -7,11 +7,15 @@
 #include <sudooku_controller/sudookuController.h>
 #include <controller_tests/helper_classes/mockInputHandler.h>
 #include <controller_tests/helper_classes/mockOutputHandler.h>
+#include <sudooku_core/strategies/rowStrategy.h>
+#include <sudooku_core/strategies/columnStrategy.h>
 #include <sudooku_core/strategies/groupStrategy.h>
+#include <sudooku_core/strategies/diagonalStrategy.h>
 #include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 
 using ::testing::AtLeast;
 using ::testing::Return;
+using ::testing::ReturnRef;
 
 /**
  * Controller test fixture class
@@ -23,7 +27,7 @@ protected:
     SudookuController *sudookuController = nullptr;
     MockInputHandler mockInputHandler{};
     MockOutputHandler mockOutputHandler{};
-    std::vector<SolvingStrategy *> rules = {};
+    std::vector<SolvingStrategy *> solvingStrategies = {new RowStrategy{}, new ColumnStrategy{}, new GroupStrategy{}};
 
     /**
      * Setup method running before the execution of each test case
@@ -31,10 +35,6 @@ protected:
     void SetUp() override {
         /* Initialize controller object */
         sudookuController = new SudookuController{&mockInputHandler, &mockOutputHandler, &solver};
-
-        /* Add a sample rule to the list of rules
-         * Note that this pointer doesn't have to be freed because the controller does it instead */
-        rules = {new GroupStrategy{}};
     }
 
     /**
@@ -43,6 +43,12 @@ protected:
     void TearDown() override {
         /* Free controller object to prevent memory leak */
         delete sudookuController;
+
+        /* Deallocate SolvingStrategy * pointers */
+        for (SolvingStrategy *solvingStrategy : solvingStrategies) {
+            /* Delete object */
+            delete solvingStrategy;
+        }
     }
 };
 
@@ -52,7 +58,7 @@ protected:
 TEST_F(ControllerTests, input_called_only_once_test) {
     /* The rules should be called once, because the pointers inside must be freed by the controller */
     EXPECT_CALL(mockInputHandler, readRules())
-            .WillOnce(Return(rules));
+            .WillOnce(ReturnRef(solvingStrategies));
 
     /* Controller will check whether there are any puzzles to solve */
     EXPECT_CALL(mockInputHandler, hasInput())
@@ -74,7 +80,7 @@ TEST_F(ControllerTests, input_called_only_once_test) {
 TEST_F(ControllerTests, output_handler_start_test) {
     /* The InputHandler should be called once again for the rules */
     EXPECT_CALL(mockInputHandler, readRules())
-            .WillOnce(Return(rules));
+            .WillOnce(ReturnRef(solvingStrategies));
 
     /* Controller will check whether there are any puzzles to solve */
     EXPECT_CALL(mockInputHandler, hasInput())
@@ -103,7 +109,7 @@ TEST_F(ControllerTests, output_handler_start_test) {
 TEST_F(ControllerTests, output_handler_solution_test) {
     /* The InputHandler should return the rules for solving the puzzle */
     EXPECT_CALL(mockInputHandler, readRules())
-            .WillOnce(Return(rules));
+            .WillOnce(ReturnRef(solvingStrategies));
 
     /* Controller will check whether there are any puzzles to solve */
     EXPECT_CALL(mockInputHandler, hasInput())
@@ -133,7 +139,7 @@ TEST_F(ControllerTests, output_handler_solution_test) {
 TEST_F(ControllerTests, output_handler_end_test) {
     /* The InputHandler should return the rules for solving the puzzle */
     EXPECT_CALL(mockInputHandler, readRules())
-            .WillOnce(Return(rules));
+            .WillOnce(ReturnRef(solvingStrategies));
 
     /* Controller will check whether there are any puzzles to solve */
     EXPECT_CALL(mockInputHandler, hasInput())
@@ -169,7 +175,7 @@ TEST_F(ControllerTests, real_solve_test) {
             .Times(4);
 
     /* Initialize a real instance of the InputHandler */
-    FileInputHandler f{{false}, "test3.mat"};
+    FileInputHandler f{solvingStrategies, "test3.mat"};
 
     /* Initialize a real instance of the controller with the matching pointers */
     SudookuController c{&f, &mockOutputHandler, &solver};
@@ -190,8 +196,11 @@ TEST_F(ControllerTests, real_solve_diagonal_test) {
     EXPECT_CALL(mockOutputHandler, notifyEvent(SudookuEvent::SOLUTION, testing::_))
             .Times(1);
 
+    /* Add DiagonalStrategy * to vector */
+    solvingStrategies.push_back(new DiagonalStrategy{});
+
     /* Initialize a real instance of the InputHandler */
-    FileInputHandler f{{true}, "test5.mat"};
+    FileInputHandler f{solvingStrategies, "test5.mat"};
 
     /* Initialize a real instance of the controller with the matching pointers */
     SudookuController c{&f, &mockOutputHandler, &solver};

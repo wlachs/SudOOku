@@ -2,6 +2,8 @@
 // Created by Borbély László on 2018. 10. 21..
 //
 
+#include <sudooku_core/strategies/rowStrategy.h>
+#include <sudooku_core/strategies/columnStrategy.h>
 #include <sudooku_core/strategies/groupStrategy.h>
 #include <sudooku_controller/handlers/input_handlers/fileInputHandler.h>
 #include "gtest/gtest.h"
@@ -13,18 +15,30 @@ class GroupStrategyTests : public ::testing::Test {
 protected:
     GroupStrategy groupStrategy;
     Matrix m1;
+    std::vector<SolvingStrategy *> solvingStrategies = {new RowStrategy{}, new ColumnStrategy{}, new GroupStrategy{}};
 
     /**
      * Setup method running before the execution of each test case
      */
     void SetUp() override {
         /* Initialize input Matrix */
-        m1 = FileInputHandler{{false}, "small3.mat"}.readInput();
+        m1 = FileInputHandler{solvingStrategies, "small3.mat"}.readInput();
 
         /* Remove some values to test group strategy functionality */
         m1[{1, 3}].removeValue(4);
         m1[{1, 4}].removeValue(4);
         m1[{2, 3}].removeValue(4);
+    }
+
+    /**
+     * Teardown method running after the execution of each test case
+     */
+    void TearDown() override {
+        /* Deallocate SolvingStrategy pointers */
+        for (SolvingStrategy *solvingStrategy : solvingStrategies) {
+            /* Delete object */
+            delete solvingStrategy;
+        }
     }
 };
 
@@ -33,7 +47,7 @@ protected:
  */
 TEST_F(GroupStrategyTests, validation_check_false) {
     /* Initialize input Matrix */
-    Matrix invalid = FileInputHandler{{false}, "invalid3.mat"}.readInput();
+    Matrix invalid = FileInputHandler{solvingStrategies, "invalid3.mat"}.readInput();
 
     /* Check validity
      * Should return false */
