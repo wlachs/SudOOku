@@ -7,9 +7,6 @@
 Object-oriented Sudoku solver ~~& generator~~
 #### Version: 1.2
 
-## Planned features
-- on-demand puzzle reader (ReadMatrixFromFile refactoring)
-
 ## Solver
 - implemented
 - *verification rules* defined in the strategies

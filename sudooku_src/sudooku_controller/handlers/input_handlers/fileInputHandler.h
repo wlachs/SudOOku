@@ -19,7 +19,6 @@ private:
     std::ifstream inputFile;
     ReadMatrixFromFile *readMatrixFromFile;
     std::vector<bool> flags{};
-    std::vector<Matrix> inputMatrices{};
 
 public:
     explicit FileInputHandler(std::vector<bool> const &, std::string const &);
