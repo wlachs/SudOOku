@@ -118,7 +118,7 @@ void Solver::optimize(Matrix &matrix) const {
     bool shouldReRun = false;
 
     /* Run the optimization function of every SolvingStrategy */
-    for (auto strategy : strategies) {
+    for (auto *strategy : strategies) {
         if (strategy->simplify(matrix)) {
             shouldReRun = true;
         }
