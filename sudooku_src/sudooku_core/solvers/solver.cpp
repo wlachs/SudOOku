@@ -98,7 +98,7 @@ bool Solver::isValid(Matrix const &matrix) const {
 
     /* If on all coordinates there is at least one possible value, use the validation function of the
      * given SolvingStrategies */
-    for (auto strategy : strategies) {
+    for (auto *strategy : strategies) {
         if (!strategy->validate(matrix)) {
             return false;
         }
