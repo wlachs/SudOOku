@@ -131,9 +131,7 @@ bool ColumnStrategy::optimizeSingular(std::vector<unsigned short int> const &val
  * @param value
  * @return
  */
-bool ColumnStrategy::recursiveRemove(unsigned short const int row_,
-                                     short const int direction,
-
+bool ColumnStrategy::recursiveRemove(unsigned short const int row_, short const int direction,
                                      unsigned short const int value) {
     /* Stop execution if an edge was reached */
     if (row_ < 1 || row_ > dimension) {
