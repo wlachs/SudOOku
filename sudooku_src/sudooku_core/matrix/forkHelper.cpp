@@ -66,7 +66,7 @@ void ForkHelper::init() {
  */
 Matrix ForkHelper::fork() {
     /* Make a copy of the pointed Matrix */
-    Matrix matrix_second = Matrix{(*this->matrix)};
+    Matrix matrix_second = Matrix{*this->matrix};
 
     /* Fix the value on the first one and remove it on the second one */
     (*this->matrix)[forkCoordinates].fixValue();
